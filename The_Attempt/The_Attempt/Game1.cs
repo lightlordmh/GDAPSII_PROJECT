@@ -6,7 +6,7 @@ namespace The_Attempt
 {
     /// <summary>
     /// This is the main type for your game.
-    /// </summary>
+    /// </summary> SOMETHING
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
