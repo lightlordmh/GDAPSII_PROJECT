@@ -5,7 +5,7 @@ using System.Text;
 
 namespace The_Attempt
 {
-    class Monster:Move
+    class Monster:GameObject
     {
     }
 }

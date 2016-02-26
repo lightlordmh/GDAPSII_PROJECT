@@ -5,7 +5,7 @@ using System.Text;
 
 namespace The_Attempt
 {
-    class Collectables:Static
+    class Collectables:GameObject
     {
     }
 }
