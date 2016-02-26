@@ -38,9 +38,26 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Battery.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="CollDetect.cs" />
+    <Compile Include="Collectables.cs" />
+    <Compile Include="Corridor.cs" />
+    <Compile Include="Door.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObject.cs" />
+    <Compile Include="input.cs" />
+    <Compile Include="Intersection.cs" />
+    <Compile Include="Key.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="Monster.cs" />
+    <Compile Include="Move.cs" />
+    <Compile Include="Movement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Room.cs" />
+    <Compile Include="Static.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
