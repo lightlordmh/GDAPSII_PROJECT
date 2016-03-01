@@ -12,10 +12,13 @@ namespace The_Attempt
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = Settings.WinHeight;
+            graphics.PreferredBackBufferWidth = Settings.WinWidth;
         }
 
         /// <summary>
