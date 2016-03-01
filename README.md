@@ -4,7 +4,7 @@
 
 * Implement maze-like map and player movement
 
-**Week 6**
+**Week 6** - _**Current Week**_
 
 * Implement Key placement around map and player ability to escape
 
@@ -13,7 +13,7 @@
 * Implement external tool basics & basic GUI
 * Complete an alpha version of the game for Milestone 2
 
-**Week 8 Milestone 2**
+**Week 8 Milestone 2** 
 
 * Implement AI for enemy to make him able to search for the player
 
