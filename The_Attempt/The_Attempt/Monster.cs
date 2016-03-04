@@ -7,5 +7,6 @@ namespace The_Attempt
 {
     class Monster:GameObject
     {
+
     }
 }
