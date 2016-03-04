@@ -10,6 +10,7 @@ namespace The_Attempt
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+        GameState currentState;
         SpriteBatch spriteBatch;
 
 
@@ -19,6 +20,16 @@ namespace The_Attempt
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = Settings.WinHeight;
             graphics.PreferredBackBufferWidth = Settings.WinWidth;
+        }
+
+        public enum GameState
+        {
+            MainMenu,
+            Controls,
+            MainGame,
+            GameOver,
+            PhoneMenu,
+                 
         }
 
         /// <summary>
@@ -66,7 +77,20 @@ namespace The_Attempt
                 Exit();
 
             // TODO: Add your update logic here
-
+            switch (currentState)
+            {
+                case GameState.MainMenu:
+                    break;
+                case GameState.Controls:
+                    break;
+                case GameState.MainGame:
+                    break;
+                case GameState.PhoneMenu:
+                    break;
+                case GameState.GameOver:
+                    break;
+                
+            }
             base.Update(gameTime);
         }
 
