@@ -5,7 +5,9 @@ using System.Text;
 
 namespace The_Attempt
 {
-    class Battery:Collectables
+    // ***** STRETCH GOAL CLASS ***** 
+    public class Battery:Collectible
     {
+
     }
 }

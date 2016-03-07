@@ -5,7 +5,7 @@ using System.Text;
 
 namespace The_Attempt
 {
-    class Menu
+    public class Menu
     {
     }
 }

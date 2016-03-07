@@ -5,7 +5,8 @@ using System.Text;
 
 namespace The_Attempt
 {
-    class Corridor:GameObject
+    public class Corridor:GameObject
     {
+
     }
 }

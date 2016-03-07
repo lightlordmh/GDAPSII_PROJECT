@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace The_Attempt
 {
-    class input
+    public class Input
     {
         //Checks the keyboard for input
         public void Check(Map cGM) //current game map
@@ -46,6 +42,7 @@ namespace The_Attempt
             }
             if (kbState.IsKeyDown(Keys.Space)) //Flashlight
             {
+
             }
         }
     }

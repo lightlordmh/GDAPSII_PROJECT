@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace The_Attempt
 {
-    class Movement
+    public class Movement
     {
         //acts as differnce in speed
         private float scale = 1;

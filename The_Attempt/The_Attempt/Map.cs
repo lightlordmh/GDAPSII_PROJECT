@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace The_Attempt
 {
-    class Map
+    public class Map
     {
         private Vector2 mapPlace = new Vector2(10, 10);         //PH   placeholder placement
 

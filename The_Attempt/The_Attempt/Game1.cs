@@ -28,8 +28,7 @@ namespace The_Attempt
             Controls,
             MainGame,
             GameOver,
-            PhoneMenu,
-                 
+            PhoneMenu,     
         }
 
         /// <summary>
@@ -89,8 +88,8 @@ namespace The_Attempt
                     break;
                 case GameState.GameOver:
                     break;
-                
             }
+
             base.Update(gameTime);
         }
 
