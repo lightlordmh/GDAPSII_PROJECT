@@ -16,6 +16,7 @@ namespace The_Attempt
             get { return position; }
             set { position = value; }
         }
+
         public Texture2D CurrentTexture
         {
             get { return currentTexture; }

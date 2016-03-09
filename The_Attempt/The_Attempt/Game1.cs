@@ -13,6 +13,8 @@ namespace The_Attempt
         GameState currentState;
         SpriteBatch spriteBatch;
 
+        Texture2D playerImg;
+        Character player;
 
         public Game1()
         {
@@ -40,7 +42,7 @@ namespace The_Attempt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 100, 100);
             base.Initialize();
         }
 
@@ -52,6 +54,7 @@ namespace The_Attempt
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            playerImg = Content.Load<Texture2D>("Player");
 
             // TODO: use this.Content to load your game content here
         }
@@ -99,10 +102,13 @@ namespace The_Attempt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            player.CurrentTexture = playerImg;
+            spriteBatch.Draw(player.CurrentTexture, player.Position, Color.White);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
