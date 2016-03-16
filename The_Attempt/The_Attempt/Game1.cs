@@ -59,6 +59,7 @@ namespace The_Attempt
             kbState = new KeyboardState(); // initialize keyboard state
             previousKbState = new KeyboardState(); // initialize previous keyboard state 
             currentState = GameState.MainMenu; // start the game off at the menu state
+            IsMouseVisible = true; // Enable the mouse to be visable with in the game window
             base.Initialize();
         }
 

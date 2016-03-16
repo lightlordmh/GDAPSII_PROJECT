@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Battery.cs" />
+    <Compile Include="Button.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="CollDetect.cs" />
     <Compile Include="Collectible.cs" />
