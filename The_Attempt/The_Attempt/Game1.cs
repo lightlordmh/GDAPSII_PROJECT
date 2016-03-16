@@ -106,10 +106,12 @@ namespace The_Attempt
                 case GameState.MainMenu:
                     if (SingleKeyPress(Keys.Enter))
                     {
+                        IsMouseVisible = false;
                         currentState = GameState.MainGame;
                     }
                     if(SingleKeyPress(Keys.C))
                     {
+                        IsMouseVisible = true;
                         currentState = GameState.Controls;
                     }
                     break;
@@ -117,6 +119,7 @@ namespace The_Attempt
                     // to return to the Main Menu from the Controls screen, press C again
                     if (SingleKeyPress(Keys.C))
                     {
+                        IsMouseVisible = true;
                         currentState = GameState.MainMenu;
                     }
 
@@ -126,6 +129,7 @@ namespace The_Attempt
                     // during the game, the player can press tab to bring up their phone menu
                     if (SingleKeyPress(Keys.Tab))
                     {
+                        IsMouseVisible = true;
                         currentState = GameState.PhoneMenu;
                     }
 
@@ -135,6 +139,7 @@ namespace The_Attempt
                     // once in the phone menu screen, press tab again to return back to the game
                     if (SingleKeyPress(Keys.Tab))
                     {
+                        IsMouseVisible = false;
                         currentState = GameState.MainGame;
                     }
                     break;
