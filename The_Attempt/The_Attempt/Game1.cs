@@ -62,7 +62,7 @@ namespace The_Attempt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 100, 100);
+            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 30, 40);
 
             kbState = new KeyboardState(); // initialize keyboard state
             previousKbState = new KeyboardState(); // initialize previous keyboard state 
@@ -205,6 +205,9 @@ namespace The_Attempt
             }
             if (currentState == GameState.MainGame)
             {
+                //draw the map
+                map.Draw(spriteBatch);
+
                 // draw the player to the screen
                 spriteBatch.Draw(player.CurrentTexture, player.Position, Color.White);
 
@@ -212,9 +215,6 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "Level   " + currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
-
-                //draw the map
-                map.Draw(spriteBatch);
             }
             if (currentState == GameState.PhoneMenu)
             {
