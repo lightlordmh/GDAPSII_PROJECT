@@ -11,6 +11,8 @@ namespace The_Attempt
         //acts as differnce in speed
         private float scale = 1;
 
+
+
         //for changing the scale
         public float Scale
         {

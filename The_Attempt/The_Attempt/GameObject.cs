@@ -9,6 +9,7 @@ namespace The_Attempt
         // attributes
         private Rectangle position; // position of the object on the screen 
         private Texture2D currentTexture; // texture the object is given
+        private static Vector2 mapPos;
 
         // properties 
         public Rectangle Position
@@ -21,6 +22,12 @@ namespace The_Attempt
         {
             get { return currentTexture; }
             set { currentTexture = value; }
+        }
+
+        public Vector2 MapPos
+        {
+            get { return mapPos; }
+            set { mapPos = value; }
         }
 
         // parameterized constructor

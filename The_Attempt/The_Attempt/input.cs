@@ -5,11 +5,14 @@ namespace The_Attempt
 {
     public class Input
     {
+
         //Checks the keyboard for input
         public void Check(Map cGM) //current game map
         {
             KeyboardState kbState;
             kbState = Keyboard.GetState();
+
+            //construct
 
             //Movement object
             Movement inputMove = new Movement();
@@ -22,28 +25,32 @@ namespace The_Attempt
             }
             if (kbState.IsKeyDown(Keys.W))
             {
-                Vector2 bMM = cGM.MapPlace;
-                cGM.MapPlace = inputMove.Down(bMM);
+               Vector2 bMM = cGM.MapPos;
+               cGM.MapPos = inputMove.Down(bMM);
             }
             if (kbState.IsKeyDown(Keys.D))
             {
-                Vector2 bMM = cGM.MapPlace;
-                cGM.MapPlace = inputMove.Left(bMM);
+                Vector2 bMM = cGM.MapPos;
+                cGM.MapPos = inputMove.Left(bMM);
             }
             if (kbState.IsKeyDown(Keys.S))
             {
-                Vector2 bMM = cGM.MapPlace;
-                cGM.MapPlace = inputMove.Up(bMM);
+                Vector2 bMM = cGM.MapPos;
+                cGM.MapPos = inputMove.Up(bMM);
             }
             if (kbState.IsKeyDown(Keys.A))
             {
-                Vector2 bMM = cGM.MapPlace;
-                cGM.MapPlace = inputMove.Right(bMM);
+                Vector2 bMM = cGM.MapPos;
+                cGM.MapPos = inputMove.Right(bMM);
             }
             if (kbState.IsKeyDown(Keys.Space)) //Flashlight
             {
 
             }
+
+            //return it
         }
+
+
     }
 }

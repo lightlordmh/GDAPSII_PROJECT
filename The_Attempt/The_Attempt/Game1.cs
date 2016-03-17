@@ -13,9 +13,7 @@ namespace The_Attempt
         GraphicsDeviceManager graphics;
         GameState currentState;
         SpriteBatch spriteBatch;
-        
-        Texture2D playerImg;
-        Character player;
+
 
         SpriteFont title; // font used for Title on the Main Menus
         SpriteFont text; // font used for other text
@@ -24,6 +22,16 @@ namespace The_Attempt
         // keyboard attributes
         KeyboardState kbState; // current keyboard state
         KeyboardState previousKbState; // previous keyboardstate
+
+
+        //in game
+        Texture2D playerImg;
+        Texture2D mapImg;
+        Character player;
+
+        Map map;
+        Input input;
+
 
         int currentLevel; // current level the player is on
         double timer; // timer for the level
@@ -61,6 +69,10 @@ namespace The_Attempt
             currentState = GameState.MainMenu; // start the game off at the menu state
             IsMouseVisible = true; // Enable the mouse to be visable with in the game window
             base.Initialize();
+
+            map = new Map(0, 0, 2100, 1500);
+            map.MapPos = new Vector2(-1050, -750);
+            input = new Input();
         }
 
         /// <summary>
@@ -72,6 +84,7 @@ namespace The_Attempt
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             playerImg = Content.Load<Texture2D>("Player");
+            mapImg = Content.Load<Texture2D>("Map");
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
             menuImg = Content.Load<Texture2D>("MenuScreen");
@@ -133,6 +146,11 @@ namespace The_Attempt
                         currentState = GameState.PhoneMenu;
                     }
 
+                    //check for input
+                    input.Check(map);
+
+                    //udating placements
+                    map.UpD();
 
                     break;
                 case GameState.PhoneMenu:
@@ -160,7 +178,8 @@ namespace The_Attempt
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            player.CurrentTexture = playerImg;           
+            player.CurrentTexture = playerImg;
+            map.CurrentTexture = mapImg;           
 
             if(currentState == GameState.MainMenu)
             { 
@@ -193,6 +212,9 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "Level   " + currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
+
+                //draw the map
+                map.Draw(spriteBatch);
             }
             if (currentState == GameState.PhoneMenu)
             {
