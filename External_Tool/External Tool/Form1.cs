@@ -15,17 +15,9 @@ namespace External_Tool
     {
 
         // how to edit text file
-        StreamWriter output = new StreamWriter("GameSettings.txt");
-        StreamReader input = new StreamReader("GameSettings.txt");
+        StreamWriter output = null;
+        StreamReader input = null;
         string[] filelines2;
-
-
-        
-
-        private void SettingsManager_Load(object sender, EventArgs e)
-        {
-
-        }
 
         public SettingsManager()
         {
@@ -162,5 +154,7 @@ namespace External_Tool
             // close form when cancled
             //this.Close();
         }
+
+
     }
 }

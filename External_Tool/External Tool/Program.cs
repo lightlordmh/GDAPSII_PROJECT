@@ -14,10 +14,6 @@ namespace External_Tool
         [STAThread]
         static void Main()
         {
-            // attributes for file input
-            string filename = "GameSettings";
-
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SettingsManager());
