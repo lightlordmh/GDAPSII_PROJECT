@@ -12,8 +12,6 @@ namespace The_Attempt
             KeyboardState kbState;
             kbState = Keyboard.GetState();
 
-            //construct
-
             //Movement object
             Movement inputMove = new Movement();
 

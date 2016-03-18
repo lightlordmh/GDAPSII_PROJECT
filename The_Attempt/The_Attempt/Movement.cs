@@ -9,7 +9,7 @@ namespace The_Attempt
     public class Movement
     {
         //acts as differnce in speed
-        private float scale = 1;
+        private float scale = 3;
 
 
 
