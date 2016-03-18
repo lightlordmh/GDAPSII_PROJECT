@@ -13,21 +13,16 @@ namespace External_Tool
 {
     public partial class SettingsManager : Form
     {
-
-        // how to edit text file
-        StreamWriter output = null;
-        StreamReader input = null;
-        string[] filelines2;
+        // array for holidng values from the lines
+        string[] filelines2 = new string[4];
+       
 
         public SettingsManager()
         {
             InitializeComponent();
-            // set defualt values for text in the file
-            output.WriteLine("DIMMED");
-            output.WriteLine("NORMAL");
-            output.WriteLine("TWO");
-            output.WriteLine("AVERAGE");
-            output.Close();
+
+            // call savelines method
+            SaveLines();
 
             // set color
             //this.BackColor = Color.Black;
@@ -37,21 +32,70 @@ namespace External_Tool
         // method for getting lines
         public void SaveLines()
         {
+            // create reader to read file
+            StreamReader input = null;
 
-            // array for holding lines from text file
-            string[] filelines = new string[4];
-
-
-            for (int i = 0; i < filelines.Length; i = 0)
+            try
             {
-                while (input.ReadLine() != null)
+                // call in file for reader
+                input = new StreamReader("GameSettings.txt");
+
+                // read through the lines of the file and store the values
+                for (int i = 0; i < filelines2.Length; i = 0)
                 {
-                    filelines[i] = input.ReadLine();
+                    while (input.ReadLine() != null)
+                    {
+                        filelines2[i] = input.ReadLine();
+                    }
                 }
             }
-            input.Close();
-            filelines2 = filelines;
+            catch(FileNotFoundException ex)
+            {
 
+                // print out message stating is file wasnt found
+                MessageBox.Show("Error: File was not found " + ex.Message);
+                MessageBox.Show("Creating File From Scratch");
+
+                // create the file by calling the writelines method
+                WriteLines();
+      
+            }
+            finally // make sure the file gets closed even if try fails
+            {
+                // close the file
+                input.Close();
+            }
+            
+            
+
+        }
+
+        // method for outputting to the file
+        public void WriteLines()
+        {
+            // create streamwriter to save changed information to the settings file
+            StreamWriter output = null;
+
+            try
+            {
+                // call in file name for output
+                output = new StreamWriter("GameSettings.txt");
+
+                // set settings based on what is in the array of line values
+                output.WriteLine(filelines2[0]);
+                output.WriteLine(filelines2[1]);
+                output.WriteLine(filelines2[2]);
+                output.WriteLine(filelines2[3]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: An exception has occured" + ex.Message);
+            }
+            finally
+            {
+                // close the file to save changes
+                output.Close();
+            }
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -142,11 +186,8 @@ namespace External_Tool
 
         private void ApplyBut_Click(object sender, EventArgs e)
         {
-            // set settings based on what is in the array
-            output.WriteLine(filelines2[0]);
-            output.WriteLine(filelines2[1]);
-            output.WriteLine(filelines2[2]);
-            output.WriteLine(filelines2[3]);
+            // call the writelines method to save changes made in teh form
+            WriteLines();
         }
 
         private void CancelBut_Click(object sender, EventArgs e)
