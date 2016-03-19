@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+/// <summary>
+/// Evan Keating
+/// External Tool for editing a text file that will determine the values for attributes in the game
+/// Array of strings was used to store values, will most likely change to dictionary for ease of use
+/// </summary>
+
 namespace External_Tool
 {
     public partial class SettingsManager : Form
