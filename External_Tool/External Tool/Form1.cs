@@ -41,7 +41,7 @@ namespace External_Tool
                 input = new StreamReader("GameSettings.txt");
 
                 // read through the lines of the file and store the values
-                for (int i = 0; i < filelines2.Length; i = 0)
+                for (int i = 0; i < filelines2.Length; i++)
                 {
                     while (input.ReadLine() != null)
                     {
@@ -63,7 +63,7 @@ namespace External_Tool
             finally // make sure the file gets closed even if try fails
             {
                 // close the file
-                input.Close();
+                if (input != null) input.Close();
             }
             
             
@@ -94,7 +94,7 @@ namespace External_Tool
             finally
             {
                 // close the file to save changes
-                output.Close();
+                if (output != null) output.Close();
             }
         }
 
