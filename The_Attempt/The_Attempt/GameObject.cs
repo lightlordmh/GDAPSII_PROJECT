@@ -3,10 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace The_Attempt
 {
-    //Israel Anthony
-    //Russell Swartz
-    //Evan Keating
-    //Kyle Vanderwiel
+    // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
     // This class represents the physical objects that will interact in the game
     public class GameObject
     {
@@ -34,13 +31,22 @@ namespace The_Attempt
             set { mapPos = value; }
         }
 
-        // parameterized constructor
-        public GameObject(int posX, int posY, int width, int height)
+        /// <summary>
+        /// Constructs a GameObject object and places it in a Rectangle defined by the parameters that are passed in.
+        /// </summary>
+        /// <param name="xPos">The X coordinate of the top left point of the Rectangle.</param>
+        /// <param name="yPos">The Y coordinate of the top left point of the Rectangle.</param>
+        /// <param name="width">The width dimension of the Rectangle.</param>
+        /// <param name="height">The height dimension of the Rectangle.</param>
+        public GameObject(int xPos, int yPos, int width, int height)
         {
-            position = new Rectangle(posX, posY, width, height);
+            position = new Rectangle(xPos, yPos, width, height);
         }
 
-        // draw method used to draw the GameObject to the screen
+        /// <summary>
+        /// Draws the GameObject to the screen.
+        /// </summary>
+        /// <param name="spriteBatch">SpriteBatch</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(currentTexture, position, Color.White);

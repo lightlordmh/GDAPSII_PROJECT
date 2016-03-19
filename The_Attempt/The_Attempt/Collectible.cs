@@ -1,48 +1,53 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace The_Attempt
-{   //Israel Anthony
-    //Russell Swartz
-    //Evan Keating
-    //Kyle Vanderwiel
-    //Handles Collectable Game Objects
-    //These are game objects the player needs to collect/ intereact with to progress in the game
+{
+    // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
+    // Represents game objects the player needs to collect or interact with to progress in the game
     public class Collectible:GameObject
     {
-        // attribute
+        // attributes
         private bool active;
 
-        // property
+        // properties
         public bool Active
         {
             get { return active; }
             set { active = value; }
         }
 
-        // constructor
-        public Collectible(int posX, int posY, int width, int height) : base(posX, posY, width, height)
+        /// <summary>
+        /// Constructs a Collectible object and places it in a Rectangle defined by the parameters that are passed in.
+        /// </summary>
+        /// <param name="xPos">The X coordinate of the top left point of the Rectangle.</param>
+        /// <param name="yPos">The Y coordinate of the top left point of the Rectangle.</param>
+        /// <param name="width">The width dimension of the Rectangle.</param>
+        /// <param name="height">The height dimension of the Rectangle.</param>
+        public Collectible(int xPos, int yPos, int width, int height) : base(xPos, yPos, width, height)
         {
             active = true; // collectiblies are default active
         }
 
-        // method used to detect if the player is colliding with the collectible
-        public bool CheckCollision(Character player)
+        /// <summary>
+        /// Checks to see if the Character is colliding with the Collectible. If so, makes the Collectible's active attribute set to
+        /// false.
+        /// </summary>
+        /// <param name="player">The player.</param>
+        /// <returns></returns>
+        public void CheckCollision(Character player)
         {
-            // if the collectible is active, check for collisions to see if player is colliding with it
             if (active && Position.Intersects(player.Position))
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                active = false;
             }
         }
-
-        // overriden draw method
+        
+        /// <summary>
+        /// Overridden Draw method that only draws the Collectible if it is active.
+        /// </summary>
+        /// <param name="spriteBatch">SpriteBatch</param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-            // only draw collectible if it is active
             if (active)
             {
                 base.Draw(spriteBatch);

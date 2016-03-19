@@ -5,49 +5,36 @@ using System;
 
 namespace The_Attempt
 {
-    //Israel Anthony
-    //Russell Swartz
-    //Evan Keating
-    //Kyle Vanderwiel
+    // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
     /// <summary>
-    /// This is the Main Game class it handles the game loop, state and logic
+    /// This is the Main Game class. It handles the game loop, current state and logic
     /// </summary> 
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        GameState currentState;
         SpriteBatch spriteBatch;
 
-
+        // menu attributes
         SpriteFont title; // font used for Title on the Main Menus
         SpriteFont text; // font used for other text
         Texture2D menuImg; // background for the menu
 
-        // keyboard attributes
+        // keyboard attributes (used to switch between game states)
         KeyboardState kbState; // current keyboard state
         KeyboardState previousKbState; // previous keyboardstate
 
 
-        //in game
-        Texture2D playerImg;
-        Texture2D mapImg;
-        Character player;
-
-        Map map;
-        Input input;
-
+        // in-game attributes
+        Texture2D playerImg; // the texture for the player
+        Texture2D mapImg; // the texture for the map
+        Character player; // the player object
+        Map map; // defines the maps placement
+        Input input; // handles input
 
         int currentLevel; // current level the player is on
         double timer; // timer for the level
 
-        public Game1()
-        {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferHeight = Settings.WinHeight;
-            graphics.PreferredBackBufferWidth = Settings.WinWidth;
-        }
-
+        // the various game states present in the game
         public enum GameState
         {
             MainMenu,
@@ -56,6 +43,19 @@ namespace The_Attempt
             GameOver,
             PhoneMenu,     
         }
+        GameState currentState; // the current game state
+
+        public Game1()
+        {
+            graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+
+            // set the window to the dimensions defined in the Settings class
+            graphics.PreferredBackBufferHeight = Settings.WinHeight; 
+            graphics.PreferredBackBufferWidth = Settings.WinWidth;
+        }
+
+        
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -66,17 +66,18 @@ namespace The_Attempt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 30, 40);
-
-            kbState = new KeyboardState(); // initialize keyboard state
-            previousKbState = new KeyboardState(); // initialize previous keyboard state 
-            currentState = GameState.MainMenu; // start the game off at the menu state
+           
             IsMouseVisible = true; // Enable the mouse to be visable with in the game window
-            base.Initialize();
+            currentState = GameState.MainMenu; // start the game off at the menu state
 
+            // initialize attributes and place objects
+            input = new Input();
+            kbState = new KeyboardState();
+            previousKbState = new KeyboardState();
+            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 30, 40);
             map = new Map(0, 0, 2100, 1500);
             map.MapPos = new Vector2(-1050, -750);
-            input = new Input();
+            base.Initialize();
         }
 
         /// <summary>
@@ -87,12 +88,13 @@ namespace The_Attempt
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            // TODO: use this.Content to load your game content here
             playerImg = Content.Load<Texture2D>("Player");
             mapImg = Content.Load<Texture2D>("Map");
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
             menuImg = Content.Load<Texture2D>("MenuScreen");
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>

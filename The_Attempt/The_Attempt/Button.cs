@@ -8,51 +8,81 @@ using Microsoft.Xna.Framework.Input;
 
 namespace The_Attempt
 {
-    //Israel Anthony
-    //Russell Swartz
-    //Evan Keating
-    //Kyle Vanderwiel
-    //Handles UI buttons in the menus 
-    //This class has not been implemented in the game yet
+    // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
+    // Handles UI buttons in the menus 
+    // This class will be implemented in the future
     class Button
     {
-        //Attributes
+        // attributes
         Texture2D texture;// the button's texture
         Rectangle rect; // the button's bounding rectangle
         Rectangle mouseRect; // the bounding rectangle for the mouse
         bool click; // store the click state of the button
 
-        //Properties
-        public Rectangle Rect { get { return rect; } set { rect = value; } } // property to allow access to the buttons bounding rectangle.
-        public int X { get { return rect.X; } set { rect.X = value; } } // property to allow access to the buttons X position
-        public int Y { get { return rect.Y; } set { rect.Y = value; } } // property to allow access to the buttons Y position
-        public int Width { get { return rect.Width; } set { rect.Width = value; } } // property to allow access to buttons Width
-        public int Height { get { return rect.Height;  } set { rect.Height = value; } } // property to allow access to the buttons Height
-        public Texture2D Texture { get { return texture; } set { texture = value; } } // property to allow access to the buttons texture
-        public bool Click { get { return click; } set { click = value; } } // property to allow access to the buttons click event
+        // properties
+        // property to allow access to the buttons bounding rectangle.
+        public Rectangle Rect
+        {
+            get { return rect; }
+            set { rect = value; }
+        } 
+        // property to allow access to the buttons X position
+        public int X
+        {
+            get { return rect.X; }
+            set { rect.X = value; }
+        } 
+        // property to allow access to the buttons Y position
+        public int Y
+        {
+            get { return rect.Y; }
+            set { rect.Y = value; }
+        } 
+        // property to allow access to buttons Width
+        public int Width
+        {
+            get { return rect.Width; }
+            set { rect.Width = value; }
+        } 
+        // property to allow access to the buttons Height
+        public int Height
+        {
+            get { return rect.Height; }
+            set { rect.Height = value; }
+        } 
+        // property to allow access to the buttons texture
+        public Texture2D Texture
+        {
+            get { return texture; }
+            set { texture = value; }
+        } 
+        // property to allow access to the buttons click event
+        public bool Click
+        {
+            get { return click; }
+            set { click = value; }
+        } 
 
-        //Constructor
         /// <summary>
-        /// Takes X and Y Position, Width and Height, and Texture
+        /// Constructs a button with an X and Y Position, width and height, and Texture2D.
         /// </summary>
-        /// <param name="x">X Position</param>
-        /// <param name="y">Y Position</param>
-        /// <param name="w">Width</param>
-        /// <param name="h">Height</param>
-        /// <param name="tx">Texture2D</param>
-        public Button(int x, int y, int w, int h, Texture2D tx)
+        /// <param name="xPos">The X coordinate of the top left point of the Rectangle.</param>
+        /// <param name="yPos">The Y coordinate of the top left point of the Rectangle.</param>
+        /// <param name="width">The width dimension of the Rectangle.</param>
+        /// <param name="height">The height dimension of the Rectangle.</param>
+        /// <param name="tx">Texture2D that the button uses for drawing.</param>
+        public Button(int xPos, int yPos, int width, int height, Texture2D tx)
         {
             click = false; // set the default click state as false / not clicked
             texture = tx; // set the button's texture to the parameter
-            rect = new Rectangle(x, y, w, h); // setup the buttons bounding rectangle with given x,y,width,and height parameters
+            rect = new Rectangle(xPos, yPos, width, height); // setup the buttons bounding rectangle with given xPos,yPos,width,and height parameters
         }
 
         //Button Click Event
         /// <summary>
-        /// Takes a MouseState 
-        /// returns true if the mouse clicked the button else false
+        /// Takes a MouseState and returns true if the mouse clicked the button else false.
         /// </summary>
-        /// <param name="mouse">mouse</param>
+        /// <param name="mouse">MouseState that carries information about what has been clicked.</param>
         /// <returns></returns>
         public bool ClickUpdate(MouseState mouse)
         {
@@ -76,15 +106,13 @@ namespace The_Attempt
             else { return false; }// return false // the button is not being clicked
         }
 
-        //Draw Method
         /// <summary>
-        /// Takes at SpriteBatch
-        /// draws the button 
+        /// Takes at SpriteBatch and draws the button.
         /// </summary>
         /// <param name="spritebatch">SpriteBatch</param>
         public virtual void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture,rect,Color.White); // draw the button's bounding rectangle with a given texture and with a white color
+            spritebatch.Draw(texture,rect,Color.White); // draw the button's bounding rectangle with a given texture
 
         }
     }

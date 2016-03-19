@@ -2,10 +2,8 @@
 
 namespace The_Attempt
 {
-    //Israel Anthony
-    //Russell Swartz
-    //Evan Keating
-    //Kyle Vanderwiel
+    // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
+
 #if WINDOWS || LINUX
     /// <summary>
     /// The main class.

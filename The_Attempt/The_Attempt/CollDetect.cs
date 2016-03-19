@@ -5,12 +5,9 @@ using System.Text;
 
 namespace The_Attempt
 {
-    //Israel Anthony
-    //Russell Swartz
-    //Evan Keating
-    //Kyle Vanderwiel
-    //This class will be implemented in the future
-    //will handle collision between game objects
+    // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
+    // This class will be implemented in the future
+    // Handles collision between game objects
     class CollDetect
     {
     }
