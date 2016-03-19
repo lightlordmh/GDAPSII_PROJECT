@@ -5,12 +5,18 @@ using System.Text;
 
 namespace The_Attempt
 {
+    //Israel Anthony
+    //Russell Swartz
+    //Evan Keating
+    //Kyle Vanderwiel
+    //This Class represents the player character in the game
+    //it inherits from the gameObject class
     public class Character:GameObject
     {
-        // attribute
+        //Attribute
         private int numKeyParts; // number of pieces collected (only need 1 to win for now) to create a key
 
-        // property
+        //Property
         public int NumKeyParts
         {
             get { return numKeyParts; }

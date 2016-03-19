@@ -6,6 +6,12 @@ using Microsoft.Xna.Framework;
 
 namespace The_Attempt
 {
+    //Israel Anthony
+    //Russell Swartz
+    //Evan Keating
+    //Kyle Vanderwiel
+    //handles the movement of a given 2d vector
+    //This Class will be overhauled to use rectangles in the future for easier collision detection
     public class Movement
     {
         //Attribute

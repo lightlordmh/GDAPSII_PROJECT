@@ -3,6 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace The_Attempt
 {
+    //Israel Anthony
+    //Russell Swartz
+    //Evan Keating
+    //Kyle Vanderwiel
     // This class represents the physical objects that will interact in the game
     public class GameObject
     {

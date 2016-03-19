@@ -5,9 +5,13 @@ using System;
 
 namespace The_Attempt
 {
+    //Israel Anthony
+    //Russell Swartz
+    //Evan Keating
+    //Kyle Vanderwiel
     /// <summary>
-    /// This is the main type for your game.
-    /// </summary> SOMETHING
+    /// This is the Main Game class it handles the game loop, state and logic
+    /// </summary> 
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;

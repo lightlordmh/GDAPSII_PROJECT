@@ -5,7 +5,10 @@ namespace The_Attempt
 {
     public class Input
     {
-
+        //Israel Anthony
+        //Russell Swartz
+        //Evan Keating
+        //Kyle Vanderwiel
         /// <summary>
         /// checks the current state of the keyboard then
         /// does selected events based on the keyboard state

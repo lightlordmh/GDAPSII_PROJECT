@@ -1,7 +1,12 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace The_Attempt
-{
+{   //Israel Anthony
+    //Russell Swartz
+    //Evan Keating
+    //Kyle Vanderwiel
+    //Handles Collectable Game Objects
+    //These are game objects the player needs to collect/ intereact with to progress in the game
     public class Collectible:GameObject
     {
         // attribute

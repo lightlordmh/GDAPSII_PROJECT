@@ -2,6 +2,12 @@
 
 namespace The_Attempt
 {
+    //Israel Anthony
+    //Russell Swartz
+    //Evan Keating
+    //Kyle Vanderwiel
+    //Handles the door object 
+    //This collectable game object requires player interaction for the game to prosseed to another level
     public class Door:Collectible
     {
         // attribute

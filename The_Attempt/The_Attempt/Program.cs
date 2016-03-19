@@ -2,6 +2,10 @@
 
 namespace The_Attempt
 {
+    //Israel Anthony
+    //Russell Swartz
+    //Evan Keating
+    //Kyle Vanderwiel
 #if WINDOWS || LINUX
     /// <summary>
     /// The main class.

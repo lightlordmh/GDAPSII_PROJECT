@@ -8,6 +8,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace The_Attempt
 {
+    //Israel Anthony
+    //Russell Swartz
+    //Evan Keating
+    //Kyle Vanderwiel
+    //Handles UI buttons in the menus 
+    //This class has not been implemented in the game yet
     class Button
     {
         //Attributes
