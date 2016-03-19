@@ -31,7 +31,7 @@ namespace External_Tool
             SaveLines();
 
             // set color
-            //this.BackColor = Color.Black;
+            // this.BackColor = Color.Black;
             // set text colors
         }
 
@@ -199,9 +199,7 @@ namespace External_Tool
         private void CancelBut_Click(object sender, EventArgs e)
         {
             // close form when cancled
-            //this.Close();
+            this.Close();
         }
-
-
     }
 }
