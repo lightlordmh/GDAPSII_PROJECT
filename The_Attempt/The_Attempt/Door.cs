@@ -34,7 +34,6 @@ namespace The_Attempt
         /// If the player has the correct number of key parts, they can unlock the door to then complete the level.
         /// </summary>
         /// <param name="player">The player.</param>
-        /// <returns></returns>
         public void TurnLock(Character player)
         {
             // if the player has the correct number of key parts (only needs one for now), then the door can be opened

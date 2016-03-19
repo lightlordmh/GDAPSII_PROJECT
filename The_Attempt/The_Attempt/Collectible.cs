@@ -33,7 +33,6 @@ namespace The_Attempt
         /// false.
         /// </summary>
         /// <param name="player">The player.</param>
-        /// <returns></returns>
         public void CheckCollision(Character player)
         {
             if (active && Position.Intersects(player.Position))

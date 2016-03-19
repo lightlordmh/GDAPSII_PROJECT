@@ -39,7 +39,6 @@ namespace The_Attempt
         {
             // create a Vector2 object with a postions that moves the parameter Vector2 left
             Vector2 afterM = new Vector2(i.X - (1 * scale), i.Y);
-            // return the Vector2 with the new postion
             return afterM;
         }
 
@@ -52,7 +51,6 @@ namespace The_Attempt
         {
             // create a Vector2 object with a postions that moves the parameter Vector2 right
             Vector2 afterM = new Vector2(i.X + (1 * scale), i.Y);
-            // return the Vector2 with the new postion
             return afterM;
         }
 
@@ -65,7 +63,6 @@ namespace The_Attempt
         {
             // create a Vector2 object with a postions that moves the parameter Vector2 up
             Vector2 afterM = new Vector2(i.X, i.Y - (1 * scale));
-            // return the Vector2 with the new postion
             return afterM;
         }
 
@@ -78,7 +75,6 @@ namespace The_Attempt
         {
             // create a Vector2 object with a postions that moves the parameter Vector2 down
             Vector2 afterM = new Vector2(i.X, i.Y + (1 * scale));
-            // return the Vector2 with the new postion
             return afterM;
         }
     }

@@ -73,37 +73,41 @@ namespace The_Attempt
         /// <param name="tx">Texture2D that the button uses for drawing.</param>
         public Button(int xPos, int yPos, int width, int height, Texture2D tx)
         {
-            click = false; // set the default click state as false / not clicked
-            texture = tx; // set the button's texture to the parameter
-            rect = new Rectangle(xPos, yPos, width, height); // setup the buttons bounding rectangle with given xPos,yPos,width,and height parameters
+            click = false; // set the default click state as false
+            texture = tx; 
+            rect = new Rectangle(xPos, yPos, width, height); 
         }
 
-        //Button Click Event
+        // button Click Event
         /// <summary>
-        /// Takes a MouseState and returns true if the mouse clicked the button else false.
+        /// Takes a MouseState and processes it.
         /// </summary>
         /// <param name="mouse">MouseState that carries information about what has been clicked.</param>
-        /// <returns></returns>
+        /// <returns>Returns true when a button is clicked. Otherwise returns false.</returns>
         public bool ClickUpdate(MouseState mouse)
         {
-            //create a bounding rectangle for the mouse with the given the mouse's position
+            // create a bounding rectangle for the mouse with the given mouse's position
             mouseRect = new Rectangle(mouse.X, mouse.Y, 5, 5);
-            //if the mouse's bounding rectangle intersects with the button's bounding rectangle
+
+            // if the mouse's bounding rectangle intersects with the button's bounding rectangle
             if (mouseRect.Intersects(rect))
             {
-                //if the mouse's left mouse button is being pressed
+                // if the mouse's left mouse button is being pressed
                 if (mouse.LeftButton == ButtonState.Pressed)
                 {
-                    click = true; //set the button click state to true / clicked
-                    return true; // return true / return that the button is being clicked
+                    click = true; // set the button click state to true
+                    return true; 
                 }
                 else
                 {
-                    click = false; // set the button click state to false / not clicked
-                    return false; // return false / return that the button is not being clicked
+                    click = false; // set the button click state to false 
+                    return false; 
                 }
             }
-            else { return false; }// return false // the button is not being clicked
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -113,7 +117,6 @@ namespace The_Attempt
         public virtual void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(texture,rect,Color.White); // draw the button's bounding rectangle with a given texture
-
         }
     }
 }
