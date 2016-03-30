@@ -142,7 +142,7 @@
             this.CustomBox.Margin = new System.Windows.Forms.Padding(2);
             this.CustomBox.Name = "CustomBox";
             this.CustomBox.Padding = new System.Windows.Forms.Padding(2);
-            this.CustomBox.Size = new System.Drawing.Size(476, 340);
+            this.CustomBox.Size = new System.Drawing.Size(502, 340);
             this.CustomBox.TabIndex = 2;
             this.CustomBox.TabStop = false;
             this.CustomBox.Text = "Custom Settings";
@@ -158,7 +158,7 @@
             this.RiddleBox.Margin = new System.Windows.Forms.Padding(2);
             this.RiddleBox.Name = "RiddleBox";
             this.RiddleBox.Padding = new System.Windows.Forms.Padding(2);
-            this.RiddleBox.Size = new System.Drawing.Size(466, 81);
+            this.RiddleBox.Size = new System.Drawing.Size(498, 81);
             this.RiddleBox.TabIndex = 2;
             this.RiddleBox.TabStop = false;
             this.RiddleBox.Text = "Riddle Settings";
@@ -222,7 +222,7 @@
             this.EnemySpeedBox.Margin = new System.Windows.Forms.Padding(2);
             this.EnemySpeedBox.Name = "EnemySpeedBox";
             this.EnemySpeedBox.Padding = new System.Windows.Forms.Padding(2);
-            this.EnemySpeedBox.Size = new System.Drawing.Size(188, 81);
+            this.EnemySpeedBox.Size = new System.Drawing.Size(214, 81);
             this.EnemySpeedBox.TabIndex = 1;
             this.EnemySpeedBox.TabStop = false;
             this.EnemySpeedBox.Text = "Enemy Speed";
@@ -230,7 +230,7 @@
             // EnemyAvg
             // 
             this.EnemyAvg.AutoSize = true;
-            this.EnemyAvg.Location = new System.Drawing.Point(63, 33);
+            this.EnemyAvg.Location = new System.Drawing.Point(74, 33);
             this.EnemyAvg.Margin = new System.Windows.Forms.Padding(2);
             this.EnemyAvg.Name = "EnemyAvg";
             this.EnemyAvg.Size = new System.Drawing.Size(79, 21);
@@ -242,7 +242,7 @@
             // EnemyFast
             // 
             this.EnemyFast.AutoSize = true;
-            this.EnemyFast.Location = new System.Drawing.Point(136, 33);
+            this.EnemyFast.Location = new System.Drawing.Point(157, 33);
             this.EnemyFast.Margin = new System.Windows.Forms.Padding(2);
             this.EnemyFast.Name = "EnemyFast";
             this.EnemyFast.Size = new System.Drawing.Size(53, 21);
@@ -254,7 +254,7 @@
             // EnemySlow
             // 
             this.EnemySlow.AutoSize = true;
-            this.EnemySlow.Location = new System.Drawing.Point(4, 33);
+            this.EnemySlow.Location = new System.Drawing.Point(15, 33);
             this.EnemySlow.Margin = new System.Windows.Forms.Padding(2);
             this.EnemySlow.Name = "EnemySlow";
             this.EnemySlow.Size = new System.Drawing.Size(55, 21);
@@ -339,7 +339,7 @@
             this.BegLvlBox.Margin = new System.Windows.Forms.Padding(2);
             this.BegLvlBox.Name = "BegLvlBox";
             this.BegLvlBox.Padding = new System.Windows.Forms.Padding(2);
-            this.BegLvlBox.Size = new System.Drawing.Size(471, 81);
+            this.BegLvlBox.Size = new System.Drawing.Size(498, 81);
             this.BegLvlBox.TabIndex = 3;
             this.BegLvlBox.TabStop = false;
             this.BegLvlBox.Text = "Beginning Level";
@@ -433,7 +433,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 574);
+            this.ClientSize = new System.Drawing.Size(522, 574);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CancelBut);
             this.Controls.Add(this.ApplyBut);
