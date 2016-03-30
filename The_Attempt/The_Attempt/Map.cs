@@ -14,27 +14,34 @@ namespace The_Attempt
     {
 
         // attributes
-        private Rectangle position; // position of the object on the screen 
-        private Texture2D currentTexture; // texture the object is given
+        // private Rectangle position; // position of the object on the screen 
+        // private Texture2D currentTexture; // texture the object is given
         private static Vector2 mapPos;
 
         // properties 
+        /*
         public Rectangle Position
         {
             get { return position; }
             set { position = value; }
         }
+        */
 
+        /*
         public Texture2D CurrentTexture
         {
             get { return currentTexture; }
             set { currentTexture = value; }
         }
+        */
+
+        
         public Vector2 MapPos
         {
             get { return mapPos; }
             set { mapPos = value; }
         }
+        
 
         // attirbutes to handle the location and size of the map
         private int posXf = 0;
@@ -61,14 +68,7 @@ namespace The_Attempt
         // this method will be edited or removed in the future
         public void UpD()
         {
-            position = new Rectangle((int)mapPos.X - posXf, (int)mapPos.Y - posYf, widthf, heightf);
-        }
-
-        // draw method used to draw the GameObject to the screen
-        // does not properly override the inheritted Draw method
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(currentTexture, position, Color.White);
+            Position = new Rectangle((int)mapPos.X - posXf, (int)mapPos.Y - posYf, widthf, heightf);
         }
     }
 }
