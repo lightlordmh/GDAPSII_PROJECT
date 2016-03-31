@@ -7,15 +7,14 @@ using Microsoft.Xna.Framework;
 namespace The_Attempt
 {
     // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
-    // Handles the movement of a given 2D vector
-    // This Class will be overhauled to use rectangles in the future for easier collision detection
+    // Handles the movement of an objects Rectangle
     public class Movement
     {
         // attributes
-        private float scale; // scales the speed by this factor
-        
+        private int scale; // controls the speed of the movement
+
         // properties
-        public float Scale
+        public int Scale
         {
             get { return scale; }
             set { scale = value; }
@@ -31,51 +30,43 @@ namespace The_Attempt
         }
 
         /// <summary>
-        /// Does a caluculation to move the vector2 left. 
+        /// Does a caluculation to move the Rectangle to the left. 
         /// </summary>
-        /// <param name="i">Input Vector2 object for left Movement calculation</param>
-        /// <returns>A Vector2 with a new position based on the calculations made</returns>
-        public Vector2 Left(Vector2 i)
+        /// <param name="obj">Rectangle of the object which is being moved</param>
+        /// <returns>An int which gives the new value for the Rectangle's X coordinate</returns>
+        public int Left(Rectangle obj)
         {
-            // create a Vector2 object with a postions that moves the parameter Vector2 left
-            Vector2 afterM = new Vector2(i.X - (1 * scale), i.Y);
-            return afterM;
+            return obj.X + (1 * scale);
         }
 
         /// <summary>
-        /// Does a caluculation to move the vector2 right.
+        /// Does a caluculation to move the Rectangle to the right. 
         /// </summary>
-        /// <param name="i">Input Vector2 object for right Movement calculation</param>
-        /// <returns>A Vector2 with a new position based on the calculations made</returns>
-        public Vector2 Right(Vector2 i)
+        /// <param name="obj">Rectangle of the object which is being moved</param>
+        /// <returns>An int which gives the new value for the Rectangle's X coordinate</returns>
+        public int Right(Rectangle obj)
         {
-            // create a Vector2 object with a postions that moves the parameter Vector2 right
-            Vector2 afterM = new Vector2(i.X + (1 * scale), i.Y);
-            return afterM;
+            return obj.X - (1 * scale);
         }
 
         /// <summary>
-        /// Does a caluculation to move the vector2 up.
+        /// Does a caluculation to move the Rectangle up. 
         /// </summary>
-        /// <param name="i">Input Vector2 object for up Movement calculation</param>
-        /// <returns>A Vector2 with a new position based on the calculations made</returns>
-        public Vector2 Up(Vector2 i)
+        /// <param name="obj">Rectangle of the object which is being moved</param>
+        /// <returns>An int which gives the new value for the Rectangle's Y coordinate</returns>
+        public int Up(Rectangle obj)
         {
-            // create a Vector2 object with a postions that moves the parameter Vector2 up
-            Vector2 afterM = new Vector2(i.X, i.Y - (1 * scale));
-            return afterM;
+            return obj.Y + (1 * scale);
         }
 
         /// <summary>
-        /// Does a caluculation to move the vector2 down.
+        /// Does a caluculation to move the Rectangle down. 
         /// </summary>
-        /// <param name="i">Input Vector2 object for down Movement calculation</param>
-        /// <returns>A Vector2 with a new position based on the calculations made</returns>
-        public Vector2 Down(Vector2 i)
+        /// <param name="obj">Rectangle of the object which is being moved</param>
+        /// <returns>An int which gives the new value for the Rectangle's Y coordinate</returns>
+        public int Down(Rectangle obj)
         {
-            // create a Vector2 object with a postions that moves the parameter Vector2 down
-            Vector2 afterM = new Vector2(i.X, i.Y + (1 * scale));
-            return afterM;
+            return obj.Y - (1 * scale);
         }
     }
 }

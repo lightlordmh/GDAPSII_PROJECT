@@ -75,8 +75,7 @@ namespace The_Attempt
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
             player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 30, 40);
-            map = new Map(0, 0, 2100, 1500);
-            map.MapPos = new Vector2(-1050, -750);
+            map = new Map(-1050, -750, 2100, 1500);
             base.Initialize();
         }
 
@@ -152,11 +151,8 @@ namespace The_Attempt
                         currentState = GameState.PhoneMenu;
                     }
 
-                    //check for input
+                    //check for input and update position
                     input.Check(map);
-
-                    //udating placements
-                    map.UpD();
 
                     break;
                 case GameState.PhoneMenu:
