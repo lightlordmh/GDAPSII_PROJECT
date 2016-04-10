@@ -14,5 +14,12 @@ namespace The_Attempt
         public static int WinHeight = 800;
         public static int WinWidth = 800;
 
+
+        //All current level information (maybe should be its own class
+        public static int currentLevel; // current level the player is on
+        public static List<Corridor> corridorList = new List<Corridor>(); //The array of corridors
+
+        
+
     }
 }

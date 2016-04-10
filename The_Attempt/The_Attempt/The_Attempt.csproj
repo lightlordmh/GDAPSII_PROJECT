@@ -45,6 +45,7 @@
     <Compile Include="Collectible.cs" />
     <Compile Include="Corridor.cs" />
     <Compile Include="Door.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Input.cs" />
@@ -69,6 +70,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CorPos.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Map.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -8,7 +8,7 @@ namespace The_Attempt
     public class GameObject
     {
         // attributes
-        private Rectangle position; // position of the object originally
+        private Rectangle position; // position of the object on the map
         private Rectangle positionCurr; //position of te object currently
         private Texture2D currentTexture; // texture the object is given
 

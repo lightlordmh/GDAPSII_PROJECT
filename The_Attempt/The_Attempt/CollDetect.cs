@@ -10,7 +10,7 @@ namespace The_Attempt
     // Handles collision between game objects
     class CollDetect
     {
-        //enum direction {U,D,L,R}
+        //enum directcion {U,D,L,R}
         //loop that creates the array of corridor rectangles from a text file (this is in the constructor)
 
 
