@@ -8,9 +8,9 @@ namespace The_Attempt
     public class GameObject
     {
         // attributes
-        private Rectangle position; // position of the object on the screen 
+        private Rectangle position; // position of the object on the map
+        private Rectangle positionCurr; //position of te object currently
         private Texture2D currentTexture; // texture the object is given
-        private static Vector2 mapPos;
 
         // properties 
         public Rectangle Position
@@ -39,6 +39,24 @@ namespace The_Attempt
             set { position.Height = value; }
         }
 
+
+        //current position x and y
+        public Rectangle PositionCurr
+        {
+            get { return positionCurr; }
+            set { positionCurr = value; }
+        }
+        public int XCurr
+        {
+            get { return positionCurr.X; }
+            set { positionCurr.X = value; }
+        }
+        public int YCurr
+        {
+            get { return positionCurr.Y; }
+            set { positionCurr.Y = value; }
+        }
+
         public Texture2D CurrentTexture
         {
             get { return currentTexture; }
@@ -64,6 +82,7 @@ namespace The_Attempt
         public GameObject(int xPos, int yPos, int width, int height)
         {
             position = new Rectangle(xPos, yPos, width, height);
+            positionCurr = new Rectangle(xPos, yPos, width, height);
         }
 
         /// <summary>
@@ -73,6 +92,13 @@ namespace The_Attempt
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(currentTexture, position, Color.White);
+        }
+
+
+        public void UpdateCurrPos(int xI, int yI)
+        {
+            XCurr = X + xI;
+            YCurr = Y + yI;
         }
     }
 }

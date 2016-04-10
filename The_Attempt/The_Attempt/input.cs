@@ -28,6 +28,8 @@ namespace The_Attempt
             {
                 // change the current game map's position by updating the Y position of it's Rectangle in the vertically upward direction
                curGameMap.Y = inputMove.Up(curGameMap.MapPos);
+
+                // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
             }
             // check if the D key is being pressed
             if (kbState.IsKeyDown(Keys.D))

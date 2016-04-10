@@ -12,7 +12,7 @@ using System.IO;
 /// <summary>
 /// Evan Keating
 /// External Tool for editing a text file that will determine the values for attributes in the game
-/// Array of strings was used to store values, will most likely change to dictionary for ease of use
+/// Values range from 1-3 (Easy, Medium, Hard) with the value 0 given to Very Hard values when applicable
 /// </summary>
 
 namespace External_Tool
@@ -21,18 +21,59 @@ namespace External_Tool
     {
         // array for holidng values from the lines
         string[] filelines2 = new string[4];
+        // dictionary for holding values
+        Dictionary<string, int> settingVals = new Dictionary<string, int>();
        
 
         public SettingsManager()
         {
             InitializeComponent();
 
+            // have message box tell instructions to user
+            MessageBox.Show("Please select the settings you would prefer for the game");
+
             // call savelines method
             SaveLines();
 
+            // create the keys for the dictionary
+            settingVals.Add("Flashlight", 2);
+            settingVals.Add("EnemySpeed", 2);
+            settingVals.Add("Level", 2);
+            settingVals.Add("Riddles", 2);
+            
             // set color
-            // this.BackColor = Color.Black;
+            this.BackColor = Color.Black;
+
             // set text colors
+            label1.ForeColor = Color.White;
+            EasyRiddle.ForeColor = Color.White;
+            EasyButton.ForeColor = Color.White;
+            MediumButton.ForeColor = Color.White;
+            HardRiddle.ForeColor = Color.White;
+            AvgRiddle.ForeColor = Color.White;
+            EnemyAvg.ForeColor = Color.White;
+            EnemyFast.ForeColor = Color.White;
+            EnemySlow.ForeColor = Color.White;
+            LightFullBut.ForeColor = Color.White;
+            LightLowBut.ForeColor = Color.White;
+            LightMedBut.ForeColor = Color.White;
+            LightOffBut.ForeColor = Color.White;
+            HardButton.ForeColor = Color.White;
+            LevelFour.ForeColor = Color.White;
+            LevelOne.ForeColor = Color.White;
+            LevelThree.ForeColor = Color.White;
+            LevelTwo.ForeColor = Color.White;
+            NeedToSolve.ForeColor = Color.White;
+            RiddleBox.ForeColor = Color.White;
+            EasySetBox.ForeColor = Color.White;
+            EnemySpeedBox.ForeColor = Color.White;
+            BegLvlBox.ForeColor = Color.White;
+            LightSetBox.ForeColor = Color.White;
+            CustomBox.ForeColor = Color.White;
+            ApplyBut.ForeColor = Color.White;
+            CancelBut.ForeColor = Color.White;
+            ApplyBut.BackColor = Color.DarkGray;
+            CancelBut.BackColor = Color.DarkGray;
         }
 
         // method for getting lines
@@ -45,15 +86,6 @@ namespace External_Tool
             {
                 // call in file for reader
                 input = new StreamReader("GameSettings.txt");
-
-                // read through the lines of the file and store the values
-                for (int i = 0; i < filelines2.Length; i++)
-                {
-                    while (input.ReadLine() != null)
-                    {
-                        filelines2[i] = input.ReadLine();
-                    }
-                }
             }
             catch(FileNotFoundException ex)
             {
@@ -87,11 +119,12 @@ namespace External_Tool
                 // call in file name for output
                 output = new StreamWriter("GameSettings.txt");
 
-                // set settings based on what is in the array of line values
-                output.WriteLine(filelines2[0]);
-                output.WriteLine(filelines2[1]);
-                output.WriteLine(filelines2[2]);
-                output.WriteLine(filelines2[3]);
+                // set settings based on what is in the dictionary
+                output.WriteLine(settingVals["Flashlight"]);
+                output.WriteLine(settingVals["EnemySpeed"]);
+                output.WriteLine(settingVals["Level"]);
+                output.WriteLine(settingVals["Riddles"]);
+
             }
             catch (Exception ex)
             {
@@ -109,18 +142,20 @@ namespace External_Tool
             // change setting for when flashlight is selected to be off
             if(LightOffBut.Checked == true)
             {
-                filelines2[0] = "OFF";
+                settingVals["Flashlight"] = 0;
             }
         }
 
         private void radioButton8_CheckedChanged(object sender, EventArgs e)
         {
-
+            // change settings for when level one is chosen
+            if (LevelOne.Checked == true) settingVals["Level"] = 1;
         }
 
         private void radioButton10_CheckedChanged(object sender, EventArgs e)
         {
-
+            // change settings for when level three is chosen
+            if (LevelThree.Checked == true) settingVals["Level"] = 3;
         }
 
         private void EasyButton_CheckedChanged(object sender, EventArgs e)
@@ -132,10 +167,10 @@ namespace External_Tool
                 EnemySlow.Checked = true;
                 LevelOne.Checked = true;
                 EasyRiddle.Checked = true;
-                filelines2[0] = "FULL";
-                filelines2[1] = "SLOW";
-                filelines2[2] = "ONE";
-                filelines2[3] = "SIMPLE";
+                settingVals["Flashlight"] = 3;
+                settingVals["EnemySpeed"] = 1;
+                settingVals["Levels"] = 1;
+                settingVals["Riddles"] = 1;
             }
 
         }
@@ -149,10 +184,10 @@ namespace External_Tool
                 EnemyAvg.Checked = true;
                 LevelTwo.Checked = true;
                 AvgRiddle.Checked = true;
-                filelines2[0] = "DIMMED";
-                filelines2[1] = "NORMAL";
-                filelines2[2] = "TWO";
-                filelines2[3] = "AVERAGE";
+                settingVals["Flashlight"] = 2;
+                settingVals["EnemySpeed"] = 2;
+                settingVals["Levels"] = 2;
+                settingVals["Riddles"] = 2;
             }
         }
 
@@ -165,10 +200,10 @@ namespace External_Tool
                 EnemyFast.Checked = true;
                 LevelThree.Checked = true;
                 HardRiddle.Checked = true;
-                filelines2[0] = "LOW";
-                filelines2[1] = "FAST";
-                filelines2[2] = "THREE";
-                filelines2[3] = "CHALLENGING";
+                settingVals["Flashlight"] = 1;
+                settingVals["EnemySpeed"] = 3;
+                settingVals["Levels"] = 3;
+                settingVals["Riddles"] = 3;
             }
         }
 
@@ -177,7 +212,7 @@ namespace External_Tool
             // change setting for when level 4 is slected for starting level
             if(LevelFour.Checked == true)
             {
-                filelines2[2] = "FOUR";
+                settingVals["Level"] = 0;
             }
         }
 
@@ -186,7 +221,7 @@ namespace External_Tool
             // change settings for is the riddle needs to be solved
             if(NeedToSolve.Checked == true)
             {
-                filelines2[3] = "SOLVEIT";
+                settingVals["Riddles"] = 0;
             }
         }
 
@@ -200,6 +235,66 @@ namespace External_Tool
         {
             // close form when cancled
             this.Close();
+        }
+
+        private void LightLowBut_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when 33% light is chosen
+            if (LightLowBut.Checked == true) settingVals["Flashlight"] = 1;
+        }
+
+        private void LightMedBut_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when 66% light is chosen
+            if (LightMedBut.Checked == true) settingVals["Flashlight"] = 2;
+        }
+
+        private void LightFullBut_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when 100% light is chosen
+            if (LightFullBut.Checked == true) settingVals["Flashlight"] = 3;
+        }
+
+        private void EnemySlow_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when slow speed is chosen
+            if (EnemySlow.Checked == true) settingVals["EnemySpeed"] = 1;
+        }
+
+        private void EnemyAvg_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when average speed is chosen
+            if (EnemyAvg.Checked == true) settingVals["EnemySpeed"] = 2;
+        }
+
+        private void EnemyFast_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when fast speed is chosen
+            if (EnemyFast.Checked == true) settingVals["EnemySpeed"] = 3;
+        }
+
+        private void LevelTwo_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when level two is chosen
+            if (LevelTwo.Checked == true) settingVals["Level"] = 2;
+        }
+
+        private void EasyRiddle_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when easy riddles is chosen
+            if (EasyRiddle.Checked == true) settingVals["Riddles"] = 1;
+        }
+
+        private void AvgRiddle_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when average riddles is chosen
+            if (AvgRiddle.Checked == true) settingVals["Riddles"] = 2;
+        }
+
+        private void HardRiddle_CheckedChanged(object sender, EventArgs e)
+        {
+            // change settings for when Hard riddles is chosen
+            if (HardRiddle.Checked == true) settingVals["Riddles"] = 3;
         }
     }
 }

@@ -26,12 +26,15 @@ namespace The_Attempt
 
         // in-game attributes
         Texture2D playerImg; // the texture for the player
-        Texture2D mapImg; // the texture for the map
+        Texture2D monsterImg; //the texture of the monster (using player 
+        Level level;
         Character player; // the player object
         Map map; // defines the maps placement
         Input input; // handles input
+        Monster monster; // the monster object
+        Texture2D mapImg;
 
-        int currentLevel; // current level the player is on
+
         double timer; // timer for the level
 
         // the various game states present in the game
@@ -74,9 +77,11 @@ namespace The_Attempt
             input = new Input();
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
-            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 30, 40);
-            map = new Map(-1050, -750, 2100, 1500);
+            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 80, 80);
+            monster = new Monster(10, 10, 30, 40, 10, 10);
+            map = new Map(-1050, -750, 7680, 6240);
             base.Initialize();
+            level = new Level();
         }
 
         /// <summary>
@@ -94,6 +99,7 @@ namespace The_Attempt
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
             menuImg = Content.Load<Texture2D>("MenuScreen");
+            monsterImg = Content.Load<Texture2D>("Player");
         }
 
         /// <summary>
@@ -126,6 +132,7 @@ namespace The_Attempt
                     {
                         IsMouseVisible = false;
                         currentState = GameState.MainGame;
+                        level.LoadCorridors();
                     }
                     if(SingleKeyPress(Keys.C))
                     {
@@ -154,6 +161,9 @@ namespace The_Attempt
                     //check for input and update position
                     input.Check(map);
 
+                    //updating position of objects
+                    monster.UpdateCurrPos(map.X, map.Y);
+
                     break;
                 case GameState.PhoneMenu:
                     // once in the phone menu screen, press tab again to return back to the game
@@ -164,6 +174,7 @@ namespace The_Attempt
                     }
                     break;
                 case GameState.GameOver:
+                    Settings.currentLevel = 0;
                     break;
             }
 
@@ -212,11 +223,13 @@ namespace The_Attempt
 
                 // draw the player to the screen
                 spriteBatch.Draw(player.CurrentTexture, player.Position, Color.White);
-
                 // draw the level, level score and timer
-                spriteBatch.DrawString(text, "Level   " + currentLevel, new Vector2(5, 10), Color.White);
+                spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
+
+                // draw the objects on the screen
+
             }
             if (currentState == GameState.PhoneMenu)
             {
@@ -248,5 +261,8 @@ namespace The_Attempt
                 return false;
             }
         }
+
+
+
     }
 }

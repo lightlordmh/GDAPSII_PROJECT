@@ -14,6 +14,15 @@ namespace The_Attempt
         private int creepSpeed; // the speed at which the monster moves while not in pursuit mode
         private int rushSpeed; // the speed at which the monster moves while in pursuit mode
 
+        private enum direction
+        {
+            up,
+            down,
+            left,
+            right
+        }
+
+
         // properties
         public int CreepSpeed
         {
@@ -38,5 +47,9 @@ namespace The_Attempt
             cSpeed = creepSpeed;
             rSpeed = rushSpeed;
         }
+
+
+
+
     }
 }
