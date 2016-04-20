@@ -74,14 +74,14 @@ namespace The_Attempt
             currentState = GameState.MainMenu; // start the game off at the menu state
 
             // initialize attributes and place objects
-            input = new Input();
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
             player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 80, 80);
             monster = new Monster(10, 10, 30, 40, 10, 10);
-            map = new Map(-1050, -750, 7680, 6240);
+            map = new Map(-3200, -320, 7680, 6240);
             base.Initialize();
             level = new Level();
+            input = new Input(player.Position);
         }
 
         /// <summary>
@@ -230,6 +230,12 @@ namespace The_Attempt
 
                 // draw the objects on the screen
 
+
+            //testing
+            foreach(Corridor corridor in Settings.corridorList)
+                {
+                    spriteBatch.Draw(playerImg, new Rectangle(corridor.X, corridor.Y, corridor.Width, corridor.Height), Color.Red);
+                }
             }
             if (currentState == GameState.PhoneMenu)
             {

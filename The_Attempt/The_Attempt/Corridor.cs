@@ -21,8 +21,8 @@ namespace The_Attempt
 
         public Corridor(int xI, int yI, int hI, int wI)
         {
-            x = xI + 4;
-            y = yI + 4;
+            x = xI + 1;
+            y = yI + 1;
             height = hI;
             width = wI;
         }
