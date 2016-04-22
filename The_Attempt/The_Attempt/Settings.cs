@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Text;
 
 namespace The_Attempt
@@ -20,7 +22,10 @@ namespace The_Attempt
         public static int currentLevel; // current level the player is on
         public static List<Corridor> corridorList = new List<Corridor>(); //The array of corridors
 
-        
+
+        //All textures of maps, because they needed to be all static
+        public static List<Texture2D> mapTexture = new List<Texture2D>();
+
 
     }
 }

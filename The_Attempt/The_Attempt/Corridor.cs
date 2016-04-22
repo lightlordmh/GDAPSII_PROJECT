@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace The_Attempt
 {
@@ -12,17 +13,17 @@ namespace The_Attempt
         // Each corridor has an x,y,width,height atribute relating to the corridor list text domucent "CorridorPosition"
         // These values have a 160:1 ratio with rendering values
         // the plus four is because the map ended up needing to be 4 extra blocks in all directions, found this out after writing that text file
-    public class Corridor
+    public class Corridor : GameObject
     {
         private int x;
         private int y;
         private int height;
         private int width;
 
-        public Corridor(int xI, int yI, int hI, int wI)
+        public Corridor(int xI, int yI, int hI, int wI) : base((xI)*160, (yI)*160, hI*160, wI*160)
         {
-            x = xI + 1;
-            y = yI + 1;
+            x = xI;
+            y = yI;
             height = hI;
             width = wI;
         }
@@ -46,6 +47,5 @@ namespace The_Attempt
         {
             get { return width; }
         }
-
     }
 }

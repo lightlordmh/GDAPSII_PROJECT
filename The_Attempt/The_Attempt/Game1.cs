@@ -32,7 +32,6 @@ namespace The_Attempt
         Map map; // defines the maps placement
         Input input; // handles input
         Monster monster; // the monster object
-        Texture2D mapImg;
 
 
         double timer; // timer for the level
@@ -81,7 +80,7 @@ namespace The_Attempt
             map = new Map(-3200, -320, 7680, 6240);
             base.Initialize();
             level = new Level();
-            input = new Input(player.Position);
+            input = new Input();
         }
 
         /// <summary>
@@ -95,7 +94,7 @@ namespace The_Attempt
 
             // TODO: use this.Content to load your game content here
             playerImg = Content.Load<Texture2D>("Player");
-            mapImg = Content.Load<Texture2D>("Map");
+            Settings.mapTexture.Add(Content.Load<Texture2D>("Map"));
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
             menuImg = Content.Load<Texture2D>("MenuScreen");
@@ -132,7 +131,9 @@ namespace The_Attempt
                     {
                         IsMouseVisible = false;
                         currentState = GameState.MainGame;
+
                         level.LoadCorridors();
+                        map.SetMapTexture();
                     }
                     if(SingleKeyPress(Keys.C))
                     {
@@ -152,6 +153,7 @@ namespace The_Attempt
                     break;
                 case GameState.MainGame:
                     // during the game, the player can press tab to bring up their phone menu
+
                     if (SingleKeyPress(Keys.Tab))
                     {
                         IsMouseVisible = true;
@@ -191,8 +193,7 @@ namespace The_Attempt
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            player.CurrentTexture = playerImg;
-            map.CurrentTexture = mapImg;           
+            player.CurrentTexture = playerImg;      
 
             if(currentState == GameState.MainMenu)
             { 
@@ -221,6 +222,12 @@ namespace The_Attempt
                 //draw the map
                 map.Draw(spriteBatch);
 
+                //testing
+                foreach (Corridor corridor in Settings.corridorList)
+                {
+                    corridor.UpdateCurrPos(map.XCurr, map.YCurr);
+                    spriteBatch.Draw(playerImg, corridor.PositionCurr, Color.Red);
+                }
                 // draw the player to the screen
                 spriteBatch.Draw(player.CurrentTexture, player.Position, Color.White);
                 // draw the level, level score and timer
@@ -231,11 +238,7 @@ namespace The_Attempt
                 // draw the objects on the screen
 
 
-            //testing
-            foreach(Corridor corridor in Settings.corridorList)
-                {
-                    spriteBatch.Draw(playerImg, new Rectangle(corridor.X, corridor.Y, corridor.Width, corridor.Height), Color.Red);
-                }
+
             }
             if (currentState == GameState.PhoneMenu)
             {

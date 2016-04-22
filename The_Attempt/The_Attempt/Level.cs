@@ -29,7 +29,7 @@ namespace The_Attempt
             Settings.corridorList.Clear();
             try
             {
-                StreamReader reading = new StreamReader(@"CorPos");
+                StreamReader reading = new StreamReader(TitleContainer.OpenStream("Content/CorPos.txt"));
                 string line = "";
                 while ((line = reading.ReadLine()) != null) //if someone can figure out a better way of doing this be my guest and change it
                 {
@@ -43,7 +43,7 @@ namespace The_Attempt
                     int widthI = int.Parse(line.Substring(fS + 1, lC - fS - 1));
                     int heightI = int.Parse(line.Substring(lC + 1, lS - lC - 1));
 
-                    Settings.corridorList.Add(new Corridor(xI, yI, widthI, heightI));
+                    Settings.corridorList.Add(new Corridor(xI + 3, yI + 3, widthI, heightI));
                 }
                 reading.Close();
             }

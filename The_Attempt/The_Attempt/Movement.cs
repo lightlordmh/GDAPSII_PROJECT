@@ -36,7 +36,7 @@ namespace The_Attempt
         /// <returns>An int which gives the new value for the Rectangle's X coordinate</returns>
         public int Left(Rectangle obj)
         {
-            return obj.X + (1 * scale);
+            return obj.X - (1 * scale);
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace The_Attempt
         /// <returns>An int which gives the new value for the Rectangle's X coordinate</returns>
         public int Right(Rectangle obj)
         {
-            return obj.X - (1 * scale);
+            return obj.X + (1 * scale);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace The_Attempt
         /// <returns>An int which gives the new value for the Rectangle's Y coordinate</returns>
         public int Up(Rectangle obj)
         {
-            return obj.Y + (1 * scale);
+            return obj.Y - (1 * scale);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace The_Attempt
         /// <returns>An int which gives the new value for the Rectangle's Y coordinate</returns>
         public int Down(Rectangle obj)
         {
-            return obj.Y - (1 * scale);
+            return obj.Y + (1 * scale);
         }
     }
 }
