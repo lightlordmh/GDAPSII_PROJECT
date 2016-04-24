@@ -178,7 +178,7 @@ namespace The_Attempt
                 case GameState.MainGame:
                     // during the game, the player can press tab to bring up their phone menu
 
-                    if (SingleKeyPress(Keys.Tab))
+                    if (SingleKeyPress(Keys.Tab)) // stretch goal
                     {
                         IsMouseVisible = true;
                         currentState = GameState.PhoneMenu;
@@ -256,7 +256,7 @@ namespace The_Attempt
                 spriteBatch.DrawString(title, "The Attempt", new Vector2(GraphicsDevice.Viewport.Height / 5, 200), Color.White);
                 spriteBatch.DrawString(text, "Enter  -  Launch Game", new Vector2((GraphicsDevice.Viewport.Height / 3) + 45, 315), Color.White);
                 spriteBatch.DrawString(text, "C  -  Controls", new Vector2((GraphicsDevice.Viewport.Height / 3) + 80, 360), Color.White);
-                
+                spriteBatch.DrawString(text, "ESC  -  Exit", new Vector2((GraphicsDevice.Viewport.Height / 3) + 92, 405), Color.White);
             }
             if (currentState == GameState.Controls)
             {
@@ -267,10 +267,11 @@ namespace The_Attempt
 
                 // draw a screen which teaches players how to control the game
                 spriteBatch.DrawString(title, "Controls", new Vector2((GraphicsDevice.Viewport.Height / 5) + 50, 200), Color.White);
-                spriteBatch.DrawString(text, "A  -  Move Left", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 315), Color.White);
-                spriteBatch.DrawString(text, "S  -  Move Down", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 360), Color.White);
-                spriteBatch.DrawString(text, "D  -  Move Right", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 405), Color.White);
-                spriteBatch.DrawString(text, "Shift  -  Sprint", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 450), Color.White);
+                spriteBatch.DrawString(text, "C to return to Main Menu", new Vector2((GraphicsDevice.Viewport.Height / 3) + 25, 285), Color.White);
+                spriteBatch.DrawString(text, "A  -  Move Left", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 360), Color.White);
+                spriteBatch.DrawString(text, "S  -  Move Down", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 405), Color.White);
+                spriteBatch.DrawString(text, "D  -  Move Right", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 450), Color.White);
+                spriteBatch.DrawString(text, "Shift  -  Sprint", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 495), Color.White);
             }
             if (currentState == GameState.MainGame)
             {
@@ -322,7 +323,7 @@ namespace The_Attempt
             }
             if (currentState == GameState.GameOver)
             {
-
+                return; // ends the game
             }
                         
             spriteBatch.End();
