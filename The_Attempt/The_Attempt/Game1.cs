@@ -49,7 +49,7 @@ namespace The_Attempt
         const int CHAR_WIDTH = 55;
         const int CHAR_X_OFFSET = 145;
 
-        enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown };
+        enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown };
         CharState charState; // current state of the player character
         string pastDirection; // used to store the previous state
 
@@ -172,8 +172,6 @@ namespace The_Attempt
                         IsMouseVisible = true;
                         currentState = GameState.MainMenu;
                     }
-
-
                     break;
                 case GameState.MainGame:
                     // during the game, the player can press tab to bring up their phone menu
@@ -184,27 +182,62 @@ namespace The_Attempt
                         currentState = GameState.PhoneMenu;
                     }
 
-                    // check for input and update position
-                    string direction = input.Check(map);
-
                     // Calculate the frame to draw based on the time
                     framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
                     frame = framesElapsed % numFrames + 1;
 
-                    // Add your finite state machine code (switch statement) here
+                    // check for input and update position
+                    string direction = input.Check(map);
+
+                    if (!kbState.IsKeyDown(Keys.A) && !kbState.IsKeyDown(Keys.D) && !kbState.IsKeyDown(Keys.W) && !kbState.IsKeyDown(Keys.S))
+                    {
+                        if (pastDirection == "Walk Left")
+                        {
+                            direction = "Face Left";
+                        }
+                        if(pastDirection == "Walk Right")
+                        {
+                            direction = "Face Right";
+                        }
+                        if (pastDirection == "Walk Up")
+                        {
+                            direction = "Face Up";
+                        }
+                        if (pastDirection == "Walk Down")
+                        {
+                            direction = "Face Down";
+                        }
+                    }
+
+                    pastDirection = direction; // store directiong for this update to use for comparison the next frame
+
+                    // finite state machine
                     switch (direction)
                     {
-                        case "Left":
+                        case "Walk Left":
                             charState = CharState.WalkLeft;
                             break;
-                        case "Right":
+                        case "Walk Right":
                             charState = CharState.WalkRight;
                             break;
-                        case "Up":
+                        case "Walk Up":
                             charState = CharState.WalkUp;
                             break;
-                        case "Down":
+                        case "Walk Down":
                             charState = CharState.WalkDown;
+                            break;
+
+                        case "Face Left":
+                            charState = CharState.FaceLeft;
+                            break;
+                        case "Face Right":
+                            charState = CharState.FaceRight;
+                            break;
+                        case "Face Up":
+                            charState = CharState.FaceUp;
+                            break;
+                        case "Face Down":
+                            charState = CharState.FaceDown;
                             break;
                     }
 
@@ -286,8 +319,7 @@ namespace The_Attempt
                 }
 
                 // draw the player to the screen
-                spriteBatch.Draw(player.CurrentTexture, player.Position, Color.White);
-
+                // if the player is walking in a direction
                 if (charState == CharState.WalkUp)
                 {
                     spriteBatch.Draw(playerImg, new Vector2(player.Position.X, player.Position.Y), null, Color.White, 1.57f, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
@@ -304,7 +336,25 @@ namespace The_Attempt
                 {
                     spriteBatch.Draw(playerImg, new Vector2(player.Position.X, player.Position.Y), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                 }
-                
+
+                // if the player is only facing a direction (not walking)
+                if (charState == CharState.FaceUp)
+                {
+                    spriteBatch.Draw(playerImg, player.Position, null, Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                }
+                if (charState == CharState.FaceRight)
+                {
+                    spriteBatch.Draw(playerImg, player.Position, Color.White);
+                }
+                if (charState == CharState.FaceDown)
+                {
+                    spriteBatch.Draw(playerImg, player.Position, null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                }
+                if (charState == CharState.FaceLeft)
+                {
+                    spriteBatch.Draw(playerImg, player.Position, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                }
+
                 // draw the keys to the map
                 for (int i = 0; i < keys.Count; i++)
                 {
