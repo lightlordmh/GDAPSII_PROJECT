@@ -316,7 +316,7 @@ namespace The_Attempt
                 foreach (Corridor corridor in Settings.corridorList)
                 {
                     corridor.UpdateCurrPos(map.XCurr, map.YCurr);
-                    spriteBatch.Draw(playerImg, corridor.PositionCurr, Color.Red);
+                    //spriteBatch.Draw(playerImg, corridor.PositionCurr, Color.Red);
                 }
 
                 // draw the player to the screen
