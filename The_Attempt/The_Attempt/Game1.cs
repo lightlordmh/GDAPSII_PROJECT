@@ -340,7 +340,7 @@ namespace The_Attempt
                 // if the player is only facing a direction (not walking)
                 if (charState == CharState.FaceUp)
                 {
-                    spriteBatch.Draw(playerImg, player.Position, null, Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle(player.Position.X + player.Position.Width, player.Position.Y, player.Position.Width, player.Position.Height), null, Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.FaceRight)
                 {
@@ -348,7 +348,7 @@ namespace The_Attempt
                 }
                 if (charState == CharState.FaceDown)
                 {
-                    spriteBatch.Draw(playerImg, player.Position, null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle(player.Position.X, player.Position.Y + player.Position.Height, player.Position.Width, player.Position.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.FaceLeft)
                 {
