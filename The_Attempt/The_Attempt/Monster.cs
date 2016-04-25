@@ -199,7 +199,7 @@ namespace The_Attempt
             if (playerD == 7) { percents[0] = 12; percents[1] =12; percents[2] = 70; percents[3] = 6; }
             if (playerD == 8) { percents[0] = 42; percents[1] = 8; percents[2] = 42; percents[3] = 8; }
             if (playerD == 9) { percents[0] = 0; percents[1] = 0; percents[2] = 0; percents[3] = 0; }
-            else { return null; }
+            // else { return null; }
 
             for(int i = 0; i < 4; i++)
             {
