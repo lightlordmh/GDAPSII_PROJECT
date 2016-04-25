@@ -14,7 +14,8 @@ namespace The_Attempt
     class Button
     {
         // attributes
-        Texture2D texture;// the button's texture
+        string phrase;
+        //exture2D texture;// the button's texture
         Rectangle rect; // the button's bounding rectangle
         Rectangle mouseRect; // the bounding rectangle for the mouse
         bool click; // store the click state of the button
@@ -51,10 +52,10 @@ namespace The_Attempt
             set { rect.Height = value; }
         } 
         // property to allow access to the buttons texture
-        public Texture2D Texture
+        public string Phrase
         {
-            get { return texture; }
-            set { texture = value; }
+            get { return phrase; }
+            set { phrase = value; }
         } 
         // property to allow access to the buttons click event
         public bool Click
@@ -71,10 +72,11 @@ namespace The_Attempt
         /// <param name="width">The width dimension of the Rectangle.</param>
         /// <param name="height">The height dimension of the Rectangle.</param>
         /// <param name="tx">Texture2D that the button uses for drawing.</param>
-        public Button(int xPos, int yPos, int width, int height, Texture2D tx)
+        public Button(int xPos, int yPos, int width, int height, string str)
         {
             click = false; // set the default click state as false
-            texture = tx; 
+            s
+            //texture = tx; 
             rect = new Rectangle(xPos, yPos, width, height); 
         }
 
@@ -116,7 +118,7 @@ namespace The_Attempt
         /// <param name="spritebatch">SpriteBatch</param>
         public virtual void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture,rect,Color.White); // draw the button's bounding rectangle with a given texture
+            spritebatch.DrawString(Phrase,rect,Color.White); // draw the button's bounding rectangle with a given texture
         }
     }
 }

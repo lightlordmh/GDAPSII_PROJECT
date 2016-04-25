@@ -57,6 +57,7 @@ namespace The_Attempt
         public enum GameState
         {
             MainMenu,
+            Options,
             Controls,
             MainGame,
             GameOver,
