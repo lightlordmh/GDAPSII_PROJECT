@@ -14,6 +14,7 @@ namespace The_Attempt
     class Button
     {
         // attributes
+        SpriteFont font;
         string phrase;
         //exture2D texture;// the button's texture
         Rectangle rect; // the button's bounding rectangle
@@ -64,6 +65,12 @@ namespace The_Attempt
             set { click = value; }
         } 
 
+        public SpriteFont Font
+        {
+            get { return font; }
+            set { font = value; }
+        }
+
         /// <summary>
         /// Constructs a button with an X and Y Position, width and height, and Texture2D.
         /// </summary>
@@ -72,10 +79,10 @@ namespace The_Attempt
         /// <param name="width">The width dimension of the Rectangle.</param>
         /// <param name="height">The height dimension of the Rectangle.</param>
         /// <param name="tx">Texture2D that the button uses for drawing.</param>
-        public Button(int xPos, int yPos, int width, int height, string str)
+        public Button(int xPos, int yPos, int width, int height, string str,SpriteFont inFont)
         {
             click = false; // set the default click state as false
-            s
+            Font = inFont;
             //texture = tx; 
             rect = new Rectangle(xPos, yPos, width, height); 
         }
@@ -118,7 +125,7 @@ namespace The_Attempt
         /// <param name="spritebatch">SpriteBatch</param>
         public virtual void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.DrawString(Phrase,rect,Color.White); // draw the button's bounding rectangle with a given texture
+            //spritebatch.DrawString(Font,Phrase,rect,Color.White); // draw the button's bounding rectangle with a given texture
         }
     }
 }
