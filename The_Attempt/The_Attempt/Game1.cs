@@ -57,6 +57,7 @@ namespace The_Attempt
         public enum GameState
         {
             MainMenu,
+            Options,
             Controls,
             MainGame,
             GameOver,
@@ -116,7 +117,7 @@ namespace The_Attempt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            playerImg = Content.Load<Texture2D>("Player");
+            playerImg = Content.Load<Texture2D>("Player Image");
             Settings.mapTexture.Add(Content.Load<Texture2D>("Map"));
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
@@ -311,6 +312,15 @@ namespace The_Attempt
                 //draw the map
                 map.Draw(spriteBatch);
 
+<<<<<<< HEAD
+=======
+                // testing corridors
+                foreach (Corridor corridor in Settings.corridorList)
+                {
+                    corridor.UpdateCurrPos(map.XCurr, map.YCurr);
+                    //spriteBatch.Draw(playerImg, corridor.PositionCurr, Color.Red);
+                }
+>>>>>>> 97e2d1a93747f9ca5438b5825c839b94642f418a
 
                 // draw the player to the screen
                 // if the player is walking in a direction
@@ -334,7 +344,7 @@ namespace The_Attempt
                 // if the player is only facing a direction (not walking)
                 if (charState == CharState.FaceUp)
                 {
-                    spriteBatch.Draw(playerImg, player.Position, null, Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle(player.Position.X + player.Position.Width, player.Position.Y, player.Position.Width, player.Position.Height), null, Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.FaceRight)
                 {
@@ -342,7 +352,7 @@ namespace The_Attempt
                 }
                 if (charState == CharState.FaceDown)
                 {
-                    spriteBatch.Draw(playerImg, player.Position, null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle(player.Position.X, player.Position.Y + player.Position.Height, player.Position.Width, player.Position.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.FaceLeft)
                 {

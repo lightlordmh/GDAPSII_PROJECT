@@ -187,7 +187,7 @@ namespace The_Attempt
         {
             //up, down, left, right
 
-            int[] percents = new int[4];
+            int[] percents = new int[] { 0, 0, 0, 0};
 
             if (playerD == 0) { percents[0] = 0; percents[1] = 0; percents[2] = 0; percents[3] = 0; }
             if (playerD == 1) { percents[0] = 70; percents[1] = 6; percents[2] = 12; percents[3] = 12; }
