@@ -323,25 +323,25 @@ namespace The_Attempt
                 // if the player is walking in a direction
                 if (charState == CharState.WalkUp)
                 {
-                    spriteBatch.Draw(playerImg, new Vector2(player.Position.X, player.Position.Y), null, Color.White, 1.57f, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 1.57f, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.WalkRight)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle(CHAR_X_OFFSET + frame * player.Position.Width, player.Position.Y, player.Position.Width, player.Position.Height), null, Color.White);
+                    spriteBatch.Draw(playerImg, new Rectangle(CHAR_X_OFFSET + frame * player.Width, player.Y, player.Width, player.Height), null, Color.White);
                 }
                 if (charState == CharState.WalkDown)
                 {
-                    spriteBatch.Draw(playerImg, new Vector2(player.Position.X, player.Position.Y), null, Color.White, -1.57f, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle(player.X, player.Y + player.Height, player.Height, player.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.WalkLeft)
                 {
-                    spriteBatch.Draw(playerImg, new Vector2(player.Position.X, player.Position.Y), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                 }
 
                 // if the player is only facing a direction (not walking)
                 if (charState == CharState.FaceUp)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle(player.Position.X + player.Position.Width, player.Position.Y, player.Position.Width, player.Position.Height), null, Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle(player.X + player.Width, player.Y, player.Width, player.Height), null, Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.FaceRight)
                 {
@@ -349,7 +349,7 @@ namespace The_Attempt
                 }
                 if (charState == CharState.FaceDown)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle(player.Position.X, player.Position.Y + player.Position.Height, player.Position.Width, player.Position.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle(player.X, player.Y + player.Height, player.Height, player.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.FaceLeft)
                 {
