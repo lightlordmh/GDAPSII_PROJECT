@@ -15,20 +15,27 @@ namespace The_Attempt
         private int creepSpeed = 0; // the speed at which the monster moves while not in pursuit mode
         private int rushSpeed = 0; // the speed at which the monster moves while in pursuit mode
         private Movement move = null;
+        private Movement assessMove;
         private CollDetect collide;
         private Random rgen;
+        private bool turn;
 
         private bool[] possibleDirections = new bool[4];
 
-        private enum direction
-        {
-            up,
-            down,
-            left,
-            right
-        }
 
-        private direction currentDirection;
+        //later
+        // private enum direction
+        //  {
+        //     up,
+        //     down,
+        //    left,
+        //    right
+        // }
+
+        // private direction currentDirection;
+
+
+        private int currentDirection = -1;  //can make into a enum later -1 is null 0,1,2,3 are U,D,L,R
 
         // properties
         public int CreepSpeed
@@ -82,6 +89,8 @@ namespace The_Attempt
             move = new Movement(cSpeed);
             collide = new CollDetect();
             rgen = new Random();
+            assessMove = new Movement(20);
+            turn = false;
         }
 
 
@@ -90,31 +99,68 @@ namespace The_Attempt
 
         public void aiMove(GameObject player, Map map)
         {
-            if (currentDirection == null)
+            
+            if (currentDirection == -1 || turn == true)
             {
                 Assess(map);
                 int directionPlayer = FindPlayer(player, map);
                 int[] directPercent = DirectionPercent(directionPlayer);
-                int monsterDirect = PickDirection(directPercent);
+                int monsterDirect = PickDirection(directPercent); //will get either 0,1,2,or 3 U,D,L,R
+                currentDirection = monsterDirect;
+                turn = false;
             }
+
+            if(currentDirection == 0) // up
+            {
+                base.Y = move.Up(base.Position);
+                base.UpdateCurrPos(map.X, map.Y);
+                turn = collide.corridorCheck(base.PositionCurr, base.Position, 'D', map, move);
+            }
+            if (currentDirection == 1) // down
+            {
+                base.Y = move.Down(base.Position);
+                base.UpdateCurrPos(map.X, map.Y);
+                turn = collide.corridorCheck(base.PositionCurr, base.Position, 'U', map, move);
+            }
+            if (currentDirection == 2) // right
+            {
+                base.Y = move.Left(base.Position);
+                base.UpdateCurrPos(map.X, map.Y);
+                turn = collide.corridorCheck(base.PositionCurr, base.Position, 'R', map, move);
+            }
+            if (currentDirection == 3) // left
+            {
+                base.Y = move.Right(base.Position);
+                base.UpdateCurrPos(map.X, map.Y);
+                turn = collide.corridorCheck(base.PositionCurr, base.Position, 'L', map, move);
+            }
+
+
         }
+
 
         private void Assess(Map mapI)
         {
-             // 0:up 1:down 2:left 3:right
+            // 0:up 1:down 2:left 3:right
+            assessMove.Up(base.Position);
+            base.UpdateCurrPos(mapI.X, mapI.Y);
+            possibleDirections[0] = collide.corridorCheck(base.PositionCurr, base.Position, 'D', mapI, assessMove);//returning false means it is a possible location to move DONT CHANGE THAT
+            if (possibleDirections[0] == false) { assessMove.Down(base.Position); } //these move the object if it is a posible location to move to
 
-            move.Up(base.Position);  //position to move via ai possition current to refrence onto map
-            possibleDirections[0] = collide.corridorCheck(base.Position, this, 'U', mapI, move);
+            assessMove.Down(base.Position);
+            base.UpdateCurrPos(mapI.X, mapI.Y);
+            possibleDirections[1] = collide.corridorCheck(base.PositionCurr, base.Position, 'U', mapI, assessMove);
+            if (possibleDirections[1] == false) { assessMove.Up(base.Position); }
 
-            move.Down(base.Position); 
-            possibleDirections[1] = collide.corridorCheck(base.Position, this, 'D', mapI, move);
+            assessMove.Left(base.Position);
+            base.UpdateCurrPos(mapI.X, mapI.Y);
+            possibleDirections[2] = collide.corridorCheck(base.PositionCurr, base.Position, 'R', mapI, assessMove);
+            if (possibleDirections[2] == false) { assessMove.Right(base.Position); }
 
-            move.Left(base.Position);
-            possibleDirections[2] = collide.corridorCheck(base.Position, this, 'L', mapI, move);
-
-            move.Right(base.Position);
-            possibleDirections[3] = collide.corridorCheck(base.Position, this, 'R', mapI, move);
-
+            assessMove.Right(base.Position);
+            base.UpdateCurrPos(mapI.X, mapI.Y);
+            possibleDirections[3] = collide.corridorCheck(base.PositionCurr, base.Position, 'L', mapI, assessMove);
+            if (possibleDirections[3] == false) { assessMove.Left(base.Position); }
         }
 
         private int FindPlayer(GameObject player, Map mapI) // the returning int is the direction the player is, 1 is directly North, 2 is NE 3 is E so on till 8 9 is if the monster is on you
@@ -122,6 +168,7 @@ namespace The_Attempt
             Vector2 playerPos;
             playerPos = collide.FindSmallScaleLocation(player.Position,mapI);
             Vector2 monsterPos;
+            base.UpdateCurrPos(mapI.X, mapI.Y);
             monsterPos = collide.FindSmallScaleLocation(base.PositionCurr, mapI);
 
             if(monsterPos.X == playerPos.X && monsterPos.Y == playerPos.Y) { return 9; }
@@ -141,6 +188,7 @@ namespace The_Attempt
             //up, down, left, right
 
             int[] percents = new int[4];
+
             if (playerD == 0) { percents[0] = 0; percents[1] = 0; percents[2] = 0; percents[3] = 0; }
             if (playerD == 1) { percents[0] = 70; percents[1] = 6; percents[2] = 12; percents[3] = 12; }
             if (playerD == 2) { percents[0] = 42; percents[1] = 8; percents[2] = 8; percents[3] = 42; }
@@ -165,10 +213,12 @@ namespace The_Attempt
         }
 
 
-        private int PickDirection(int[] percentsPrev)  //retuns direction 0:U 1:D 2:L 3:R
+        private int PickDirection(int[] percents)  //retuns direction 0:U 1:D 2:L 3:R
         {
             int returning = -1;
             int adding = 0;
+            int[] percentsPrev = percents;
+           
             for(int i = 0; i < 4; i++)
             {
                 if (percentsPrev[i] != 0)
@@ -176,25 +226,24 @@ namespace The_Attempt
                     percentsPrev[i] += adding;
                     adding = percentsPrev[i];
                 }
+                else { 
+}
             }
 
             int randomNum = rgen.Next(adding) + 1;
 
             for(int i = 0; i < 4; i++)
             {
-                if(percentsPrev[i] != 0)
+                if(percentsPrev[i] != 0 && returning == -1)
                 {
                     if(randomNum <= percentsPrev[i])
                     {
                         returning = i;
                     }
-                    else { return -1; }
                 }
             }
 
             return returning;
-
-            
         }
     }
  }
