@@ -117,7 +117,7 @@ namespace The_Attempt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            playerImg = Content.Load<Texture2D>("Player");
+            playerImg = Content.Load<Texture2D>("Player Image");
             Settings.mapTexture.Add(Content.Load<Texture2D>("Map"));
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
