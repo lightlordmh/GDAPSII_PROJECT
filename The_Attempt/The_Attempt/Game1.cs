@@ -76,7 +76,7 @@ namespace The_Attempt
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
             player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 80, 80);
-            monster = new Monster(10, 10, 30, 40, 10, 10);
+            monster = new Monster(3200, 640, 80, 80, 10, 10);
             map = new Map(-3200, -320, 7680, 6240);
             base.Initialize();
             level = new Level();

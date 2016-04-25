@@ -29,7 +29,6 @@ namespace The_Attempt
 
 
 
-        Movement move = new Movement(6);
 
         //checking for basically any collision between objects
         public bool SimpleCheck(Rectangle objOne, Rectangle objTwo)
@@ -60,9 +59,8 @@ namespace The_Attempt
 
 
 
-        public bool corridorCheck(Rectangle objChecking, GameObject objMoving, char directionMoved, Map currentMap) //for the char pass in either U, D, L or R
-        {
-
+        public bool corridorCheck(Rectangle objChecking, GameObject objMoving, char directionMoved, Map currentMap, Movement move) //for the char pass in either U, D, L or R
+        { 
 
             //its ints due to the functionality of the AI
             Vector2[] cornerCheck = new Vector2[4];
@@ -118,6 +116,7 @@ namespace The_Attempt
             }
             else
             {
+
                 switch (directionMoved)
                 {
                     case 'U':
