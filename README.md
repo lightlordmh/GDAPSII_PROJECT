@@ -4,8 +4,7 @@
 
 * Implement maze-like map and player movement
 
-**Week 6** - _**Current Week**_
-
+**Week 6** 
 * Implement Key placement around map and player ability to escape
 
 **Week 7**
@@ -30,7 +29,7 @@
 * Work on implementing multiple levels for the game
 * Debug the main game before implementing stretch goals
 
-**Week 12 & 13 - Milestone 3**
+**Week 12 & 13 - Milestone 3** - _**Current Week**_
 
 * For milestone deliverable, have the map fully implemented along with movement and the presence of our enemy 
 * Implement stretch goals

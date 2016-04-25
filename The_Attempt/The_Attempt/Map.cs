@@ -29,7 +29,7 @@ namespace The_Attempt
         /// Draws the Map to the screen.
         /// </summary>
         /// <param name="spriteBatch">SpriteBatch</param>
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (base.CurrentTexture != null)
             {
