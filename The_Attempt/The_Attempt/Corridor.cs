@@ -15,37 +15,37 @@ namespace The_Attempt
         // the plus four is because the map ended up needing to be 4 extra blocks in all directions, found this out after writing that text file
     public class Corridor : GameObject
     {
-        private int x;
-        private int y;
-        private int height;
-        private int width;
+        private int xp;
+        private int yp;
+        private int heightp;
+        private int widthp;
 
         public Corridor(int xI, int yI, int hI, int wI) : base((xI)*160, (yI)*160, hI*160, wI*160)
         {
-            x = xI;
-            y = yI;
-            height = hI;
-            width = wI;
+            xp = xI;
+            yp = yI;
+            heightp = hI;
+            widthp = wI;
         }
 
-        public int X
+        public int Xp
         {
-            get { return x; }
+            get { return xp; }
         }
 
-        public int Y
+        public int Yp
         {
-            get { return y; }
+            get { return yp; }
         }
 
-        public int Height
+        public int Heightp
         {
-            get { return height; }
+            get { return heightp; }
         }
 
-        public int Width
+        public int Widthp
         {
-            get { return width; }
+            get { return widthp; }
         }
     }
 }

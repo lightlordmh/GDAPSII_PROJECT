@@ -36,7 +36,7 @@ namespace The_Attempt
                 curGameMap.YCurr = inputMove.Down(curGameMap.PositionCurr);
 
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
-                detect.corridorCheck(instanceOfPlayer, curGameMap.PositionCurr, 'U' , curGameMap, inputMove);
+                detect.corridorCheck(instanceOfPlayer, curGameMap, 'U' , curGameMap, inputMove);
 
                 direction = "Face Up";
             }
@@ -47,7 +47,7 @@ namespace The_Attempt
                 curGameMap.XCurr = inputMove.Left(curGameMap.PositionCurr);
 
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
-                detect.corridorCheck(instanceOfPlayer, curGameMap.PositionCurr, 'R' , curGameMap, inputMove);
+                detect.corridorCheck(instanceOfPlayer, curGameMap, 'R' , curGameMap, inputMove);
 
                 direction = "Face Right";
             }
@@ -58,7 +58,7 @@ namespace The_Attempt
                 curGameMap.YCurr = inputMove.Up(curGameMap.PositionCurr);
 
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
-                detect.corridorCheck(instanceOfPlayer, curGameMap.PositionCurr, 'D' , curGameMap, inputMove);
+                detect.corridorCheck(instanceOfPlayer, curGameMap, 'D' , curGameMap, inputMove);
 
                 direction = "Face Down";
             }
@@ -69,7 +69,7 @@ namespace The_Attempt
                 curGameMap.XCurr = inputMove.Right(curGameMap.PositionCurr);
 
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
-                detect.corridorCheck(instanceOfPlayer, curGameMap.PositionCurr, 'L' , curGameMap, inputMove);
+                detect.corridorCheck(instanceOfPlayer, curGameMap, 'L' , curGameMap, inputMove);
 
                 direction = "Face Left";
             }

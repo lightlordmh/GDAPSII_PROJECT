@@ -37,6 +37,8 @@ namespace The_Attempt
         Input input; // handles input
         Monster monster; // the monster object
 
+        Texture2D corridorimg;
+
         Random rng; // used to generate positions for keys
         double timer;
 
@@ -124,6 +126,7 @@ namespace The_Attempt
             menuImg = Content.Load<Texture2D>("MenuScreen");
             monsterImg = Content.Load<Texture2D>("Player");
             keyTexture = Content.Load<Texture2D>("Key Sprite");
+            corridorimg = Content.Load<Texture2D>("Player");
         }
 
         /// <summary>
@@ -245,6 +248,7 @@ namespace The_Attempt
                     // updating position of objects
                     monster.UpdateCurrPos(map.X, map.Y);
 
+
                     for(int i = 0; i < keys.Count; i++)
                     {
                         keys[i].UpdateCurrPos(map.X, map.Y);
@@ -312,15 +316,6 @@ namespace The_Attempt
                 //draw the map
                 map.Draw(spriteBatch);
 
-<<<<<<< HEAD
-=======
-                // testing corridors
-                foreach (Corridor corridor in Settings.corridorList)
-                {
-                    corridor.UpdateCurrPos(map.XCurr, map.YCurr);
-                    //spriteBatch.Draw(playerImg, corridor.PositionCurr, Color.Red);
-                }
->>>>>>> 97e2d1a93747f9ca5438b5825c839b94642f418a
 
                 // draw the player to the screen
                 // if the player is walking in a direction
@@ -370,6 +365,14 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
+
+
+                foreach (Corridor corridor in Settings.corridorList)
+                {
+                    spriteBatch.Draw(corridorimg, corridor.Position, Color.Red);
+                }
+
+                //drawing the monster 
             }
             if (currentState == GameState.PhoneMenu) // stretch goal
             {
@@ -379,7 +382,9 @@ namespace The_Attempt
             {
                 return; // ends the game
             }
-                        
+                   
+            
+                 
             spriteBatch.End();
             base.Draw(gameTime);
         }

@@ -60,7 +60,7 @@ namespace The_Attempt
 
 
                                                                                //for directionmoved input the direction to move back
-        public bool corridorCheck(Rectangle objChecking, Rectangle objMoving, char directionMoved, Map currentMap, Movement move) //for the char pass in either U, D, L or R
+        public bool corridorCheck(Rectangle objChecking, GameObject objMoving, char directionMoved, Map currentMap, Movement move) //for the char pass in either U, D, L or R
         { 
 
             //its ints due to the functionality of the AI
@@ -84,7 +84,7 @@ namespace The_Attempt
 
 
 
-           // Vector2 simplePos = FindSmallScaleLocation(objChecking, currentMap);
+            Vector2 simplePos = FindSmallScaleLocation(objChecking, currentMap);
 
             Corridor instanceCorridor;
             Rectangle check = new Rectangle(0, 0, 0, 0);
@@ -121,16 +121,16 @@ namespace The_Attempt
                 switch (directionMoved)
                 {
                     case 'U':
-                        objMoving.Y = move.Up(objMoving);
+                        objMoving.Y = move.Up(objMoving.Position);
                         break;
                     case 'D':
-                        objMoving.Y = move.Down(objMoving);
+                        objMoving.Y = move.Down(objMoving.Position);
                         break;
                     case 'L':
-                        objMoving.X = move.Left(objMoving);
+                        objMoving.X = move.Left(objMoving.Position);
                         break;
                     case 'R':
-                        objMoving.X = move.Right(objMoving);
+                        objMoving.X = move.Right(objMoving.Position);
                         break;
                 }
                 return true;

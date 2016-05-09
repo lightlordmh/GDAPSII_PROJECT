@@ -91,7 +91,7 @@ namespace The_Attempt
         /// <param name="spriteBatch">SpriteBatch</param>
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(currentTexture, position, Color.White);
+            spriteBatch.Draw(currentTexture, positionCurr, Color.White);
         }
 
 

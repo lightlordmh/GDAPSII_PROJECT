@@ -114,25 +114,25 @@ namespace The_Attempt
             {
                 base.Y = move.Up(base.Position);
                 base.UpdateCurrPos(map.X, map.Y);
-                turn = collide.corridorCheck(base.PositionCurr, base.Position, 'D', map, move);
+                turn = collide.corridorCheck(base.PositionCurr, this, 'D', map, move);
             }
             if (currentDirection == 1) // down
             {
                 base.Y = move.Down(base.Position);
                 base.UpdateCurrPos(map.X, map.Y);
-                turn = collide.corridorCheck(base.PositionCurr, base.Position, 'U', map, move);
+                turn = collide.corridorCheck(base.PositionCurr, this, 'U', map, move);
             }
             if (currentDirection == 2) // right
             {
                 base.Y = move.Left(base.Position);
                 base.UpdateCurrPos(map.X, map.Y);
-                turn = collide.corridorCheck(base.PositionCurr, base.Position, 'R', map, move);
+                turn = collide.corridorCheck(base.PositionCurr, this, 'R', map, move);
             }
             if (currentDirection == 3) // left
             {
                 base.Y = move.Right(base.Position);
                 base.UpdateCurrPos(map.X, map.Y);
-                turn = collide.corridorCheck(base.PositionCurr, base.Position, 'L', map, move);
+                turn = collide.corridorCheck(base.PositionCurr, this, 'L', map, move);
             }
 
 
@@ -144,22 +144,22 @@ namespace The_Attempt
             // 0:up 1:down 2:left 3:right
             assessMove.Up(base.Position);
             base.UpdateCurrPos(mapI.X, mapI.Y);
-            possibleDirections[0] = collide.corridorCheck(base.PositionCurr, base.Position, 'D', mapI, assessMove);//returning false means it is a possible location to move DONT CHANGE THAT
+            possibleDirections[0] = collide.corridorCheck(base.PositionCurr, this, 'D', mapI, assessMove);//returning false means it is a possible location to move DONT CHANGE THAT
             if (possibleDirections[0] == false) { assessMove.Down(base.Position); } //these move the object if it is a posible location to move to
 
             assessMove.Down(base.Position);
             base.UpdateCurrPos(mapI.X, mapI.Y);
-            possibleDirections[1] = collide.corridorCheck(base.PositionCurr, base.Position, 'U', mapI, assessMove);
+            possibleDirections[1] = collide.corridorCheck(base.PositionCurr, this, 'U', mapI, assessMove);
             if (possibleDirections[1] == false) { assessMove.Up(base.Position); }
 
             assessMove.Left(base.Position);
             base.UpdateCurrPos(mapI.X, mapI.Y);
-            possibleDirections[2] = collide.corridorCheck(base.PositionCurr, base.Position, 'R', mapI, assessMove);
+            possibleDirections[2] = collide.corridorCheck(base.PositionCurr, this, 'R', mapI, assessMove);
             if (possibleDirections[2] == false) { assessMove.Right(base.Position); }
 
             assessMove.Right(base.Position);
             base.UpdateCurrPos(mapI.X, mapI.Y);
-            possibleDirections[3] = collide.corridorCheck(base.PositionCurr, base.Position, 'L', mapI, assessMove);
+            possibleDirections[3] = collide.corridorCheck(base.PositionCurr, this, 'L', mapI, assessMove);
             if (possibleDirections[3] == false) { assessMove.Left(base.Position); }
         }
 
@@ -187,7 +187,7 @@ namespace The_Attempt
         {
             //up, down, left, right
 
-            int[] percents = new int[] { 0, 0, 0, 0};
+            int[] percents = new int[4];
 
             if (playerD == 0) { percents[0] = 0; percents[1] = 0; percents[2] = 0; percents[3] = 0; }
             if (playerD == 1) { percents[0] = 70; percents[1] = 6; percents[2] = 12; percents[3] = 12; }
@@ -199,7 +199,6 @@ namespace The_Attempt
             if (playerD == 7) { percents[0] = 12; percents[1] =12; percents[2] = 70; percents[3] = 6; }
             if (playerD == 8) { percents[0] = 42; percents[1] = 8; percents[2] = 42; percents[3] = 8; }
             if (playerD == 9) { percents[0] = 0; percents[1] = 0; percents[2] = 0; percents[3] = 0; }
-            else { return null; }
 
             for(int i = 0; i < 4; i++)
             {
@@ -213,12 +212,11 @@ namespace The_Attempt
         }
 
 
-        private int PickDirection(int[] percents)  //retuns direction 0:U 1:D 2:L 3:R
+        private int PickDirection(int[] percentsPrev)  //retuns direction 0:U 1:D 2:L 3:R
         {
             int returning = -1;
             int adding = 0;
-            int[] percentsPrev = percents;
-           
+
             for(int i = 0; i < 4; i++)
             {
                 if (percentsPrev[i] != 0)
@@ -226,8 +224,6 @@ namespace The_Attempt
                     percentsPrev[i] += adding;
                     adding = percentsPrev[i];
                 }
-                else { 
-}
             }
 
             int randomNum = rgen.Next(adding) + 1;
