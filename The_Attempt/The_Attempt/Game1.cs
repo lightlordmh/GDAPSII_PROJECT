@@ -254,6 +254,11 @@ namespace The_Attempt
                         keys[i].UpdateCurrPos(map.X, map.Y);
                     }
 
+                    if(player.DamageCheck(monster) == true)
+                    {
+                        currentState = GameState.GameOver;
+                    }
+
                     break;
                 case GameState.PhoneMenu:
                     // once in the phone menu screen, press tab again to return back to the game
@@ -316,8 +321,8 @@ namespace The_Attempt
                 //draw the map
                 map.Draw(spriteBatch);
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
                 // testing corridors
                 foreach (Corridor corridor in Settings.corridorList)
                 {
@@ -325,7 +330,7 @@ namespace The_Attempt
                     spriteBatch.Draw(playerImg, corridor.PositionCurr, Color.Red);
                 }
 
->>>>>>> c6b72f81626781076d804a45c83747d294b7c09d
+//>>>>>>> c6b72f81626781076d804a45c83747d294b7c09d
 
                 // draw the player to the screen
                 // if the player is walking in a direction
