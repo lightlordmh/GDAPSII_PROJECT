@@ -51,7 +51,7 @@ namespace The_Attempt
         const int CHAR_WIDTH = 55;
         const int CHAR_X_OFFSET = 145;
 
-        enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown };
+        enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
         string pastDirection; // used to store the previous state
 

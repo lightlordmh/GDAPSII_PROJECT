@@ -72,8 +72,10 @@ namespace External_Tool
             CustomBox.ForeColor = Color.White;
             ApplyBut.ForeColor = Color.White;
             CancelBut.ForeColor = Color.White;
+            HelpBut.ForeColor = Color.White;
             ApplyBut.BackColor = Color.DarkGray;
             CancelBut.BackColor = Color.DarkGray;
+            HelpBut.BackColor = Color.DarkGray;
         }
 
         // method for getting lines
@@ -295,6 +297,25 @@ namespace External_Tool
         {
             // change settings for when Hard riddles is chosen
             if (HardRiddle.Checked == true) settingVals["Riddles"] = 3;
+        }
+        
+        private void HelpBut_Click(object sender, EventArgs e)
+        {
+            // Display a messagebox informing the user of the functions of the settings
+            MessageBox.Show("Need Help?" + Environment.NewLine + 
+                "Here is a quick tutorial :3" + Environment.NewLine + Environment.NewLine +
+                "Easy Settings:" +Environment.NewLine +
+                "   A general difficulty preset (Easy,Medium, and Hard)" + Environment.NewLine +
+                "Custom settings:"+ Environment.NewLine + 
+                "   Controls the difficulty of individual aspects of the game" + Environment.NewLine +
+                "Flashlight Brightness:" + Environment.NewLine +
+                "   Sets the area visable to the player when the flashlight is turned on" + Environment.NewLine +
+                "Enemy Speed:" + Environment.NewLine +
+                "   Changes the speed the enemy will move" + Environment.NewLine +
+                "Beginning Level:" + Environment.NewLine +
+                "   Sets the first game map to be played on" + Environment.NewLine +
+                "Riddle Settings:" + Environment.NewLine +
+                "   Changes the difficulty of riddles and wether to spawn key objects");
         }
     }
 }
