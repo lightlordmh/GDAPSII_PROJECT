@@ -321,22 +321,12 @@ namespace The_Attempt
                 //draw the map
                 map.Draw(spriteBatch);
 
-<<<<<<< HEAD
-//<<<<<<< HEAD
-//=======
-=======
->>>>>>> 36eaed428f1f14389ccbd7a3fa5dcc708699deb8
                 // testing corridors
                 foreach (Corridor corridor in Settings.corridorList)
                 {
                     corridor.UpdateCurrPos(map.XCurr, map.YCurr);
                     spriteBatch.Draw(playerImg, corridor.PositionCurr, Color.Red);
                 }
-
-<<<<<<< HEAD
-//>>>>>>> c6b72f81626781076d804a45c83747d294b7c09d
-=======
->>>>>>> 36eaed428f1f14389ccbd7a3fa5dcc708699deb8
 
                 // draw the player to the screen
                 // if the player is walking in a direction
