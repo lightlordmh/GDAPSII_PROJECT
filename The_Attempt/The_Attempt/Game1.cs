@@ -30,6 +30,7 @@ namespace The_Attempt
         Texture2D monsterImg; // the texture of the monster (using player 
         Texture2D keyTexture; // the texture of the keys
         CollDetect collDetect;
+        Texture2D doorImg;
 
         Level level;
         Character player; // the player object
@@ -37,6 +38,8 @@ namespace The_Attempt
         Map map; // defines the maps placement
         Input input; // handles input
         Monster monster; // the monster object
+        Key key;
+        Door door;
 
         Texture2D corridorimg;
 
@@ -103,19 +106,20 @@ namespace The_Attempt
 
 
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
-            monster = new Monster(3520, 960, 160, 160, 10, 10);
+            monster = new Monster(3520, 960, 160, 160, 1, 2);
 
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();
             collDetect = new CollDetect();
 
             keys = new List<Key>();
-            keys.Add(new Key(100, 100, 40, 40, "Normal"));
+            keys.Add(new Key(100, 100, 40, 40, "Normal")); 
 
             level = new Level();
             input = new Input();
 
-
+            key = new Key(4000, 960, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
+            door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
 
             base.Initialize();
         }
@@ -138,6 +142,7 @@ namespace The_Attempt
             monsterImg = Content.Load<Texture2D>("Player");
             keyTexture = Content.Load<Texture2D>("Key Sprite");
             corridorimg = Content.Load<Texture2D>("Player");
+            doorImg = Content.Load<Texture2D>("MenuScreen");
         }
 
         /// <summary>
@@ -174,6 +179,7 @@ namespace The_Attempt
                         level.LoadCorridors();
                         map.SetMapTexture();
                         monster.CurrentTexture = monsterImg;
+                        key.CurrentTexture = keyTexture;
                     }
                     if(SingleKeyPress(Keys.C))
                     {
@@ -256,10 +262,20 @@ namespace The_Attempt
                             charState = CharState.FaceDown;
                             break;
                     }
-                   // monster.aiMove(player, map);
                     // updating position of objects
+                    monster.aiMove(player,map);
                     monster.UpdateCurrPos(map.XCurr, map.YCurr);
 
+                    //key stuff
+                    key.UpdateCurrPos(map.XCurr, map.YCurr);
+                    if(collDetect.SimpleCheck(player.PositionCurr, key.PositionCurr) == true)
+                    {
+                        key.Rendered = false;
+                        door.Open = true;
+                    }
+
+                    //door
+                    door.UpdateCurrPos(map.XCurr, map.YCurr);
 
                     for(int i = 0; i < keys.Count; i++)
                     {
@@ -279,6 +295,11 @@ namespace The_Attempt
                     if(invincible > 0) //reduces the time of invincible
                     {
                         invincible--;
+                    }
+
+                    if(collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true)
+                    {
+                        currentState = GameState.GameOver;
                     }
                     break;
                 case GameState.PhoneMenu:
@@ -379,6 +400,15 @@ namespace The_Attempt
                      spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                  }
  */
+
+                //key rendering
+                if(key.Rendered == true)
+                {
+                    key.Draw(spriteBatch);
+                }
+
+                door.Draw(spriteBatch, doorImg, doorImg);
+
                 player.Draw(spriteBatch);
 
                 // draw the keys to the map
@@ -396,6 +426,9 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
                 spriteBatch.DrawString(text, "Health: " + player.Health, new Vector2(5, 100), Color.White);
+        //        spriteBatch.DrawString(text, "" + monster.X, new Vector2(5, 130), Color.White);
+         //       spriteBatch.DrawString(text, "" + monster.Y, new Vector2(5, 160), Color.White);
+         //       spriteBatch.DrawString(text, "" + monster.Width, new Vector2(5, 190), Color.White);
             }
             if (currentState == GameState.PhoneMenu) // stretch goal
             {
@@ -403,7 +436,7 @@ namespace The_Attempt
             }
             if (currentState == GameState.GameOver)
             {
-                return; // ends the game
+                currentState = GameState.MainMenu;
             }
                    
             

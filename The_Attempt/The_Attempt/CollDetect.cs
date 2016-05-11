@@ -60,7 +60,7 @@ namespace The_Attempt
 
 
                                                                                //for directionmoved input the direction to move back
-        public bool corridorCheck(Rectangle objChecking, GameObject objMoving, char directionMoved, Map currentMap, Movement move) //for the char pass in either U, D, L or R
+        public int corridorCheck(Rectangle objChecking, GameObject objMoving, char directionMoved, Map currentMap, Movement move) //for the char pass in either U, D, L or R
         { 
             Vector2[] cornerCheck = new Vector2[4];
             cornerCheck[0] = new Vector2(0,0);
@@ -107,11 +107,11 @@ namespace The_Attempt
                 //this is for finding when the ai is on an intersection of corridor
                 if (cornerCheck[0].Y > 9 && cornerCheck[0].X > 9 && cornerCheck[1].Y > 9 && cornerCheck[1].X > 9 && cornerCheck[2].Y > 9 && cornerCheck[2].X > 9 && cornerCheck[3].Y > 9 && cornerCheck[3].X > 9) //is not in two coridors
                 {
-                    return true; //true means the ai turns here
+                    return 0; //true means the ai turns here
                 }
                 else
                 {
-                    return false;
+                    return 2;
                 }
             }
             else
@@ -132,9 +132,15 @@ namespace The_Attempt
                         objMoving.XCurr = move.Right(objMoving.PositionCurr);
                         break;
                 }
-                return true;
+                return 1;
             }
 
+            //returns here explained
+            //0 = turn and is a good direction
+            //1 = turn but isn't a good direction
+            //2 = dont turn and is a good direction
         }
+
+
     }
 }

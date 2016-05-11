@@ -17,6 +17,7 @@ namespace The_Attempt
             set { open = value; }
         }
 
+
         /// <summary>
         /// Constructs a Door object and places it in a Rectangle defined by the parameters that are passed in.
         /// </summary>

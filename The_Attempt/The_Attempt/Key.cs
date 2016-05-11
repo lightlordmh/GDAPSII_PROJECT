@@ -9,12 +9,19 @@ namespace The_Attempt
     {
         // attributes
         private string type; // the type of part which this particular key is (blade, shaft, or bow)
-        
+        private bool rendered;
+
         // properties
         public string Type
         {
             get { return type; }
             set { type = value; }
+        }
+
+        public bool Rendered
+        {
+            get { return rendered; }
+            set { rendered = value; }
         }
 
         /// <summary>
@@ -28,6 +35,7 @@ namespace The_Attempt
         public Key(int xPos, int yPos, int width, int height, string tp) : base(xPos, yPos, width, height)
         {
             type = tp;
+            rendered = true;
         }
     }
 }
