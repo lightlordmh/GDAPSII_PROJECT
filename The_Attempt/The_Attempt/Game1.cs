@@ -98,13 +98,13 @@ namespace The_Attempt
             // initialize attributes and place objects
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
-<<<<<<< HEAD
-            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 80, 80);
+
+
+
+
+            player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
             monster = new Monster(3520, 960, 160, 160, 10, 10);
-=======
-            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, CHAR_WIDTH, CHAR_HEIGHT);
-            monster = new Monster(3200, 640, 160, 160, 10, 10);
->>>>>>> ada77588090b6d03de071e10aebe17dc3d7f9278
+
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();
             collDetect = new CollDetect();
@@ -268,7 +268,7 @@ namespace The_Attempt
 
                     if(collDetect.SimpleCheck(player.PositionCurr, monster.PositionCurr) == true && invincible <= 0)
                     {
-                        invincible = 3000;
+                        invincible = 120;
                         player.Health--;
                         if (player.Health <= 0)
                         {
@@ -276,6 +276,10 @@ namespace The_Attempt
                         }
                     }
 
+                    if(invincible > 0) //reduces the time of invincible
+                    {
+                        invincible--;
+                    }
                     break;
                 case GameState.PhoneMenu:
                     // once in the phone menu screen, press tab again to return back to the game
@@ -339,41 +343,43 @@ namespace The_Attempt
                 map.Draw(spriteBatch);
 
                 // draw the player to the screen
-                // if the player is walking in a direction
-                if (charState == CharState.WalkUp)
-                {
-                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 1.57f, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
-                }
-                if (charState == CharState.WalkRight)
-                {
-                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(CHAR_X_OFFSET + frame * player.Width, CHAR_Y, player.Width, player.Height), Color.White);
-                }
-                if (charState == CharState.WalkDown)
-                {
-                    spriteBatch.Draw(playerImg, new Rectangle(player.X, player.Y + player.Height, player.Height, player.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
-                if (charState == CharState.WalkLeft)
-                {
-                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
-                }
+                /* // if the player is walking in a direction
+                 if (charState == CharState.WalkUp)
+                 {
+                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 1.57f, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                 }
+                 if (charState == CharState.WalkRight)
+                 {
+                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(CHAR_X_OFFSET + frame * player.Width, CHAR_Y, player.Width, player.Height), Color.White);
+                 }
+                 if (charState == CharState.WalkDown)
+                 {
+                     spriteBatch.Draw(playerImg, new Rectangle(player.X, player.Y + player.Height, player.Height, player.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                 }
+                 if (charState == CharState.WalkLeft)
+                 {
+                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                 }
 
-                // if the player is only facing a direction (not walking)
-                if (charState == CharState.FaceUp)
-                {
-                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
-                if (charState == CharState.FaceRight)
-                {
-                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White);
-                }
-                if (charState == CharState.FaceDown)
-                {
-                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
-                if (charState == CharState.FaceLeft)
-                {
-                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
+                 // if the player is only facing a direction (not walking)
+                 if (charState == CharState.FaceUp)
+                 {
+                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                 }
+                 if (charState == CharState.FaceRight)
+                 {
+                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White);
+                 }
+                 if (charState == CharState.FaceDown)
+                 {
+                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                 }
+                 if (charState == CharState.FaceLeft)
+                 {
+                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                 }
+ */
+                player.Draw(spriteBatch);
 
                 // draw the keys to the map
                 for (int i = 0; i < keys.Count; i++)
@@ -389,6 +395,7 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
+                spriteBatch.DrawString(text, "Health: " + player.Health, new Vector2(5, 100), Color.White);
             }
             if (currentState == GameState.PhoneMenu) // stretch goal
             {

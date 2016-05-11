@@ -17,9 +17,8 @@ namespace The_Attempt
         {
             KeyboardState kbState = Keyboard.GetState(); // keyboardState object to store the current state of the keyboard
             Movement inputMove = new Movement(3); // movement object to move the map object based on keyboard input
-            Vector2 curPosOnMap = new Vector2(0, 0); // used for the collision detect
             CollDetect detect = new CollDetect();
-            Rectangle instanceOfPlayer = new Rectangle(400, 400, 80, 80);
+            Rectangle instanceOfPlayer = new Rectangle(360, 360, 80, 80);
             string direction = ""; // used to return the direction the player is facing
 
             // each key that we might use

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace The_Attempt
 {
@@ -13,6 +15,15 @@ namespace The_Attempt
         // attributes
         private int numKeyParts; // number of pieces collected (only need 1 to win for now) to create a key
         private int health; // changeable in the settings
+
+        //everything for animation
+        private int frame;
+        private Point frameSize;
+        private int numFrames;
+        private int row, cols;
+        private int timeSinceLastFrame;
+        private Point currentFrame;
+        private Vector2 position;
 
 
         // properties
@@ -39,8 +50,11 @@ namespace The_Attempt
         /// <param name="height">The height dimension of the Rectangle.</param>
         public Character(int xPos, int yPos, int width, int height):base(xPos,yPos,width,height)
         {
+
             numKeyParts = 0; // set default number of keys to zero
             health = 3;
+
+
         }
     }
 }
