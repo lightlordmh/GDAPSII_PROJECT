@@ -139,7 +139,7 @@ namespace The_Attempt
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
             menuImg = Content.Load<Texture2D>("MenuScreen");
-            monsterImg = Content.Load<Texture2D>("Player");
+            monsterImg = Content.Load<Texture2D>("Enemy Image");
             keyTexture = Content.Load<Texture2D>("Key Sprite");
             corridorimg = Content.Load<Texture2D>("Player");
             doorImg = Content.Load<Texture2D>("MenuScreen");
@@ -197,7 +197,6 @@ namespace The_Attempt
                     break;
                 case GameState.MainGame:
                     // during the game, the player can press tab to bring up their phone menu
-
                     if (SingleKeyPress(Keys.Tab)) // stretch goal
                     {
                         IsMouseVisible = true;
@@ -313,6 +312,13 @@ namespace The_Attempt
                     break;
                 case GameState.GameOver:
                     Settings.currentLevel = 0;
+                    player.Health = 3;
+                    player.NumKeyParts = 0;
+
+                    if(SingleKeyPress(Keys.Enter))
+                    {
+                        currentState = GameState.MainMenu;
+                    }
                     break;
             }
 
@@ -437,7 +443,7 @@ namespace The_Attempt
             }
             if (currentState == GameState.GameOver)
             {
-                currentState = GameState.MainMenu;
+                // currentState = GameState.MainMenu;
             }
                    
             

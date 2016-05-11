@@ -50,11 +50,8 @@ namespace The_Attempt
         /// <param name="height">The height dimension of the Rectangle.</param>
         public Character(int xPos, int yPos, int width, int height):base(xPos,yPos,width,height)
         {
-
             numKeyParts = 0; // set default number of keys to zero
             health = 3;
-
-
         }
     }
 }

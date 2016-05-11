@@ -125,7 +125,7 @@ namespace The_Attempt
                 Assess(map);
                 int directionPlayer = FindPlayer(player, map);
                 int[] directPercent = DirectionPercent(directionPlayer);
-                int monsterDirect = PickDirection(directPercent); //will get either 0,1,2,or 3 U,D,L,R
+                int monsterDirect = PickDirection(directPercent); //will get either 0,1,2,or 3 (U,D,L,R)
                 currentDirection = monsterDirect;
                 turn = 2;
             }

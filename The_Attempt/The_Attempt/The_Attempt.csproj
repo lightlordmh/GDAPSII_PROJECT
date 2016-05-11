@@ -77,6 +77,9 @@
     <Content Include="Content\CorPos.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Enemy Image.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Key Sprite.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
