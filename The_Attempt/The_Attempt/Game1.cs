@@ -99,7 +99,7 @@ namespace The_Attempt
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
             player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 80, 80);
-            monster = new Monster(3200, 640, 160, 160, 10, 10);
+            monster = new Monster(3520, 960, 160, 160, 10, 10);
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();
             collDetect = new CollDetect();
@@ -253,12 +253,12 @@ namespace The_Attempt
                     }
                    // monster.aiMove(player, map);
                     // updating position of objects
-                    monster.UpdateCurrPos(map.X, map.Y);
+                    monster.UpdateCurrPos(map.XCurr, map.YCurr);
 
 
                     for(int i = 0; i < keys.Count; i++)
                     {
-                        keys[i].UpdateCurrPos(map.X, map.Y);
+                        keys[i].UpdateCurrPos(map.XCurr, map.YCurr);
                     }
 
                     if(collDetect.SimpleCheck(player.PositionCurr, monster.PositionCurr) == true && invincible <= 0)
@@ -332,13 +332,6 @@ namespace The_Attempt
             {
                 //draw the map
                 map.Draw(spriteBatch);
-
-                // testing corridors
-                foreach (Corridor corridor in Settings.corridorList)
-                {
-                    corridor.UpdateCurrPos(map.XCurr, map.YCurr);
-                    spriteBatch.Draw(playerImg, corridor.PositionCurr, Color.Red);
-                }
 
                 // draw the player to the screen
                 // if the player is walking in a direction
