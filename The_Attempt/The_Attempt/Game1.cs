@@ -44,12 +44,12 @@ namespace The_Attempt
 
         int frame;
         double timePerFrame = 100;
-        int numFrames = 3;
+        int numFrames = 7;
         int framesElapsed;
-        const int CHAR_Y = 69;
-        const int CHAR_HEIGHT = 72;
-        const int CHAR_WIDTH = 55;
-        const int CHAR_X_OFFSET = 145;
+        const int CHAR_Y = 0;
+        const int CHAR_HEIGHT = 64;
+        const int CHAR_WIDTH = 44;
+        const int CHAR_X_OFFSET = 156;
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
@@ -95,7 +95,7 @@ namespace The_Attempt
             // initialize attributes and place objects
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
-            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, 80, 80);
+            player = new Character(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2, CHAR_WIDTH, CHAR_HEIGHT);
             monster = new Monster(3200, 640, 160, 160, 10, 10);
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();
@@ -336,7 +336,7 @@ namespace The_Attempt
                 }
                 if (charState == CharState.WalkRight)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle(CHAR_X_OFFSET + frame * player.Width, player.Y, player.Width, player.Height), null, Color.White);
+                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(CHAR_X_OFFSET + frame * player.Width, CHAR_Y, player.Width, player.Height), Color.White);
                 }
                 if (charState == CharState.WalkDown)
                 {
@@ -350,19 +350,19 @@ namespace The_Attempt
                 // if the player is only facing a direction (not walking)
                 if (charState == CharState.FaceUp)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle(player.X + player.Width, player.Y, player.Width, player.Height), null, Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.FaceRight)
                 {
-                    spriteBatch.Draw(playerImg, player.Position, Color.White);
+                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White);
                 }
                 if (charState == CharState.FaceDown)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle(player.X, player.Y + player.Height, player.Height, player.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 if (charState == CharState.FaceLeft)
                 {
-                    spriteBatch.Draw(playerImg, player.Position, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
 
                 // draw the keys to the map
