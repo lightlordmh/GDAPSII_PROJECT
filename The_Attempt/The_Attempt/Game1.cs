@@ -268,10 +268,11 @@ namespace The_Attempt
 
                     //key stuff
                     key.UpdateCurrPos(map.XCurr, map.YCurr);
-                    if(collDetect.SimpleCheck(player.PositionCurr, key.PositionCurr) == true)
+                    if(collDetect.SimpleCheck(player.PositionCurr, key.PositionCurr) == true && key.Rendered)
                     {
                         key.Rendered = false;
                         door.Open = true;
+                        player.NumKeyParts++;
                     }
 
                     //door
@@ -297,7 +298,7 @@ namespace The_Attempt
                         invincible--;
                     }
 
-                    if(collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true)
+                    if(collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && player.NumKeyParts > 0)
                     {
                         currentState = GameState.GameOver;
                     }
