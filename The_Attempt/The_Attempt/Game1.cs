@@ -29,6 +29,7 @@ namespace The_Attempt
         Texture2D playerImg; // the texture for the player
         Texture2D monsterImg; // the texture of the monster (using player 
         Texture2D keyTexture; // the texture of the keys
+        CollDetect collDetect;
 
         Level level;
         Character player; // the player object
@@ -41,6 +42,8 @@ namespace The_Attempt
 
         Random rng; // used to generate positions for keys
         double timer;
+
+        int invincible = 0;
 
         int frame;
         double timePerFrame = 100;
@@ -99,12 +102,15 @@ namespace The_Attempt
             monster = new Monster(3200, 640, 160, 160, 10, 10);
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();
+            collDetect = new CollDetect();
 
             keys = new List<Key>();
             keys.Add(new Key(100, 100, 40, 40, "Normal"));
 
             level = new Level();
             input = new Input();
+
+
 
             base.Initialize();
         }
@@ -162,6 +168,7 @@ namespace The_Attempt
 
                         level.LoadCorridors();
                         map.SetMapTexture();
+                        monster.CurrentTexture = monsterImg;
                     }
                     if(SingleKeyPress(Keys.C))
                     {
@@ -244,7 +251,7 @@ namespace The_Attempt
                             charState = CharState.FaceDown;
                             break;
                     }
-                    monster.aiMove(player, map);
+                   // monster.aiMove(player, map);
                     // updating position of objects
                     monster.UpdateCurrPos(map.X, map.Y);
 
@@ -254,9 +261,14 @@ namespace The_Attempt
                         keys[i].UpdateCurrPos(map.X, map.Y);
                     }
 
-                    if(player.DamageCheck(monster) == true)
+                    if(collDetect.SimpleCheck(player.PositionCurr, monster.PositionCurr) == true && invincible <= 0)
                     {
-                        currentState = GameState.GameOver;
+                        invincible = 3000;
+                        player.Health--;
+                        if (player.Health <= 0)
+                        {
+                            currentState = GameState.GameOver;
+                        }
                     }
 
                     break;
@@ -372,18 +384,13 @@ namespace The_Attempt
                     keys[i].Draw(spriteBatch);
                 }
 
+                //drawing the monster
+                monster.Draw(spriteBatch);
+
                 // draw the level, level score and timer
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
-
-
-                foreach (Corridor corridor in Settings.corridorList)
-                {
-                    spriteBatch.Draw(corridorimg, corridor.Position, Color.Red);
-                }
-
-                //drawing the monster 
             }
             if (currentState == GameState.PhoneMenu) // stretch goal
             {
