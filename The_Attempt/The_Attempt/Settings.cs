@@ -16,7 +16,7 @@ namespace The_Attempt
     {
         public static int WinHeight = 800;
         public static int WinWidth = 800;
-        public static int Flashlight = 1;// Default setting for flashlight Brightness changed in Setup Method
+        public static string Flashlight = "FLON1";// Default setting for flashlight Brightness changed in Setup Method
         public static int EnemySpeed = 1;// Default setting for Enemy speed changed in Setup Method
         public static int Level = 1; //Default setting for the Level changed in the Setup Method
         public static int Riddles = 1; //Default setting for riddles changed in the Setup Method
@@ -38,6 +38,7 @@ namespace The_Attempt
                 MySR = new StreamReader(file);
                 string temp;
                 int tempCount = 0;
+                int tempVal = 0;
                 while((temp = MySR.ReadLine()) != null)
                 {
                     if (tempCount == 1)
@@ -54,7 +55,22 @@ namespace The_Attempt
                     }
                     else
                     {
-                        Flashlight = int.Parse(temp);
+                        tempVal = int.Parse(temp);
+                        switch (tempVal)
+                        {
+                            case 0:
+                                Flashlight = "FLON3";
+                                break;
+                            case 1:
+                                Flashlight = "FLON2";
+                                break;
+                            case 2:
+                                Flashlight = "FLON1";
+                                break;
+                            case 3:
+                                Flashlight = "FLON";
+                                break;
+                        }
                     }
                 }
             }

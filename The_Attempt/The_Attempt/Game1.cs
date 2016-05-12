@@ -31,6 +31,8 @@ namespace The_Attempt
         Texture2D keyTexture; // the texture of the keys
         CollDetect collDetect;
         Texture2D doorImg;
+        Texture2D flashLightOn;
+        Texture2D flashLightOff;
 
         Level level;
         Character player; // the player object
@@ -45,7 +47,7 @@ namespace The_Attempt
 
         Random rng; // used to generate positions for keys
         double timer;
-
+        bool lightOn = true;
         int invincible = 0;
 
         int frame;
@@ -143,6 +145,8 @@ namespace The_Attempt
             keyTexture = Content.Load<Texture2D>("Key Sprite");
             corridorimg = Content.Load<Texture2D>("Player");
             doorImg = Content.Load<Texture2D>("MenuScreen");
+            flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
+            flashLightOff = Content.Load<Texture2D>("FLON3");
         }
 
         /// <summary>
@@ -201,6 +205,11 @@ namespace The_Attempt
                     {
                         IsMouseVisible = true;
                         currentState = GameState.PhoneMenu;
+                    }
+                    if (SingleKeyPress(Keys.Space)) // stretch goal
+                    {
+                        if (lightOn) lightOn = false;
+                        else lightOn = true;
                     }
 
                     // Calculate the frame to draw based on the time
@@ -428,6 +437,15 @@ namespace The_Attempt
                 //drawing the monster
                 monster.Draw(spriteBatch);
 
+                //draw the Flashlight
+                if (lightOn)
+                {
+                    spriteBatch.Draw(flashLightOn, new Vector2(-90, -100), Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(flashLightOff, new Vector2(-90, -100), Color.White);
+                }
                 // draw the level, level score and timer
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
