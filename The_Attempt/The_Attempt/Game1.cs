@@ -22,7 +22,11 @@ namespace The_Attempt
         SpriteFont text; // font used for other text
         Texture2D menuImg; // background for the menu
         Song menuTheme, mainTheme, winTheme, endTheme;
+<<<<<<< HEAD
         //List<SoundEffect> soundEffects;
+=======
+        List<SoundEffect> soundEffects;
+>>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
 
         // keyboard attributes (used to switch between game states)
         KeyboardState kbState; // current keyboard state
@@ -62,7 +66,7 @@ namespace The_Attempt
         const int CHAR_Y = 0;
         const int CHAR_HEIGHT = 64;
         const int CHAR_WIDTH = 46;
-        const int CHAR_X_OFFSET = 2;
+        const int CHAR_X_OFFSET = 4;
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
@@ -80,7 +84,7 @@ namespace The_Attempt
             Winner     
         }
         GameState currentState; // the current game state
-        GameState oldState;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -111,30 +115,34 @@ namespace The_Attempt
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
 
-
-
+            level = new Level();
+            input = new Input();
+            collDetect = new CollDetect();
 
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
             monster = new Monster(3520, 960, 160, 160, 1, 2);
 
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();
-            collDetect = new CollDetect();
+            
 
             keys = new List<Key>();
-            keys.Add(new Key(100, 100, 40, 40, "Normal")); 
+            //keys.Add(new Key(100, 100, 40, 40, "Normal")); 
 
-            level = new Level();
-            input = new Input();
+            
 
             key = new Key(2560, 3840, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
+<<<<<<< HEAD
 
            // soundEffects = new List<SoundEffect>(); //initialize sound effects list
 
 
+=======
+>>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
             key = new Key(4000, 960, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
-
             door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
+
+            soundEffects = new List<SoundEffect>(); //initialize sound effects list
 
             base.Initialize();
         }
@@ -161,11 +169,14 @@ namespace The_Attempt
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
 
+<<<<<<< HEAD
             menuTheme = Content.Load<Song>("MenuTheme.wav");
             mainTheme = Content.Load<Song>("MainTheme.wav");
             endTheme = Content.Load<Song>("EndTheme.wav");
+=======
+            //menuTheme = Content.Load<Song>("");
+>>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
             loseScreen = Content.Load<Texture2D>("Game Over");
-            MediaPlayer.IsRepeating = true;
 
         }
 
@@ -195,12 +206,6 @@ namespace The_Attempt
             switch (currentState)
             {
                 case GameState.MainMenu:
-                    if (currentState != oldState)
-                    { 
-                        MediaPlayer.Stop();
-                        MediaPlayer.Play(menuTheme);
-                    }
-
                     if (SingleKeyPress(Keys.Enter))
                     {
                         IsMouseVisible = false;
@@ -216,32 +221,16 @@ namespace The_Attempt
                         IsMouseVisible = true;
                         currentState = GameState.Controls;
                     }
-                    oldState = currentState;
                     break;
                 case GameState.Controls:
                     // to return to the Main Menu from the Controls screen, press C again
-                    if (currentState != oldState)
-                    {
-                        MediaPlayer.Stop();
-                        MediaPlayer.Play(menuTheme);
-                    }
                     if (SingleKeyPress(Keys.C))
                     {
                         IsMouseVisible = true;
                         currentState = GameState.MainMenu;
                     }
-                    oldState = currentState;
                     break;
                 case GameState.MainGame:
-
-                    // during the game, the player can press tab to bring up their phone menu
-                    if (currentState != oldState)
-                    {
-                        MediaPlayer.Stop();
-                        MediaPlayer.Play(mainTheme);
-                    }
-                    if (SingleKeyPress(Keys.Tab)) // stretch goal
-
                     // during the game, the player can press tab to bring up the map overlay
                     if (SingleKeyPress(Keys.Tab))
                     {
@@ -363,7 +352,6 @@ namespace The_Attempt
                     {
                         currentState = GameState.Winner;
                     }
-                    oldState = currentState;
                     break;
                 case GameState.MapOverlay:
                     // once in the phone menu screen, press tab again to return back to the game
@@ -372,14 +360,8 @@ namespace The_Attempt
                         IsMouseVisible = false;
                         currentState = GameState.MainGame;
                     }
-                    oldState = currentState;
                     break;
                 case GameState.GameOver:
-                    if (currentState != oldState)
-                    {
-                        MediaPlayer.Stop();
-                        MediaPlayer.Play(endTheme);
-                    }
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
@@ -388,7 +370,6 @@ namespace The_Attempt
                     {
                         currentState = GameState.MainMenu;
                     }
-                    oldState = currentState;
                     break;
                 case GameState.Winner:
                     Settings.currentLevel = 0;
@@ -534,19 +515,19 @@ namespace The_Attempt
                  
                 if (charState == CharState.FaceUp)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 15, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), SpriteEffects.None, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 13, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 , player.Width / 4, player.Height / 4), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), SpriteEffects.None, 0);
                 }
                 if (charState == CharState.FaceRight)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 15, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White);
+                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 12, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White);
                 }
                 if (charState == CharState.FaceDown)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 15, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, new Vector2(0, CHAR_HEIGHT), SpriteEffects.None, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 13, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, new Vector2(0, CHAR_HEIGHT), SpriteEffects.None, 0);
                 }
                 if (charState == CharState.FaceLeft)
                 {
-                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 15, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White, 3.14f, new Vector2(CHAR_WIDTH, CHAR_HEIGHT), SpriteEffects.None, 0);
+                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 12, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White, 3.14f, new Vector2(CHAR_WIDTH, CHAR_HEIGHT), SpriteEffects.None, 0);
                 }
 
                 // display the coordinates of the player on the top left corner of the screen (for testing)
