@@ -34,6 +34,7 @@ namespace The_Attempt
         Texture2D monsterImg; // the texture of the monster (using player 
         Texture2D keyTexture; // the texture of the keys
         CollDetect collDetect;
+        Texture2D loseScreen;
         Texture2D doorImg;
         Texture2D flashLightOn;
         Texture2D flashLightOff;
@@ -61,7 +62,7 @@ namespace The_Attempt
         const int CHAR_Y = 0;
         const int CHAR_HEIGHT = 64;
         const int CHAR_WIDTH = 46;
-        const int CHAR_X_OFFSET = 2;
+        const int CHAR_X_OFFSET = 4;
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
@@ -155,7 +156,9 @@ namespace The_Attempt
             doorImg = Content.Load<Texture2D>("MenuScreen");
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
+
             menuTheme = Content.Load<Song>("");
+            loseScreen = Content.Load<Texture2D>("Game Over");
 
         }
 
@@ -483,6 +486,8 @@ namespace The_Attempt
             if (currentState == GameState.GameOver)
             {
                 // currentState = GameState.MainMenu;
+                spriteBatch.Draw(loseScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                spriteBatch.DrawString(text, "Press Enter to Return to the Main Menu", new Vector2((GraphicsDevice.Viewport.Height / 4) + 40, 575), Color.Red);
             }
                    
             
