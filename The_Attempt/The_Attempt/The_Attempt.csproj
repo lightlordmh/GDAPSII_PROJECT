@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -77,12 +77,9 @@
     <Content Include="Content\CorPos.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-<<<<<<< HEAD
     <Content Include="Content\EndTheme.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-=======
->>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
     <Content Include="Content\Enemy Image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -104,24 +101,18 @@
     <Content Include="Content\Key Sprite.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-<<<<<<< HEAD
     <Content Include="Content\MainTheme.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-=======
->>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
     <Content Include="Content\Map.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\MenuScreen.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-<<<<<<< HEAD
     <Content Include="Content\MenuTheme.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-=======
->>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
     <Content Include="Content\Player Image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
