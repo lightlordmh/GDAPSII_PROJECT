@@ -23,6 +23,7 @@ namespace The_Attempt
         Texture2D menuImg; // background for the menu
         Song menuTheme, mainTheme, winTheme, endTheme;
         List<SoundEffect> soundEffects;
+        bool songStart = false;
 
         // keyboard attributes (used to switch between game states)
         KeyboardState kbState; // current keyboard state
@@ -79,7 +80,7 @@ namespace The_Attempt
             PhoneMenu,     
         }
         GameState currentState; // the current game state
-
+        GameState oldState;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -157,8 +158,11 @@ namespace The_Attempt
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
 
-            //menuTheme = Content.Load<Song>("");
+            //menuTheme = Content.Load<Song>("MenuTheme");
+            mainTheme = Content.Load<Song>("MainTheme");
+            endTheme = Content.Load<Song>("EndTheme");
             loseScreen = Content.Load<Texture2D>("Game Over");
+            MediaPlayer.IsRepeating = true;
 
         }
 
@@ -188,6 +192,12 @@ namespace The_Attempt
             switch (currentState)
             {
                 case GameState.MainMenu:
+                    if (currentState != oldState)
+                    { 
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(menuTheme);
+                    }
+
                     if (SingleKeyPress(Keys.Enter))
                     {
                         IsMouseVisible = false;
@@ -203,17 +213,29 @@ namespace The_Attempt
                         IsMouseVisible = true;
                         currentState = GameState.Controls;
                     }
+                    oldState = currentState;
                     break;
                 case GameState.Controls:
                     // to return to the Main Menu from the Controls screen, press C again
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(menuTheme);
+                    }
                     if (SingleKeyPress(Keys.C))
                     {
                         IsMouseVisible = true;
                         currentState = GameState.MainMenu;
                     }
+                    oldState = currentState;
                     break;
                 case GameState.MainGame:
                     // during the game, the player can press tab to bring up their phone menu
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(mainTheme);
+                    }
                     if (SingleKeyPress(Keys.Tab)) // stretch goal
                     {
                         IsMouseVisible = true;
@@ -334,16 +356,28 @@ namespace The_Attempt
                     {
                         currentState = GameState.GameOver;
                     }
+                    oldState = currentState;
                     break;
                 case GameState.PhoneMenu:
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(menuTheme);
+                    }
                     // once in the phone menu screen, press tab again to return back to the game
                     if (SingleKeyPress(Keys.Tab))
                     {
                         IsMouseVisible = false;
                         currentState = GameState.MainGame;
                     }
+                    oldState = currentState;
                     break;
                 case GameState.GameOver:
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(endTheme);
+                    }
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
@@ -352,6 +386,7 @@ namespace The_Attempt
                     {
                         currentState = GameState.MainMenu;
                     }
+                    oldState = currentState;
                     break;
             }
 
