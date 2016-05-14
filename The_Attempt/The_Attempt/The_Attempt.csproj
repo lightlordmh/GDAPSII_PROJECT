@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1E05A969-D880-4AB2-A898-48AA367206D2}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>The_Attempt</RootNamespace>
     <AssemblyName>The_Attempt</AssemblyName>
@@ -77,7 +77,9 @@
     <Content Include="Content\CorPos.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\EndTheme.wav" />
+    <Content Include="Content\EndTheme.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Enemy Image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -99,14 +101,18 @@
     <Content Include="Content\Key Sprite.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\MainTheme.wav" />
+    <Content Include="Content\MainTheme.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Map.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\MenuScreen.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\MenuTheme.wav" />
+    <Content Include="Content\MenuTheme.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Player Image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
