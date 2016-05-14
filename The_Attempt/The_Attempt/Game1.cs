@@ -77,7 +77,8 @@ namespace The_Attempt
             Controls,
             MainGame,
             GameOver,
-            PhoneMenu,     
+            MapOverlay,
+            Winner     
         }
         GameState currentState; // the current game state
         GameState oldState;
@@ -127,10 +128,13 @@ namespace The_Attempt
             level = new Level();
             input = new Input();
 
+            key = new Key(2560, 3840, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
+
             soundEffects = new List<SoundEffect>(); //initialize sound effects list
 
 
             key = new Key(4000, 960, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
+
             door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
 
             base.Initialize();
@@ -230,6 +234,7 @@ namespace The_Attempt
                     oldState = currentState;
                     break;
                 case GameState.MainGame:
+
                     // during the game, the player can press tab to bring up their phone menu
                     if (currentState != oldState)
                     {
@@ -237,11 +242,14 @@ namespace The_Attempt
                         MediaPlayer.Play(mainTheme);
                     }
                     if (SingleKeyPress(Keys.Tab)) // stretch goal
+
+                    // during the game, the player can press tab to bring up the map overlay
+                    if (SingleKeyPress(Keys.Tab))
                     {
                         IsMouseVisible = true;
-                        currentState = GameState.PhoneMenu;
+                        currentState = GameState.MapOverlay;
                     }
-                    if (SingleKeyPress(Keys.Space)) // stretch goal
+                    if (SingleKeyPress(Keys.Space)) 
                     {
                         if (lightOn) lightOn = false;
                         else lightOn = true;
@@ -354,16 +362,11 @@ namespace The_Attempt
 
                     if(collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && player.NumKeyParts > 0)
                     {
-                        currentState = GameState.GameOver;
+                        currentState = GameState.Winner;
                     }
                     oldState = currentState;
                     break;
-                case GameState.PhoneMenu:
-                    if (currentState != oldState)
-                    {
-                        MediaPlayer.Stop();
-                        MediaPlayer.Play(menuTheme);
-                    }
+                case GameState.MapOverlay:
                     // once in the phone menu screen, press tab again to return back to the game
                     if (SingleKeyPress(Keys.Tab))
                     {
@@ -387,6 +390,16 @@ namespace The_Attempt
                         currentState = GameState.MainMenu;
                     }
                     oldState = currentState;
+                    break;
+                case GameState.Winner:
+                    Settings.currentLevel = 0;
+                    player.Health = 3;
+                    player.NumKeyParts = 0;
+
+                    if (SingleKeyPress(Keys.Enter))
+                    {
+                        currentState = GameState.MainMenu;
+                    }
                     break;
             }
 
@@ -432,6 +445,7 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "S  -  Move Down", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 405), Color.White);
                 spriteBatch.DrawString(text, "D  -  Move Right", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 450), Color.White);
                 spriteBatch.DrawString(text, "Shift  -  Sprint", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 495), Color.White);
+                spriteBatch.DrawString(text, "Tab  -  Map Overlay", new Vector2((GraphicsDevice.Viewport.Height / 3) + 40, 540), Color.White);
             }
             if (currentState == GameState.MainGame)
             {
@@ -509,14 +523,36 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
-                spriteBatch.DrawString(text, "Health: " + player.Health, new Vector2(5, 100), Color.White);
-        //        spriteBatch.DrawString(text, "" + monster.X, new Vector2(5, 130), Color.White);
-         //       spriteBatch.DrawString(text, "" + monster.Y, new Vector2(5, 160), Color.White);
-         //       spriteBatch.DrawString(text, "" + monster.Width, new Vector2(5, 190), Color.White);
+                spriteBatch.DrawString(text, "Health   " + player.Health, new Vector2(5, 100), Color.White);
+                //spriteBatch.DrawString(text, "" + monster.X, new Vector2(5, 130), Color.White);
+                //spriteBatch.DrawString(text, "" + monster.Y, new Vector2(5, 160), Color.White);
+                //spriteBatch.DrawString(text, "" + monster.Width, new Vector2(5, 190), Color.White);
             }
-            if (currentState == GameState.PhoneMenu) // stretch goal
+            if (currentState == GameState.MapOverlay) // stretch goal
             {
+                // draw the player on the overlay so that the player knows where they are on the map
+                spriteBatch.Draw(map.CurrentTexture, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                 
+                if (charState == CharState.FaceUp)
+                {
+                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 15, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), SpriteEffects.None, 0);
+                }
+                if (charState == CharState.FaceRight)
+                {
+                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 15, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White);
+                }
+                if (charState == CharState.FaceDown)
+                {
+                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 15, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, new Vector2(0, CHAR_HEIGHT), SpriteEffects.None, 0);
+                }
+                if (charState == CharState.FaceLeft)
+                {
+                    spriteBatch.Draw(playerImg, new Rectangle((Math.Abs(map.PositionCurr.X) + player.PositionCurr.X) / 10 + 15, (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y) / 8 - 3, player.Width / 4, player.Height / 4), new Rectangle(0, 0, player.Width, player.Height), Color.White, 3.14f, new Vector2(CHAR_WIDTH, CHAR_HEIGHT), SpriteEffects.None, 0);
+                }
 
+                // display the coordinates of the player on the top left corner of the screen (for testing)
+                spriteBatch.DrawString(text, "X Coordinate   " + (Math.Abs(map.PositionCurr.X) + player.PositionCurr.X), new Vector2(5, 10), Color.White);
+                spriteBatch.DrawString(text, "Y Coordinate   " + (Math.Abs(map.PositionCurr.Y) + player.PositionCurr.Y), new Vector2(5, 40), Color.White);
             }
             if (currentState == GameState.GameOver)
             {
