@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 
@@ -19,6 +21,8 @@ namespace The_Attempt
         SpriteFont title; // font used for Title on the Main Menus
         SpriteFont text; // font used for other text
         Texture2D menuImg; // background for the menu
+        Song menuTheme, mainTheme, winTheme, endTheme;
+        List<SoundEffect> soundEffects;
 
         // keyboard attributes (used to switch between game states)
         KeyboardState kbState; // current keyboard state
@@ -30,6 +34,7 @@ namespace The_Attempt
         Texture2D monsterImg; // the texture of the monster (using player 
         Texture2D keyTexture; // the texture of the keys
         CollDetect collDetect;
+        Texture2D loseScreen;
         Texture2D doorImg;
         Texture2D flashLightOn;
         Texture2D flashLightOff;
@@ -57,7 +62,7 @@ namespace The_Attempt
         const int CHAR_Y = 0;
         const int CHAR_HEIGHT = 64;
         const int CHAR_WIDTH = 46;
-        const int CHAR_X_OFFSET = 2;
+        const int CHAR_X_OFFSET = 4;
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
@@ -83,6 +88,7 @@ namespace The_Attempt
             // set the window to the dimensions defined in the Settings class
             graphics.PreferredBackBufferHeight = Settings.WinHeight; 
             graphics.PreferredBackBufferWidth = Settings.WinWidth;
+
         }
 
         
@@ -120,6 +126,9 @@ namespace The_Attempt
             level = new Level();
             input = new Input();
 
+            soundEffects = new List<SoundEffect>(); //initialize sound effects list
+
+
             key = new Key(4000, 960, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
             door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
 
@@ -147,6 +156,10 @@ namespace The_Attempt
             doorImg = Content.Load<Texture2D>("MenuScreen");
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
+
+            menuTheme = Content.Load<Song>("");
+            loseScreen = Content.Load<Texture2D>("Game Over");
+
         }
 
         /// <summary>
@@ -473,6 +486,8 @@ namespace The_Attempt
             if (currentState == GameState.GameOver)
             {
                 // currentState = GameState.MainMenu;
+                spriteBatch.Draw(loseScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                spriteBatch.DrawString(text, "Press Enter to Return to the Main Menu", new Vector2((GraphicsDevice.Viewport.Height / 4) + 40, 575), Color.Red);
             }
                    
             
