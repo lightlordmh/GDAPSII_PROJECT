@@ -62,7 +62,7 @@ namespace The_Attempt
         const int CHAR_Y = 0;
         const int CHAR_HEIGHT = 64;
         const int CHAR_WIDTH = 46;
-        const int CHAR_X_OFFSET = 4;
+        const int CHAR_X_OFFSET = 2;
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
@@ -157,7 +157,7 @@ namespace The_Attempt
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
 
-            menuTheme = Content.Load<Song>("");
+            //menuTheme = Content.Load<Song>("");
             loseScreen = Content.Load<Texture2D>("Game Over");
 
         }
