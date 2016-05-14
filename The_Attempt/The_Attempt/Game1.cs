@@ -394,25 +394,25 @@ namespace The_Attempt
                  // if the player is walking in a direction
                  if (charState == CharState.WalkUp)
                  {
-                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 1.57f, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), 1, SpriteEffects.None, 0);
                  }
                  if (charState == CharState.WalkRight)
                  {
-                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + frame * CHAR_WIDTH, CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White);
+                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White);
                  }
                  if (charState == CharState.WalkDown)
                  {
-                     spriteBatch.Draw(playerImg, new Rectangle(player.X, player.Y + player.Height, player.Height, player.Height), null, Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                 }
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, 1.57f, new Vector2(0, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
+                }
                  if (charState == CharState.WalkLeft)
                  {
-                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, 3.14f, new Vector2(CHAR_WIDTH, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
                  }
 
                  // if the player is only facing a direction (not walking)
                  if (charState == CharState.FaceUp)
                  {
-                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), 1, SpriteEffects.None, 0);
                  }
                  if (charState == CharState.FaceRight)
                  {
@@ -420,16 +420,16 @@ namespace The_Attempt
                  }
                  if (charState == CharState.FaceDown)
                  {
-                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, -1.57f, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                 }
-                 if (charState == CharState.FaceLeft)
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, new Vector2(0, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
+                }
+                if (charState == CharState.FaceLeft)
                  {
-                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                 }
- 
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(0, 0, player.Width, player.Height), Color.White, 3.14f, new Vector2(CHAR_WIDTH, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
+                }
+
 
                 //key rendering
-                if(key.Rendered == true)
+                if (key.Rendered == true)
                 {
                     key.Draw(spriteBatch);
                 }
