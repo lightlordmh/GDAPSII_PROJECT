@@ -58,7 +58,7 @@ namespace The_Attempt
         const int CHAR_Y = 0;
         const int CHAR_HEIGHT = 64;
         const int CHAR_WIDTH = 46;
-        const int CHAR_X_OFFSET = 2;
+        const int CHAR_X_OFFSET = 4;
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
