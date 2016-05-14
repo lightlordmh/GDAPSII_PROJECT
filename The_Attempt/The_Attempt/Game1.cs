@@ -55,9 +55,9 @@ namespace The_Attempt
         int numFrames = 7;
         int framesElapsed;
         const int CHAR_Y = 0;
-        const int CHAR_HEIGHT = 64;
-        const int CHAR_WIDTH = 44;
-        const int CHAR_X_OFFSET = 156;
+        const int CHAR_HEIGHT = 66    ;
+        const int CHAR_WIDTH = 46;
+        const int CHAR_X_OFFSET = 154;
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
@@ -212,9 +212,8 @@ namespace The_Attempt
                         else lightOn = true;
                     }
 
-                    // Calculate the frame to draw based on the time
-                    framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
-                    frame = framesElapsed % numFrames + 1;
+
+
 
                     // check for input and update position
                     string direction = input.Check(map);
@@ -245,15 +244,27 @@ namespace The_Attempt
                     switch (direction)
                     {
                         case "Walk Left":
+                            // Calculate the frame to draw based on the time
+                            framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                            frame = framesElapsed % numFrames + 1;
                             charState = CharState.WalkLeft;
                             break;
                         case "Walk Right":
+                            // Calculate the frame to draw based on the time
+                            framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                            frame = framesElapsed % numFrames + 1;
                             charState = CharState.WalkRight;
                             break;
                         case "Walk Up":
+                            // Calculate the frame to draw based on the time
+                            framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                            frame = framesElapsed % numFrames + 1;
                             charState = CharState.WalkUp;
                             break;
                         case "Walk Down":
+                            // Calculate the frame to draw based on the time
+                            framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                            frame = framesElapsed % numFrames + 1;
                             charState = CharState.WalkDown;
                             break;
 
@@ -380,7 +391,7 @@ namespace The_Attempt
                 map.Draw(spriteBatch);
 
                 // draw the player to the screen
-                /* // if the player is walking in a direction
+                 // if the player is walking in a direction
                  if (charState == CharState.WalkUp)
                  {
                      spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), null, Color.White, 1.57f, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
@@ -415,7 +426,7 @@ namespace The_Attempt
                  {
                      spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                  }
- */
+ 
 
                 //key rendering
                 if(key.Rendered == true)
@@ -425,7 +436,7 @@ namespace The_Attempt
 
                 door.Draw(spriteBatch, doorImg, doorImg);
 
-                player.Draw(spriteBatch);
+                //player.Draw(spriteBatch);
 
                 // draw the keys to the map
                 for (int i = 0; i < keys.Count; i++)

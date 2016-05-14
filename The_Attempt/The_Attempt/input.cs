@@ -37,7 +37,7 @@ namespace The_Attempt
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
                 detect.corridorCheck(instanceOfPlayer, curGameMap, 'U' , curGameMap, inputMove);
 
-                direction = "Face Up";
+                direction = "Walk Up";
             }
             // check if the D key is being pressed
             if (kbState.IsKeyDown(Keys.D))
@@ -48,7 +48,7 @@ namespace The_Attempt
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
                 detect.corridorCheck(instanceOfPlayer, curGameMap, 'R' , curGameMap, inputMove);
 
-                direction = "Face Right";
+                direction = "Walk Right";
             }
             // check if the S key is being pressed
             if (kbState.IsKeyDown(Keys.S))
@@ -59,7 +59,7 @@ namespace The_Attempt
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
                 detect.corridorCheck(instanceOfPlayer, curGameMap, 'D' , curGameMap, inputMove);
 
-                direction = "Face Down";
+                direction = "Walk Down";
             }
             // check if the A key is being pressed
             if (kbState.IsKeyDown(Keys.A))
@@ -70,7 +70,7 @@ namespace The_Attempt
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
                 detect.corridorCheck(instanceOfPlayer, curGameMap, 'L' , curGameMap, inputMove);
 
-                direction = "Face Left";
+                direction = "Walk Left";
             }
             // check if the space key is being pressed
             
