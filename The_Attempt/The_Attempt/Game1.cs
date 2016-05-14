@@ -55,9 +55,9 @@ namespace The_Attempt
         int numFrames = 7;
         int framesElapsed;
         const int CHAR_Y = 0;
-        const int CHAR_HEIGHT = 66    ;
+        const int CHAR_HEIGHT = 64;
         const int CHAR_WIDTH = 46;
-        const int CHAR_X_OFFSET = 154;
+        const int CHAR_X_OFFSET = 2;
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
@@ -136,7 +136,7 @@ namespace The_Attempt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            playerImg = Content.Load<Texture2D>("Player Image");
+            playerImg = Content.Load<Texture2D>("Player Imagev2");
             Settings.mapTexture.Add(Content.Load<Texture2D>("Map"));
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
@@ -398,7 +398,7 @@ namespace The_Attempt
                  }
                  if (charState == CharState.WalkRight)
                  {
-                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(CHAR_X_OFFSET + frame * player.Width, CHAR_Y, player.Width, player.Height), Color.White);
+                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + frame * CHAR_WIDTH, CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White);
                  }
                  if (charState == CharState.WalkDown)
                  {
