@@ -1,9 +1,9 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:bin/WindowsGL
-/intermediateDir:obj/WindowsGL
-/platform:WindowsGL
+/outputDir:bin/Windows
+/intermediateDir:obj/Windows
+/platform:Windows
 /config:
 /profile:Reach
 /compress:False
@@ -13,14 +13,21 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Player Image.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Player Image.png
+#begin EndTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:EndTheme.mp3
+
+#begin MainTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:MainTheme.mp3
+
+#begin MenuTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:MenuTheme.mp3
 
