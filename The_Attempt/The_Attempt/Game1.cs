@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-//using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 
@@ -23,8 +23,8 @@ namespace The_Attempt
         Texture2D menuImg; // background for the menu
         Song menuTheme, mainTheme, winTheme, endTheme;
 
-        //List<SoundEffect> soundEffects;
-       // List<SoundEffect> soundEffects;
+        List<SoundEffect> soundEffects;
+
 
         // keyboard attributes (used to switch between game states)
         KeyboardState kbState; // current keyboard state
@@ -69,10 +69,15 @@ namespace The_Attempt
         const int CHAR_WIDTH = 46;
         const int CHAR_X_OFFSET = 4;
 
+        SoundEffectInstance instance;
+        SoundEffectInstance pkupKey;
+
+
         const int ENEMY_Y = 0;
         const int ENEMY_HEIGHT = 112;
         const int ENEMY_WIDTH = 108;
         const int ENEMY_X_OFFSET = 92;
+
 
 
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
@@ -133,7 +138,7 @@ namespace The_Attempt
 
             door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
 
-            //soundEffects = new List<SoundEffect>(); //initialize sound effects list
+            soundEffects = new List<SoundEffect>(); //initialize sound effects list
 
             base.Initialize();
         }
@@ -166,6 +171,14 @@ namespace The_Attempt
             endTheme = Content.Load<Song>("EndTheme");
             MediaPlayer.IsRepeating = true;
 
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/w_pkup"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step1"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step2"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step3"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step4"));
+            SoundEffect.MasterVolume = 0.5f;
+            instance = soundEffects[0].CreateInstance();
+            pkupKey = soundEffects[0].CreateInstance();
             loseScreen = Content.Load<Texture2D>("Game Over");
 
         }
@@ -281,22 +294,38 @@ namespace The_Attempt
 
                     pastDirection = direction; // store directiong for this update to use for comparison the next frame
 
+                    if(instance.State == SoundState.Stopped)
+                    {
+                        instance = soundEffects[rng.Next(1, 4)].CreateInstance();
+                    }
                     // finite state machine
                     switch (direction)
                     {
                         case "Walk Left":
+                            if(instance.State == SoundState.Stopped)
+                            {
+                                instance.Play( );
+                            }
                             // Calculate the frame to draw based on the time
                             framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
                             frame = framesElapsed % numFrames + 1;
                             charState = CharState.WalkLeft;
                             break;
                         case "Walk Right":
+                            if (instance.State == SoundState.Stopped)
+                            {
+                                instance.Play();
+                            }
                             // Calculate the frame to draw based on the time
                             framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
                             frame = framesElapsed % numFrames + 1;
                             charState = CharState.WalkRight;
                             break;
                         case "Walk Up":
+                            if (instance.State == SoundState.Stopped)
+                            {
+                                instance.Play();
+                            }
                             // Calculate the frame to draw based on the time
                             framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
                             frame = framesElapsed % numFrames + 1;
@@ -304,9 +333,14 @@ namespace The_Attempt
                             break;
                         case "Walk Down":
                             // Calculate the frame to draw based on the time
+                            if (instance.State == SoundState.Stopped)
+                            {
+                                instance.Play();
+                            }
                             framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
                             frame = framesElapsed % numFrames + 1;
                             charState = CharState.WalkDown;
+
                             break;
 
                         case "Face Left":
@@ -361,6 +395,7 @@ namespace The_Attempt
                             keys[i].Rendered = false;
                             door.Open = true;
                             player.NumKeyParts++;
+                            pkupKey.Play();
                         }
                     }
 

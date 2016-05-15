@@ -31,3 +31,33 @@
 /processorParam:Quality=Best
 /build:MenuTheme.mp3
 
+#begin SoundEffects/w_pkup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/w_pkup.wav
+
+#begin SoundEffects/stone_step1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stone_step1.wav
+
+#begin SoundEffects/stone_step2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stone_step2.wav
+
+#begin SoundEffects/stone_step3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stone_step3.wav
+
+#begin SoundEffects/stone_step4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stone_step4.wav
+
