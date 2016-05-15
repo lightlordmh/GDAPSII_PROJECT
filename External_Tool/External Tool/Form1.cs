@@ -20,7 +20,7 @@ namespace External_Tool
     public partial class SettingsManager : Form
     {
         // array for holidng values from the lines
-        string[] filelines2 = new string[4];
+        string[] filelines2 = new string[3];
         // dictionary for holding values
         Dictionary<string, int> settingVals = new Dictionary<string, int>();
        
@@ -39,18 +39,14 @@ namespace External_Tool
             settingVals.Add("Flashlight", 2);
             settingVals.Add("EnemySpeed", 2);
             settingVals.Add("Level", 2);
-            settingVals.Add("Riddles", 2);
             
             // set color
             this.BackColor = Color.Black;
 
             // set text colors
             label1.ForeColor = Color.White;
-            EasyRiddle.ForeColor = Color.White;
             EasyButton.ForeColor = Color.White;
             MediumButton.ForeColor = Color.White;
-            HardRiddle.ForeColor = Color.White;
-            AvgRiddle.ForeColor = Color.White;
             EnemyAvg.ForeColor = Color.White;
             EnemyFast.ForeColor = Color.White;
             EnemySlow.ForeColor = Color.White;
@@ -59,12 +55,8 @@ namespace External_Tool
             LightMedBut.ForeColor = Color.White;
             LightOffBut.ForeColor = Color.White;
             HardButton.ForeColor = Color.White;
-            LevelFour.ForeColor = Color.White;
             LevelOne.ForeColor = Color.White;
-            LevelThree.ForeColor = Color.White;
             LevelTwo.ForeColor = Color.White;
-            NeedToSolve.ForeColor = Color.White;
-            RiddleBox.ForeColor = Color.White;
             EasySetBox.ForeColor = Color.White;
             EnemySpeedBox.ForeColor = Color.White;
             BegLvlBox.ForeColor = Color.White;
@@ -154,11 +146,7 @@ namespace External_Tool
             if (LevelOne.Checked == true) settingVals["Level"] = 1;
         }
 
-        private void radioButton10_CheckedChanged(object sender, EventArgs e)
-        {
-            // change settings for when level three is chosen
-            if (LevelThree.Checked == true) settingVals["Level"] = 3;
-        }
+
 
         private void EasyButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -168,11 +156,9 @@ namespace External_Tool
                 LightFullBut.Checked = true;
                 EnemySlow.Checked = true;
                 LevelOne.Checked = true;
-                EasyRiddle.Checked = true;
                 settingVals["Flashlight"] = 3;
                 settingVals["EnemySpeed"] = 1;
                 settingVals["Levels"] = 1;
-                settingVals["Riddles"] = 1;
             }
 
         }
@@ -185,11 +171,9 @@ namespace External_Tool
                 LightMedBut.Checked = true;
                 EnemyAvg.Checked = true;
                 LevelTwo.Checked = true;
-                AvgRiddle.Checked = true;
                 settingVals["Flashlight"] = 2;
                 settingVals["EnemySpeed"] = 2;
                 settingVals["Levels"] = 2;
-                settingVals["Riddles"] = 2;
             }
         }
 
@@ -200,30 +184,11 @@ namespace External_Tool
             {
                 LightLowBut.Checked = true;
                 EnemyFast.Checked = true;
-                LevelThree.Checked = true;
-                HardRiddle.Checked = true;
+                LevelOne.Checked = true;
                 settingVals["Flashlight"] = 1;
                 settingVals["EnemySpeed"] = 3;
                 settingVals["Levels"] = 3;
-                settingVals["Riddles"] = 3;
-            }
-        }
 
-        private void LevelFour_CheckedChanged(object sender, EventArgs e)
-        {
-            // change setting for when level 4 is slected for starting level
-            if(LevelFour.Checked == true)
-            {
-                settingVals["Level"] = 0;
-            }
-        }
-
-        private void NeedToSolve_CheckedChanged(object sender, EventArgs e)
-        {
-            // change settings for is the riddle needs to be solved
-            if(NeedToSolve.Checked == true)
-            {
-                settingVals["Riddles"] = 0;
             }
         }
 
@@ -232,13 +197,11 @@ namespace External_Tool
             // call the writelines method to save changes made in teh form
             WriteLines();
         }
-
         private void CancelBut_Click(object sender, EventArgs e)
         {
             // close form when cancled
             this.Close();
         }
-
         private void LightLowBut_CheckedChanged(object sender, EventArgs e)
         {
             // change settings for when 33% light is chosen
@@ -280,25 +243,7 @@ namespace External_Tool
             // change settings for when level two is chosen
             if (LevelTwo.Checked == true) settingVals["Level"] = 2;
         }
-
-        private void EasyRiddle_CheckedChanged(object sender, EventArgs e)
-        {
-            // change settings for when easy riddles is chosen
-            if (EasyRiddle.Checked == true) settingVals["Riddles"] = 1;
-        }
-
-        private void AvgRiddle_CheckedChanged(object sender, EventArgs e)
-        {
-            // change settings for when average riddles is chosen
-            if (AvgRiddle.Checked == true) settingVals["Riddles"] = 2;
-        }
-
-        private void HardRiddle_CheckedChanged(object sender, EventArgs e)
-        {
-            // change settings for when Hard riddles is chosen
-            if (HardRiddle.Checked == true) settingVals["Riddles"] = 3;
-        }
-        
+       
         private void HelpBut_Click(object sender, EventArgs e)
         {
             // Display a messagebox informing the user of the functions of the settings
@@ -313,9 +258,10 @@ namespace External_Tool
                 "Enemy Speed:" + Environment.NewLine +
                 "   Changes the speed the enemy will move" + Environment.NewLine +
                 "Beginning Level:" + Environment.NewLine +
-                "   Sets the first game map to be played on" + Environment.NewLine +
-                "Riddle Settings:" + Environment.NewLine +
-                "   Changes the difficulty of riddles and wether to spawn key objects");
+                "   Sets the first game map to be played on" + Environment.NewLine + Environment.NewLine +
+                "Once you have everything set the way you want hit the apply button." + Environment.NewLine + Environment.NewLine +
+                "Now close the External Tool. A GameSettings.txt should be in the same folder as the tool." + Environment.NewLine + Environment.NewLine +
+                "Transfer this GameSettings.txt file to the same folder as The_Attempt.exe");
         }
     }
 }
