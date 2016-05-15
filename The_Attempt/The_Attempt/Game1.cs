@@ -117,7 +117,7 @@ namespace The_Attempt
             collDetect = new CollDetect();
 
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
-            monster = new Monster(3520, 960, 160, 160, 1, 2);
+            monster = new Monster(3520, 960, 160, 160, 3, 2);
 
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();
@@ -304,7 +304,7 @@ namespace The_Attempt
                     }
                     // updating position of objects
                     monster.aiMove(player,map);
-                    monster.UpdateCurrPos(map.XCurr, map.YCurr);
+                    monster.UpdateCurrPos(map);
 
                     //key stuff
                     for (int i = 0; i < keys.Count; i++)
@@ -319,11 +319,11 @@ namespace The_Attempt
 
                     for (int i = 0; i < keys.Count; i++)
                     {
-                        keys[i].UpdateCurrPos(map.XCurr, map.YCurr);
+                        keys[i].UpdateCurrPos(map);
                     }
 
                     //door
-                    door.UpdateCurrPos(map.XCurr, map.YCurr);
+                    door.UpdateCurrPos(map);
 
                     if (collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && player.NumKeyParts > 0)
                     {
@@ -476,10 +476,14 @@ namespace The_Attempt
 
                 //player.Draw(spriteBatch);
 
+
                 //drawing the monster
                 monster.Draw(spriteBatch);
 
+
+
                 //draw the Flashlight
+                /*
                 if (lightOn)
                 {
                     spriteBatch.Draw(flashLightOn, new Vector2(-90, -100), Color.White);
@@ -488,11 +492,14 @@ namespace The_Attempt
                 {
                     spriteBatch.Draw(flashLightOff, new Vector2(-90, -100), Color.White);
                 }
+                */
                 // draw the level, level score and timer
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
                 spriteBatch.DrawString(text, "Health   " + player.Health, new Vector2(5, 100), Color.White);
+                //drawing the testing int
+                spriteBatch.DrawString(text, "Testing:   " + Settings.testingint, new Vector2(5, 150), Color.White);                          //erase at a later date
                 //spriteBatch.DrawString(text, "" + monster.X, new Vector2(5, 130), Color.White);
                 //spriteBatch.DrawString(text, "" + monster.Y, new Vector2(5, 160), Color.White);
                 //spriteBatch.DrawString(text, "" + monster.Width, new Vector2(5, 190), Color.White);

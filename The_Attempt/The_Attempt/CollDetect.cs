@@ -60,25 +60,21 @@ namespace The_Attempt
 
 
                                                                                //for directionmoved input the direction to move back
-        public int corridorCheck(Rectangle objChecking, GameObject objMoving, char directionMoved, Map currentMap, Movement move) //for the char pass in either U, D, L or R
+        public int corridorCheck(Rectangle objChecking, Map currentMap) //for the char pass in either U, D, L or R
         { 
             Vector2[] cornerCheck = new Vector2[4];
-            cornerCheck[0] = new Vector2(0,0);
-            cornerCheck[1] = new Vector2(0,0);
-            cornerCheck[2] = new Vector2(0,0);
-            cornerCheck[3] = new Vector2(0,0);
-
-            //current map position
-           // int mapX = currentMap.XCurr;
-          //  int mapY = currentMap.YCurr;
+            cornerCheck[0] = new Vector2(0,0); //TL
+            cornerCheck[1] = new Vector2(0,0); //BL
+            cornerCheck[2] = new Vector2(0,0); //TR
+            cornerCheck[3] = new Vector2(0,0); //BR
 
             //corner rectangles
             //array of corners (TL:0, BL:1, TR:2, BR:3)
             Rectangle[] corners = new Rectangle[4];
             corners[0] = new Rectangle(objChecking.X, objChecking.Y, 5, 5); //top left of object
-            corners[1] = new Rectangle(objChecking.X, objChecking.Y + objChecking.Height, 5, 5); //bottom left
-            corners[2] = new Rectangle(objChecking.X + objChecking.Width, objChecking.Y, 5, 5); //top right
-            corners[3] = new Rectangle(objChecking.X + objChecking.Width, objChecking.Y + objChecking.Height, 5, 5); //bottom right
+            corners[1] = new Rectangle(objChecking.X, (objChecking.Y + objChecking.Height)-5, 5, 5); //bottom left
+            corners[2] = new Rectangle((objChecking.X + objChecking.Width)-5, objChecking.Y, 5, 5); //top right
+            corners[3] = new Rectangle((objChecking.X + objChecking.Width) - 5, (objChecking.Y + objChecking.Height) - 5, 5, 5); //bottom right
 
 
 
@@ -90,7 +86,7 @@ namespace The_Attempt
             foreach (Corridor corridor in Settings.corridorList)
             {
                 instanceCorridor = corridor;
-                instanceCorridor.UpdateCurrPos(currentMap.XCurr, currentMap.YCurr);
+                instanceCorridor.UpdateCurrPos(currentMap);
 
                 for (int i = 0; i < 4; i++)
                 {
@@ -102,38 +98,27 @@ namespace The_Attempt
                 }
             }
 
-            if (cornerCheck[0].X > 4 && cornerCheck[0].Y > 4 && cornerCheck[1].Y > 4 && cornerCheck[1].X > 4 && cornerCheck[2].Y > 4 && cornerCheck[2].X > 4 && cornerCheck[3].Y > 4 && cornerCheck[3].X > 4)// is fully in a corridor
+            if (cornerCheck[0].X > 4 && cornerCheck[0].Y > 4 && cornerCheck[1].Y > 4 && cornerCheck[1].X > 4 && cornerCheck[2].Y > 4 && cornerCheck[2].X > 4 && cornerCheck[3].Y > 4 && cornerCheck[3].X > 4)// is fully in at least one corridor
             {
                 //this is for finding when the ai is on an intersection of corridor
-                if (cornerCheck[0].Y > 9 && cornerCheck[0].X > 9 && cornerCheck[1].Y > 9 && cornerCheck[1].X > 9 && cornerCheck[2].Y > 9 && cornerCheck[2].X > 9 && cornerCheck[3].Y > 9 && cornerCheck[3].X > 9) //is not in two coridors
+                if (cornerCheck[0].Y > 9 && cornerCheck[0].X > 9 && cornerCheck[1].Y > 9 && cornerCheck[1].X > 9 && cornerCheck[2].Y > 9 && cornerCheck[2].X > 9 && cornerCheck[3].Y > 9 && cornerCheck[3].X > 9) //is in two coridors
                 {
-                    return 0; //true means the ai turns here
+                    return 0;
                 }
-                else
+                else //is in only one corridor
                 {
                     return 2;
                 }
             }
-            else
+            else// if(cornerCheck[0].X < 5 && cornerCheck[0].Y < 5 || cornerCheck[1].Y < 5 && cornerCheck[1].X < 5 || cornerCheck[2].Y < 5 && cornerCheck[2].X < 5 || cornerCheck[3].Y < 5 && cornerCheck[3].X < 5)
             {
-
-                switch (directionMoved)
-                {
-                    case 'U':
-                        objMoving.YCurr = move.Up(objMoving.PositionCurr);
-                        break;
-                    case 'D':
-                        objMoving.YCurr = move.Down(objMoving.PositionCurr);
-                        break;
-                    case 'L':
-                        objMoving.XCurr = move.Left(objMoving.PositionCurr);
-                        break;
-                    case 'R':
-                        objMoving.XCurr = move.Right(objMoving.PositionCurr);
-                        break;
-                }
                 return 1;
             }
+          //  else
+           // {
+           //     Settings.testingint = 1;
+           //     return 1;
+          //  }
 
             //returns here explained
             //0 = turn and is a good direction

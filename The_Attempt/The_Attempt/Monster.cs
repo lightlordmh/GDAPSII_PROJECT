@@ -14,25 +14,14 @@ namespace The_Attempt
         // attributes
         private int creepSpeed = 0; // the speed at which the monster moves while not in pursuit mode
         private int rushSpeed = 0; // the speed at which the monster moves while in pursuit mode
-        private Movement move = null;
+        private Movement move;
         private Movement assessMove;
         private CollDetect collide;
         private Random rgen;
         private int turn; //2 is not turning while 0 and 1 are turning
 
-        private Rectangle hold;
-
         private int[] possibleDirections = new int[4];
 
-
-        //later
-        // private enum direction
-        //  {
-        //     up,
-        //     down,
-        //    left,
-        //    right
-        // }
 
         // private direction currentDirection;
 
@@ -76,23 +65,6 @@ namespace The_Attempt
             get { return possibleDirections[3]; }
             set { possibleDirections[3] = value; }
         }
-
-        public Rectangle Hold
-        {
-            get { return hold; }
-            set { hold = value; }
-        }
-
-        public int HX
-        {
-            get { return hold.X; }
-            set { hold.X = value; }
-        }
-        public int HY
-        {
-            get { return hold.Y; }
-            set { hold.Y = value; }
-        }
         /// <summary>
         /// Constructs a Monster object and places it in a Rectangle defined by the parameters that are passed in.
         /// </summary>
@@ -102,15 +74,14 @@ namespace The_Attempt
         /// <param name="height">The height dimension of the Rectangle.</param>
         public Monster(int xPos, int yPos, int width, int height, int cSpeed, int rSpeed) : base(xPos, yPos, width, height)
         {
-            cSpeed = creepSpeed;
-            rSpeed = rushSpeed;
+            creepSpeed = cSpeed;
+            rushSpeed = rSpeed;
             move = new Movement(cSpeed);
             collide = new CollDetect();
             rgen = new Random();
-            assessMove = new Movement(6);
+            assessMove = new Movement(15);
             turn = 2; 
-            currentDirection = 2;
-            hold = new Rectangle();
+            currentDirection = 3;
         }
 
 
@@ -119,8 +90,11 @@ namespace The_Attempt
 
         public void aiMove(GameObject player, Map map)
         {
-            
-            if (currentDirection == -1 || turn == 1 || turn == 0)
+            //monster spawns with currentdirection == -1
+            //turn 1 and turn 0 
+
+
+            if (turn == 1 || turn == 0) 
             {
                 Assess(map);
                 int directionPlayer = FindPlayer(player, map);
@@ -130,90 +104,81 @@ namespace The_Attempt
                 turn = 2;
             }
 
-            if(currentDirection == 0) // up
+            else if(currentDirection == 0) // up
             {
                 base.Y = move.Up(base.Position);
-                base.UpdateCurrPos(map.XCurr, map.YCurr);
-                hold = base.PositionCurr;
-                turn = collide.corridorCheck(base.PositionCurr, this, 'D', map, move);
-                if(base.PositionCurr != hold)
+                base.UpdateCurrPos(map);
+                turn = collide.corridorCheck(base.PositionCurr, map);
+                if(turn == 1)
                 {
-                    base.Y -= (hold.Y - base.PositionCurr.Y);
+                    base.Y = move.Down(base.Position);
                 }
-                base.UpdateCurrPos(map.XCurr, map.YCurr);
             }
-            if (currentDirection == 1) // down
+            else if (currentDirection == 1) // down
             {
                 base.Y = move.Down(base.Position);
-                base.UpdateCurrPos(map.XCurr, map.YCurr);
-                hold = base.PositionCurr;
-                turn = collide.corridorCheck(base.PositionCurr, this, 'U', map, move);
-                if (base.PositionCurr != hold)
+                base.UpdateCurrPos(map);
+                turn = collide.corridorCheck(base.PositionCurr, map);
+                if (turn == 1)
                 {
-                    base.Y -= (hold.Y - base.PositionCurr.Y);
+                    base.Y = move.Up(base.Position);
                 }
-                base.UpdateCurrPos(map.XCurr, map.YCurr);
             }
-            if (currentDirection == 2) // right
+            else if (currentDirection == 2) // left
             {
+
                 base.X = move.Left(base.Position);
-                base.UpdateCurrPos(map.XCurr, map.YCurr);
-                hold = base.PositionCurr;
-                turn = collide.corridorCheck(base.PositionCurr, this, 'R', map, move);
-                if (base.PositionCurr != hold)
+                base.UpdateCurrPos(map);
+                turn = collide.corridorCheck(base.PositionCurr, map);
+                if (turn == 1)
                 {
-                    base.X -= (hold.X - base.PositionCurr.X);
+                    base.X = move.Right(base.Position);
                 }
-                base.UpdateCurrPos(map.XCurr, map.YCurr);
             }
-            if (currentDirection == 3) // left
+            else if (currentDirection == 3) // right
             {
                 base.X = move.Right(base.Position);
-                base.UpdateCurrPos(map.XCurr, map.YCurr);
-                hold = base.PositionCurr;
-                turn = collide.corridorCheck(base.PositionCurr, this, 'L', map, move);
-                if (base.PositionCurr != hold)
+                base.UpdateCurrPos(map);
+                turn = collide.corridorCheck(base.PositionCurr, map);
+                if (turn == 1)
                 {
-                    base.X -= (hold.X - base.PositionCurr.X);
+                    base.X = move.Left(base.Position);
                 }
-                base.UpdateCurrPos(map.XCurr, map.YCurr);
             }
-
-
         }
 
 
-        private void Assess(Map mapI)
+        private void Assess(Map map) //possible directions are 2 and 0
         {
             // 0:up 1:down 2:left 3:right
-            base.UpdateCurrPos(mapI.XCurr, mapI.YCurr);
+            base.UpdateCurrPos(map);
             base.YCurr = assessMove.Up(base.PositionCurr);
-            possibleDirections[0] = collide.corridorCheck(base.PositionCurr, this, 'D', mapI, assessMove);//returning false means it is a possible location to move DONT CHANGE THAT
-            if (possibleDirections[0] == 0 || possibleDirections[0] == 1) { assessMove.Down(base.PositionCurr); } //these move the object if it is a posible location to move to
+            possibleDirections[0] = collide.corridorCheck(base.PositionCurr, map);//returning false means it is a possible location to move DONT CHANGE THAT
+            if (possibleDirections[0] == 0 || possibleDirections[0] == 1) { base.YCurr = assessMove.Down(base.PositionCurr); } //these move the object if it is a posible location to move to
 
-            base.UpdateCurrPos(mapI.XCurr, mapI.YCurr);
+            base.UpdateCurrPos(map);
             base.YCurr = assessMove.Down(base.PositionCurr);
-            possibleDirections[1] = collide.corridorCheck(base.PositionCurr, this, 'U', mapI, assessMove);
-            if (possibleDirections[1] == 0 || possibleDirections[1] == 1) { assessMove.Up(base.PositionCurr); }
+            possibleDirections[1] = collide.corridorCheck(base.PositionCurr, map);
+            if (possibleDirections[1] == 0 || possibleDirections[1] == 1) { base.YCurr = assessMove.Up(base.PositionCurr); }
 
-            base.UpdateCurrPos(mapI.XCurr, mapI.YCurr);
+            base.UpdateCurrPos(map);
             base.XCurr = assessMove.Left(base.PositionCurr);
-            possibleDirections[2] = collide.corridorCheck(base.PositionCurr, this, 'R', mapI, assessMove);
-            if (possibleDirections[2] == 0 || possibleDirections[2] == 1) { assessMove.Right(base.PositionCurr); }
+            possibleDirections[2] = collide.corridorCheck(base.PositionCurr, map);
+            if (possibleDirections[2] == 0 || possibleDirections[2] == 1) { base.XCurr = assessMove.Right(base.PositionCurr); }
 
-            base.UpdateCurrPos(mapI.XCurr, mapI.YCurr);
+            base.UpdateCurrPos(map);
             base.XCurr = assessMove.Right(base.PositionCurr);
-            possibleDirections[3] = collide.corridorCheck(base.PositionCurr, this, 'L', mapI, assessMove);
-            if (possibleDirections[3] == 0 || possibleDirections[3] == 1) { assessMove.Left(base.PositionCurr); }
+            possibleDirections[3] = collide.corridorCheck(base.PositionCurr, map);
+            if (possibleDirections[3] == 0 || possibleDirections[3] == 1) { base.XCurr = assessMove.Left(base.PositionCurr); }
         }
 
-        private int FindPlayer(GameObject player, Map mapI) // the returning int is the direction the player is, 1 is directly North, 2 is NE 3 is E so on till 8 9 is if the monster is on you
+        private int FindPlayer(GameObject player, Map map) // the returning int is the direction the player is, 1 is directly North, 2 is NE 3 is E so on till 8 9 is if the monster is on you
         {
             Vector2 playerPos;
-            playerPos = collide.FindSmallScaleLocation(player.PositionCurr,mapI);
+            playerPos = collide.FindSmallScaleLocation(player.PositionCurr,map);
             Vector2 monsterPos;
-            base.UpdateCurrPos(mapI.XCurr, mapI.YCurr);
-            monsterPos = collide.FindSmallScaleLocation(base.PositionCurr, mapI);
+            base.UpdateCurrPos(map);
+            monsterPos = collide.FindSmallScaleLocation(base.PositionCurr, map);
 
             if(monsterPos.X == playerPos.X && monsterPos.Y == playerPos.Y) { return 9; }
             if (monsterPos.X == playerPos.X && monsterPos.Y > playerPos.Y) { return 1; }

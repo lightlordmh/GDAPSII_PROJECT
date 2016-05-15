@@ -20,6 +20,7 @@ namespace The_Attempt
             CollDetect detect = new CollDetect();
             Rectangle instanceOfPlayer = new Rectangle(360, 360, 80, 80);
             string direction = ""; // used to return the direction the player is facing
+            int fallback = 0;
 
             // each key that we might use
             // check if the leftshift key is being pressed
@@ -35,7 +36,12 @@ namespace The_Attempt
                 curGameMap.YCurr = inputMove.Down(curGameMap.PositionCurr);
 
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
-                detect.corridorCheck(instanceOfPlayer, curGameMap, 'U' , curGameMap, inputMove);
+                fallback = detect.corridorCheck(instanceOfPlayer, curGameMap);
+
+                if (fallback == 1)
+                {
+                    curGameMap.YCurr = inputMove.Up(curGameMap.PositionCurr);
+                }
 
                 direction = "Walk Up";
             }
@@ -46,7 +52,12 @@ namespace The_Attempt
                 curGameMap.XCurr = inputMove.Left(curGameMap.PositionCurr);
 
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
-                detect.corridorCheck(instanceOfPlayer, curGameMap, 'R' , curGameMap, inputMove);
+                fallback = detect.corridorCheck(instanceOfPlayer, curGameMap);
+
+                if (fallback == 1)
+                {
+                    curGameMap.XCurr = inputMove.Right(curGameMap.PositionCurr);
+                }
 
                 direction = "Walk Right";
             }
@@ -57,7 +68,12 @@ namespace The_Attempt
                 curGameMap.YCurr = inputMove.Up(curGameMap.PositionCurr);
 
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
-                detect.corridorCheck(instanceOfPlayer, curGameMap, 'D' , curGameMap, inputMove);
+                fallback = detect.corridorCheck(instanceOfPlayer, curGameMap);
+
+                if (fallback == 1)
+                {
+                    curGameMap.YCurr = inputMove.Down(curGameMap.PositionCurr);
+                }
 
                 direction = "Walk Down";
             }
@@ -68,7 +84,12 @@ namespace The_Attempt
                 curGameMap.XCurr = inputMove.Right(curGameMap.PositionCurr);
 
                 // calls CollDectec.detect( argument either u,d,l or r (one of these), curGameMap.x, curGameMap.y) returning a bool to see if its colliding with a corridor
-                detect.corridorCheck(instanceOfPlayer, curGameMap, 'L' , curGameMap, inputMove);
+                fallback = detect.corridorCheck(instanceOfPlayer, curGameMap);
+
+                if (fallback == 1)
+                {
+                    curGameMap.XCurr = inputMove.Left(curGameMap.PositionCurr);
+                }
 
                 direction = "Walk Left";
             }

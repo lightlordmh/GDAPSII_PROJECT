@@ -84,5 +84,8 @@ namespace The_Attempt
             }
 
         }
+
+
+        public static int testingint = 0;
     }
 }

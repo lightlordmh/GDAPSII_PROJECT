@@ -95,10 +95,10 @@ namespace The_Attempt
         }
 
 
-        public void UpdateCurrPos(int xI, int yI) //arguments should be the current x and y position of the map
+        public void UpdateCurrPos(Map map) //arguments should be the current x and y position of the map
         {
-            XCurr = X + xI;
-            YCurr = Y + yI;
+            XCurr = X + map.XCurr;
+            YCurr = Y + map.YCurr;
         }
     }
 }
