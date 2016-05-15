@@ -68,6 +68,7 @@ namespace The_Attempt
 
         SoundEffectInstance instance;
         SoundEffectInstance pkupKey;
+        SoundEffectInstance doorSealed;
 
 
         const int ENEMY_Y = 0;
@@ -173,9 +174,17 @@ namespace The_Attempt
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step2"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step3"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step4"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/door_stone_move"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/door_sealed"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/pain50"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/pain75"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/pain100"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/death1"));
+            soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/death3"));
             SoundEffect.MasterVolume = 0.5f;
             instance = soundEffects[0].CreateInstance();
             pkupKey = soundEffects[0].CreateInstance();
+            doorSealed = soundEffects[6].CreateInstance();
             loseScreen = Content.Load<Texture2D>("Game Over");
 
         }
@@ -397,7 +406,12 @@ namespace The_Attempt
 
                     if (collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && player.NumKeyParts > 0)
                     {
+                        soundEffects[5].Play();
                         currentState = GameState.Winner;
+                    }
+                    else if(collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && doorSealed.State == SoundState.Stopped)
+                    {
+                        doorSealed.Play();
                     }
 
                     // monster collisions and player health
@@ -405,8 +419,13 @@ namespace The_Attempt
                     {
                         invincible = 120;
                         player.Health--;
-                        if (player.Health <= 0)
+                        if(player.Health > 0)
                         {
+                            soundEffects[rng.Next(7, 9)].Play();
+                        }
+                        else if (player.Health <= 0)
+                        {
+                            soundEffects[rng.Next(10, 11)].Play();
                             currentState = GameState.GameOver;
                         }
                     }
