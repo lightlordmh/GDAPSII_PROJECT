@@ -511,7 +511,6 @@ namespace The_Attempt
 
 
                 //draw the Flashlight
-                /*
                 if (lightOn)
                 {
                     spriteBatch.Draw(flashLightOn, new Vector2(-90, -100), Color.White);
@@ -520,7 +519,7 @@ namespace The_Attempt
                 {
                     spriteBatch.Draw(flashLightOff, new Vector2(-90, -100), Color.White);
                 }
-                */
+                
                 // draw the level, level score and timer
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
