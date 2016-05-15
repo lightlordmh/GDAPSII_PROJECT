@@ -31,3 +31,75 @@
 /processorParam:Quality=Best
 /build:MenuTheme.mp3
 
+#begin SoundEffects/w_pkup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/w_pkup.wav
+
+#begin SoundEffects/stone_step1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stone_step1.wav
+
+#begin SoundEffects/stone_step2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stone_step2.wav
+
+#begin SoundEffects/stone_step3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stone_step3.wav
+
+#begin SoundEffects/stone_step4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/stone_step4.wav
+
+#begin SoundEffects/door_sealed.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/door_sealed.mp3
+
+#begin SoundEffects/door_stone_move.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/door_stone_move.wav
+
+#begin SoundEffects/pain50.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pain50.mp3
+
+#begin SoundEffects/pain75.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pain75.mp3
+
+#begin SoundEffects/pain100.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pain100.mp3
+
+#begin SoundEffects/death1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/death1.mp3
+
+#begin SoundEffects/death3.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/death3.mp3
+
