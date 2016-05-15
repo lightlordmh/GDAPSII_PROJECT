@@ -21,9 +21,13 @@ namespace The_Attempt
         SpriteFont title; // font used for Title on the Main Menus
         SpriteFont text; // font used for other text
         Texture2D menuImg; // background for the menu
-        Song menuTheme, mainTheme, winTheme, endTheme;
 
-        List<SoundEffect> soundEffects;
+        //songs and sound effects
+        Song menuTheme, mainTheme, winTheme, endTheme; // background music
+        List<SoundEffect> soundEffects;// list of sound effects
+        SoundEffectInstance instance;//instance of the walking sound effect
+        SoundEffectInstance pkupKey;// instance of the key pickup sound effect
+        SoundEffectInstance doorSealed;// instance of the door sealed sound effect
 
 
         // keyboard attributes (used to switch between game states)
@@ -52,7 +56,6 @@ namespace The_Attempt
         Texture2D corridorimg;
 
         Random rng; // used to generate positions for keys
-        double timer;
         bool lightOn = true;
         int invincible = 0;
 
@@ -69,9 +72,7 @@ namespace The_Attempt
         const int CHAR_WIDTH = 46;
         const int CHAR_X_OFFSET = 4;
 
-        SoundEffectInstance instance;
-        SoundEffectInstance pkupKey;
-        SoundEffectInstance doorSealed;
+
 
 
         const int ENEMY_Y = 0;
@@ -155,6 +156,7 @@ namespace The_Attempt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            //Load all textures used in the game
             playerImg = Content.Load<Texture2D>("Player Imagev2");
             Settings.mapTexture.Add(Content.Load<Texture2D>("Map"));
             title = Content.Load<SpriteFont>("28DaysLater_70");
@@ -166,13 +168,15 @@ namespace The_Attempt
             doorImg = Content.Load<Texture2D>("MenuScreen");
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
+            loseScreen = Content.Load<Texture2D>("Game Over");
 
-
+            //Load all songs used in the game
             menuTheme = Content.Load<Song>("MenuTheme");
             mainTheme = Content.Load<Song>("MainTheme");
             endTheme = Content.Load<Song>("EndTheme");
-            MediaPlayer.IsRepeating = true;
-
+            MediaPlayer.IsRepeating = true;//set the media player to repeat after a song ends
+       
+            //Load all Sound Effects in the game
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/w_pkup"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step1"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step2"));
@@ -185,11 +189,12 @@ namespace The_Attempt
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/pain100"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/death1"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/death3"));
-            SoundEffect.MasterVolume = 0.5f;
+            SoundEffect.MasterVolume = 0.5f;//set global sound effect volume
+            //create instances of specific sound effects for more control
             instance = soundEffects[0].CreateInstance();
             pkupKey = soundEffects[0].CreateInstance();
             doorSealed = soundEffects[6].CreateInstance();
-            loseScreen = Content.Load<Texture2D>("Game Over");
+
 
         }
 
@@ -219,6 +224,7 @@ namespace The_Attempt
             switch (currentState)
             {
                 case GameState.MainMenu:
+                    //if the current state is new stop the previous song and play the menuTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
@@ -246,6 +252,7 @@ namespace The_Attempt
                     }
                     break;
                 case GameState.Controls:
+                    //if the current state is new stop the previous song and play the menuTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
@@ -261,6 +268,7 @@ namespace The_Attempt
                     
                     break;
                 case GameState.MainGame:
+                    //if the current state is new stop the previous song and play the mainTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
@@ -273,6 +281,7 @@ namespace The_Attempt
                         IsMouseVisible = true;
                         currentState = GameState.MapOverlay;
                     }
+                    //Space To Control the Flashlight On/ Off
                     if (SingleKeyPress(Keys.Space)) 
                     {
                         if (lightOn) lightOn = false;
@@ -304,6 +313,7 @@ namespace The_Attempt
 
                     pastDirection = direction; // store directiong for this update to use for comparison the next frame
 
+                    //if the current sound efects is stopped generate a new instance with random walking sound effect
                     if(instance.State == SoundState.Stopped)
                     {
                         instance = soundEffects[rng.Next(1, 4)].CreateInstance();
@@ -312,7 +322,8 @@ namespace The_Attempt
                     switch (direction)
                     {
                         case "Walk Left":
-                            if(instance.State == SoundState.Stopped)
+                            //if the current sound effect is not playing play it
+                            if (instance.State == SoundState.Stopped)
                             {
                                 instance.Play( );
                             }
@@ -322,6 +333,7 @@ namespace The_Attempt
                             charState = CharState.WalkLeft;
                             break;
                         case "Walk Right":
+                            //if the current sound effect is not playing play it
                             if (instance.State == SoundState.Stopped)
                             {
                                 instance.Play();
@@ -332,6 +344,7 @@ namespace The_Attempt
                             charState = CharState.WalkRight;
                             break;
                         case "Walk Up":
+                            //if the current sound effect is not playing play it
                             if (instance.State == SoundState.Stopped)
                             {
                                 instance.Play();
@@ -342,11 +355,12 @@ namespace The_Attempt
                             charState = CharState.WalkUp;
                             break;
                         case "Walk Down":
-                            // Calculate the frame to draw based on the time
+                            //if the current sound effect is not playing play it
                             if (instance.State == SoundState.Stopped)
                             {
                                 instance.Play();
                             }
+                            // Calculate the frame to draw based on the time
                             framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
                             frame = framesElapsed % numFrames + 1;
                             charState = CharState.WalkDown;
@@ -400,11 +414,13 @@ namespace The_Attempt
                     //key stuff
                     for (int i = 0; i < keys.Count; i++)
                     {
+                        //if the player collides with key and it is visable
                         if (collDetect.SimpleCheck(player.PositionCurr, keys[i].PositionCurr) == true && keys[i].Rendered)
                         {
                             keys[i].Rendered = false;
                             door.Open = true;
                             player.NumKeyParts++;
+                            //play the key pick up sound
                             pkupKey.Play();
                         }
                     }
@@ -432,10 +448,12 @@ namespace The_Attempt
                     {
                         invincible = 120;
                         player.Health--;
+                        //if the player is hurt but not dead play the pain soundeffect
                         if(player.Health > 0)
                         {
                             soundEffects[rng.Next(7, 9)].Play();
                         }
+                        //if the player is dead play a dead sound effect and game over
                         else if (player.Health <= 0)
                         {
                             soundEffects[rng.Next(10, 11)].Play();
@@ -457,12 +475,14 @@ namespace The_Attempt
                     }
                     break;
                 case GameState.GameOver:
+                    //if the game over state has just occured play the stop current song and play the EndTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
                         MediaPlayer.Play(endTheme);
                     }
                     oldState = currentState;
+                    //resest level, player health, and keys pickedup
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
@@ -603,6 +623,7 @@ namespace The_Attempt
                     }
                 }
 
+                //Draw the Door for level escape
                 door.Draw(spriteBatch, doorImg, doorImg);
 
                 //player.Draw(spriteBatch);
