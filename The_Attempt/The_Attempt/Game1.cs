@@ -61,6 +61,9 @@ namespace The_Attempt
         int numFrames = 7;
         int framesElapsed;
 
+        int enemyFrame;
+        int enemyFramesElapsed;
+
         const int CHAR_Y = 0;
         const int CHAR_HEIGHT = 64;
         const int CHAR_WIDTH = 46;
@@ -326,20 +329,29 @@ namespace The_Attempt
                     if(monster.CurrentDirection == 0)
                     {
                         enemyState = EnemyState.WalkUp;
+                        enemyFramesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                        enemyFrame = enemyFramesElapsed % numFrames + 1;
                     }
                     if (monster.CurrentDirection == 1)
                     {
                         enemyState = EnemyState.WalkDown;
+                        enemyFramesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                        enemyFrame = enemyFramesElapsed % numFrames + 1;
                     }
                     if (monster.CurrentDirection == 2)
                     {
                         enemyState = EnemyState.WalkLeft;
+                        enemyFramesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                        enemyFrame = enemyFramesElapsed % numFrames + 1;
                     }
                     if (monster.CurrentDirection == 3)
                     {
                         enemyState = EnemyState.WalkRight;
+                        enemyFramesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                        enemyFrame = enemyFramesElapsed % numFrames + 1;
                     }
 
+                    
 
                     //key stuff
                     for (int i = 0; i < keys.Count; i++)
@@ -512,19 +524,19 @@ namespace The_Attempt
                 // draw the enemy's animation
                 if (enemyState == EnemyState.WalkUp)
                 {
-                    spriteBatch.Draw(monsterImg, new Vector2(monster.X, monster.Y), new Rectangle(ENEMY_X_OFFSET + (frame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, -1.57f, new Vector2(ENEMY_WIDTH, 0), 1, SpriteEffects.None, 0);
+                    spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (enemyFrame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, -1.57f, new Vector2(ENEMY_WIDTH, 0), 1, SpriteEffects.None, 0);
                 }
                 if (enemyState == EnemyState.WalkRight)
                 {
-                    spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (frame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White);
+                    spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (enemyFrame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White);
                 }
                 if (enemyState == EnemyState.WalkDown)
                 {
-                    spriteBatch.Draw(monsterImg, new Vector2(monster.X, monster.Y), new Rectangle(ENEMY_X_OFFSET + (frame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, 1.57f, new Vector2(0, ENEMY_HEIGHT), 1, SpriteEffects.None, 0);
+                    spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (enemyFrame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, 1.57f, new Vector2(0, ENEMY_HEIGHT), 1, SpriteEffects.None, 0);
                 }
                 if (enemyState == EnemyState.WalkLeft)
                 {
-                    spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (frame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, 3.14f, new Vector2(ENEMY_WIDTH, ENEMY_HEIGHT), 1, SpriteEffects.None, 0);
+                    spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (enemyFrame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, 3.14f, new Vector2(ENEMY_WIDTH, ENEMY_HEIGHT), 1, SpriteEffects.None, 0);
                 }
 
                 //key rendering
