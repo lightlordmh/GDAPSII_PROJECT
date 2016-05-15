@@ -60,26 +60,27 @@ namespace The_Attempt
         double timePerFrame = 100;
         int numFrames = 7;
         int framesElapsed;
+
         const int CHAR_Y = 0;
         const int CHAR_HEIGHT = 64;
         const int CHAR_WIDTH = 46;
         const int CHAR_X_OFFSET = 4;
 
+        const int ENEMY_Y = 0;
+        const int ENEMY_HEIGHT = 112;
+        const int ENEMY_WIDTH = 108;
+        const int ENEMY_X_OFFSET = 92;
+
+
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
         CharState charState; // current state of the player character
         string pastDirection; // used to store the previous state
 
+        enum EnemyState { WalkRight, WalkLeft, WalkUp, WalkDown }
+        EnemyState enemyState;
+
         // the various game states present in the game
-        public enum GameState
-        {
-            MainMenu,
-            Options,
-            Controls,
-            MainGame,
-            GameOver,
-            MapOverlay,
-            Winner     
-        }
+        enum GameState { MainMenu, Options, Controls, MainGame, GameOver, MapOverlay, Winner }
         GameState currentState; // the current game state
         GameState oldState;
         public Game1()
@@ -117,7 +118,7 @@ namespace The_Attempt
             collDetect = new CollDetect();
 
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
-            monster = new Monster(3520, 960, 160, 160, 3, 2);
+            monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 3, 2);
 
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();
@@ -149,7 +150,7 @@ namespace The_Attempt
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
             menuImg = Content.Load<Texture2D>("MenuScreen");
-            monsterImg = Content.Load<Texture2D>("Enemy Image");
+            monsterImg = Content.Load<Texture2D>("Enemy Imagev2");
             keyTexture = Content.Load<Texture2D>("Key Sprite");
             corridorimg = Content.Load<Texture2D>("Player");
             doorImg = Content.Load<Texture2D>("MenuScreen");
@@ -322,6 +323,24 @@ namespace The_Attempt
                     monster.aiMove(player,map);
                     monster.UpdateCurrPos(map);
 
+                    if(monster.CurrentDirection == 0)
+                    {
+                        enemyState = EnemyState.WalkUp;
+                    }
+                    if (monster.CurrentDirection == 1)
+                    {
+                        enemyState = EnemyState.WalkDown;
+                    }
+                    if (monster.CurrentDirection == 2)
+                    {
+                        enemyState = EnemyState.WalkLeft;
+                    }
+                    if (monster.CurrentDirection == 3)
+                    {
+                        enemyState = EnemyState.WalkRight;
+                    }
+
+
                     //key stuff
                     for (int i = 0; i < keys.Count; i++)
                     {
@@ -454,42 +473,59 @@ namespace The_Attempt
                 map.Draw(spriteBatch);
 
                 // draw the player to the screen
-                 // if the player is walking in a direction
-                 if (charState == CharState.WalkUp)
-                 {
-                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), 1, SpriteEffects.None, 0);
-                 }
-                 if (charState == CharState.WalkRight)
-                 {
-                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White);
-                 }
-                 if (charState == CharState.WalkDown)
-                 {
+                // if the player is walking in a direction
+                if (charState == CharState.WalkUp)
+                {
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), 1, SpriteEffects.None, 0);
+                }
+                if (charState == CharState.WalkRight)
+                {
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White);
+                }
+                if (charState == CharState.WalkDown)
+                {
                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, 1.57f, new Vector2(0, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
                 }
-                 if (charState == CharState.WalkLeft)
-                 {
-                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, 3.14f, new Vector2(CHAR_WIDTH, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
-                 }
+                if (charState == CharState.WalkLeft)
+                {
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, 3.14f, new Vector2(CHAR_WIDTH, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
+                }
 
-                 // if the player is only facing a direction (not walking)
-                 if (charState == CharState.FaceUp)
-                 {
-                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), 1, SpriteEffects.None, 0);
-                 }
-                 if (charState == CharState.FaceRight)
-                 {
-                     spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White);
-                 }
-                 if (charState == CharState.FaceDown)
-                 {
+                // if the player is only facing a direction (not walking)
+                if (charState == CharState.FaceUp)
+                {
+                    spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(CHAR_X_OFFSET + (frame * CHAR_WIDTH), CHAR_Y, CHAR_WIDTH, CHAR_HEIGHT), Color.White, -1.57f, new Vector2(CHAR_WIDTH, 0), 1, SpriteEffects.None, 0);
+                }
+                if (charState == CharState.FaceRight)
+                {
+                    spriteBatch.Draw(playerImg, player.Position, new Rectangle(0, 0, player.Width, player.Height), Color.White);
+                }
+                if (charState == CharState.FaceDown)
+                {
                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(0, 0, player.Width, player.Height), Color.White, 1.57f, new Vector2(0, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
                 }
                 if (charState == CharState.FaceLeft)
-                 {
+                {
                     spriteBatch.Draw(playerImg, new Vector2(player.X, player.Y), new Rectangle(0, 0, player.Width, player.Height), Color.White, 3.14f, new Vector2(CHAR_WIDTH, CHAR_HEIGHT), 1, SpriteEffects.None, 0);
                 }
 
+                // draw the enemy's animation
+                if (enemyState == EnemyState.WalkUp)
+                {
+                    spriteBatch.Draw(monsterImg, new Vector2(monster.X, monster.Y), new Rectangle(ENEMY_X_OFFSET + (frame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, -1.57f, new Vector2(ENEMY_WIDTH, 0), 1, SpriteEffects.None, 0);
+                }
+                if (enemyState == EnemyState.WalkRight)
+                {
+                    spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (frame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White);
+                }
+                if (enemyState == EnemyState.WalkDown)
+                {
+                    spriteBatch.Draw(monsterImg, new Vector2(monster.X, monster.Y), new Rectangle(ENEMY_X_OFFSET + (frame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, 1.57f, new Vector2(0, ENEMY_HEIGHT), 1, SpriteEffects.None, 0);
+                }
+                if (enemyState == EnemyState.WalkLeft)
+                {
+                    spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (frame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, 3.14f, new Vector2(ENEMY_WIDTH, ENEMY_HEIGHT), 1, SpriteEffects.None, 0);
+                }
 
                 //key rendering
                 for (int i = 0; i < keys.Count; i++)
@@ -519,7 +555,7 @@ namespace The_Attempt
                 {
                     spriteBatch.Draw(flashLightOff, new Vector2(-90, -100), Color.White);
                 }
-                
+
                 // draw the level, level score and timer
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);

@@ -24,8 +24,6 @@ namespace The_Attempt
 
 
         // private direction currentDirection;
-
-
         private int currentDirection;  //can make into a enum later -1 is null 0,1,2,3 are U,D,L,R
 
         // properties
@@ -39,6 +37,11 @@ namespace The_Attempt
             get { return rushSpeed; }
             set { rushSpeed = value; }
         }
+        public int CurrentDirection
+        {
+            get { return currentDirection; }
+        }
+
 
 
         // properties for the directions array
