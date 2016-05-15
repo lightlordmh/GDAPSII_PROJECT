@@ -19,7 +19,6 @@ namespace The_Attempt
         public static string Flashlight = "FLON1";// Default setting for flashlight Brightness changed in Setup Method
         public static int EnemySpeed = 1;// Default setting for Enemy speed changed in Setup Method
         public static int Level = 1; //Default setting for the Level changed in the Setup Method
-        public static int Riddles = 1; //Default setting for riddles changed in the Setup Method
 
         //All current level information (maybe should be its own class
         public static int currentLevel; // current level the player is on
@@ -48,10 +47,6 @@ namespace The_Attempt
                     else if (tempCount == 2)
                     {
                         Level = int.Parse(temp);
-                    }
-                    else if (tempCount == 3)
-                    {
-                        Riddles = int.Parse(temp);
                     }
                     else
                     {

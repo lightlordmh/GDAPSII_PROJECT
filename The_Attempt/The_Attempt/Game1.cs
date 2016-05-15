@@ -102,6 +102,7 @@ namespace The_Attempt
             // set the window to the dimensions defined in the Settings class
             graphics.PreferredBackBufferHeight = Settings.WinHeight; 
             graphics.PreferredBackBufferWidth = Settings.WinWidth;
+            Settings.Setup("GameSettings.txt");
 
         }
 
