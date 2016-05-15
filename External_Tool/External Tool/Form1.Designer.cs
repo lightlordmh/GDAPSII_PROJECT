@@ -35,11 +35,6 @@
             this.MediumButton = new System.Windows.Forms.RadioButton();
             this.EasyButton = new System.Windows.Forms.RadioButton();
             this.CustomBox = new System.Windows.Forms.GroupBox();
-            this.RiddleBox = new System.Windows.Forms.GroupBox();
-            this.AvgRiddle = new System.Windows.Forms.RadioButton();
-            this.HardRiddle = new System.Windows.Forms.RadioButton();
-            this.NeedToSolve = new System.Windows.Forms.RadioButton();
-            this.EasyRiddle = new System.Windows.Forms.RadioButton();
             this.EnemySpeedBox = new System.Windows.Forms.GroupBox();
             this.EnemyAvg = new System.Windows.Forms.RadioButton();
             this.EnemyFast = new System.Windows.Forms.RadioButton();
@@ -51,8 +46,6 @@
             this.LightOffBut = new System.Windows.Forms.RadioButton();
             this.BegLvlBox = new System.Windows.Forms.GroupBox();
             this.LevelTwo = new System.Windows.Forms.RadioButton();
-            this.LevelThree = new System.Windows.Forms.RadioButton();
-            this.LevelFour = new System.Windows.Forms.RadioButton();
             this.LevelOne = new System.Windows.Forms.RadioButton();
             this.ApplyBut = new System.Windows.Forms.Button();
             this.CancelBut = new System.Windows.Forms.Button();
@@ -60,7 +53,6 @@
             this.HelpBut = new System.Windows.Forms.Button();
             this.EasySetBox.SuspendLayout();
             this.CustomBox.SuspendLayout();
-            this.RiddleBox.SuspendLayout();
             this.EnemySpeedBox.SuspendLayout();
             this.LightSetBox.SuspendLayout();
             this.BegLvlBox.SuspendLayout();
@@ -137,7 +129,6 @@
             // 
             // CustomBox
             // 
-            this.CustomBox.Controls.Add(this.RiddleBox);
             this.CustomBox.Controls.Add(this.EnemySpeedBox);
             this.CustomBox.Controls.Add(this.LightSetBox);
             this.CustomBox.Font = new System.Drawing.Font("Mistral", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -150,75 +141,6 @@
             this.CustomBox.TabStop = false;
             this.CustomBox.Text = "Custom Settings";
             this.toolTip1.SetToolTip(this.CustomBox, "Settings for fine manipulation of the game\'s difficulty");
-            // 
-            // RiddleBox
-            // 
-            this.RiddleBox.Controls.Add(this.AvgRiddle);
-            this.RiddleBox.Controls.Add(this.HardRiddle);
-            this.RiddleBox.Controls.Add(this.NeedToSolve);
-            this.RiddleBox.Controls.Add(this.EasyRiddle);
-            this.RiddleBox.Font = new System.Drawing.Font("Mistral", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RiddleBox.Location = new System.Drawing.Point(0, 254);
-            this.RiddleBox.Margin = new System.Windows.Forms.Padding(2);
-            this.RiddleBox.Name = "RiddleBox";
-            this.RiddleBox.Padding = new System.Windows.Forms.Padding(2);
-            this.RiddleBox.Size = new System.Drawing.Size(498, 81);
-            this.RiddleBox.TabIndex = 2;
-            this.RiddleBox.TabStop = false;
-            this.RiddleBox.Text = "Riddle Settings";
-            this.toolTip1.SetToolTip(this.RiddleBox, "The difficulty of a riddle object");
-            // 
-            // AvgRiddle
-            // 
-            this.AvgRiddle.AutoSize = true;
-            this.AvgRiddle.Location = new System.Drawing.Point(191, 21);
-            this.AvgRiddle.Margin = new System.Windows.Forms.Padding(2);
-            this.AvgRiddle.Name = "AvgRiddle";
-            this.AvgRiddle.Size = new System.Drawing.Size(62, 23);
-            this.AvgRiddle.TabIndex = 3;
-            this.AvgRiddle.TabStop = true;
-            this.AvgRiddle.Text = "Average";
-            this.AvgRiddle.UseVisualStyleBackColor = true;
-            this.AvgRiddle.CheckedChanged += new System.EventHandler(this.AvgRiddle_CheckedChanged);
-            // 
-            // HardRiddle
-            // 
-            this.HardRiddle.AutoSize = true;
-            this.HardRiddle.Location = new System.Drawing.Point(346, 21);
-            this.HardRiddle.Margin = new System.Windows.Forms.Padding(2);
-            this.HardRiddle.Name = "HardRiddle";
-            this.HardRiddle.Size = new System.Drawing.Size(105, 23);
-            this.HardRiddle.TabIndex = 2;
-            this.HardRiddle.TabStop = true;
-            this.HardRiddle.Text = "Head Scratching";
-            this.HardRiddle.UseVisualStyleBackColor = true;
-            this.HardRiddle.CheckedChanged += new System.EventHandler(this.HardRiddle_CheckedChanged);
-            // 
-            // NeedToSolve
-            // 
-            this.NeedToSolve.AutoSize = true;
-            this.NeedToSolve.Location = new System.Drawing.Point(129, 48);
-            this.NeedToSolve.Margin = new System.Windows.Forms.Padding(2);
-            this.NeedToSolve.Name = "NeedToSolve";
-            this.NeedToSolve.Size = new System.Drawing.Size(213, 23);
-            this.NeedToSolve.TabIndex = 1;
-            this.NeedToSolve.TabStop = true;
-            this.NeedToSolve.Text = "Keys Don\'t appear until Riddle Solved";
-            this.NeedToSolve.UseVisualStyleBackColor = true;
-            this.NeedToSolve.CheckedChanged += new System.EventHandler(this.NeedToSolve_CheckedChanged);
-            // 
-            // EasyRiddle
-            // 
-            this.EasyRiddle.AutoSize = true;
-            this.EasyRiddle.Location = new System.Drawing.Point(42, 21);
-            this.EasyRiddle.Margin = new System.Windows.Forms.Padding(2);
-            this.EasyRiddle.Name = "EasyRiddle";
-            this.EasyRiddle.Size = new System.Drawing.Size(50, 23);
-            this.EasyRiddle.TabIndex = 0;
-            this.EasyRiddle.TabStop = true;
-            this.EasyRiddle.Text = "Easy";
-            this.EasyRiddle.UseVisualStyleBackColor = true;
-            this.EasyRiddle.CheckedChanged += new System.EventHandler(this.EasyRiddle_CheckedChanged);
             // 
             // EnemySpeedBox
             // 
@@ -347,15 +269,13 @@
             // BegLvlBox
             // 
             this.BegLvlBox.Controls.Add(this.LevelTwo);
-            this.BegLvlBox.Controls.Add(this.LevelThree);
-            this.BegLvlBox.Controls.Add(this.LevelFour);
             this.BegLvlBox.Controls.Add(this.LevelOne);
             this.BegLvlBox.Font = new System.Drawing.Font("Mistral", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BegLvlBox.Location = new System.Drawing.Point(9, 314);
+            this.BegLvlBox.Location = new System.Drawing.Point(14, 314);
             this.BegLvlBox.Margin = new System.Windows.Forms.Padding(2);
             this.BegLvlBox.Name = "BegLvlBox";
             this.BegLvlBox.Padding = new System.Windows.Forms.Padding(2);
-            this.BegLvlBox.Size = new System.Drawing.Size(498, 81);
+            this.BegLvlBox.Size = new System.Drawing.Size(493, 81);
             this.BegLvlBox.TabIndex = 3;
             this.BegLvlBox.TabStop = false;
             this.BegLvlBox.Text = "Beginning Level";
@@ -373,32 +293,6 @@
             this.LevelTwo.Text = "Level 2";
             this.LevelTwo.UseVisualStyleBackColor = true;
             this.LevelTwo.CheckedChanged += new System.EventHandler(this.LevelTwo_CheckedChanged);
-            // 
-            // LevelThree
-            // 
-            this.LevelThree.AutoSize = true;
-            this.LevelThree.Location = new System.Drawing.Point(279, 33);
-            this.LevelThree.Margin = new System.Windows.Forms.Padding(2);
-            this.LevelThree.Name = "LevelThree";
-            this.LevelThree.Size = new System.Drawing.Size(59, 23);
-            this.LevelThree.TabIndex = 2;
-            this.LevelThree.TabStop = true;
-            this.LevelThree.Text = "Level 3";
-            this.LevelThree.UseVisualStyleBackColor = true;
-            this.LevelThree.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
-            // 
-            // LevelFour
-            // 
-            this.LevelFour.AutoSize = true;
-            this.LevelFour.Location = new System.Drawing.Point(401, 33);
-            this.LevelFour.Margin = new System.Windows.Forms.Padding(2);
-            this.LevelFour.Name = "LevelFour";
-            this.LevelFour.Size = new System.Drawing.Size(59, 23);
-            this.LevelFour.TabIndex = 1;
-            this.LevelFour.TabStop = true;
-            this.LevelFour.Text = "Level 4";
-            this.LevelFour.UseVisualStyleBackColor = true;
-            this.LevelFour.CheckedChanged += new System.EventHandler(this.LevelFour_CheckedChanged);
             // 
             // LevelOne
             // 
@@ -470,8 +364,6 @@
             this.EasySetBox.ResumeLayout(false);
             this.EasySetBox.PerformLayout();
             this.CustomBox.ResumeLayout(false);
-            this.RiddleBox.ResumeLayout(false);
-            this.RiddleBox.PerformLayout();
             this.EnemySpeedBox.ResumeLayout(false);
             this.EnemySpeedBox.PerformLayout();
             this.LightSetBox.ResumeLayout(false);
@@ -503,13 +395,6 @@
         private System.Windows.Forms.GroupBox BegLvlBox;
         private System.Windows.Forms.RadioButton LevelOne;
         private System.Windows.Forms.RadioButton LevelTwo;
-        private System.Windows.Forms.RadioButton LevelThree;
-        private System.Windows.Forms.RadioButton LevelFour;
-        private System.Windows.Forms.GroupBox RiddleBox;
-        private System.Windows.Forms.RadioButton AvgRiddle;
-        private System.Windows.Forms.RadioButton HardRiddle;
-        private System.Windows.Forms.RadioButton NeedToSolve;
-        private System.Windows.Forms.RadioButton EasyRiddle;
         private System.Windows.Forms.Button ApplyBut;
         private System.Windows.Forms.Button CancelBut;
         private System.Windows.Forms.ToolTip toolTip1;

@@ -48,10 +48,10 @@ namespace The_Attempt
         Level level;
         Character player; // the player object
         List<Key> keys; // list of keys
+        List<Door> doors; // list of doors
         Map map; // defines the maps placement
         Input input; // handles input
         Monster monster; // the monster object
-        Door door;
 
         Texture2D corridorimg;
 
@@ -102,6 +102,7 @@ namespace The_Attempt
             // set the window to the dimensions defined in the Settings class
             graphics.PreferredBackBufferHeight = Settings.WinHeight; 
             graphics.PreferredBackBufferWidth = Settings.WinWidth;
+            Settings.Setup("GameSettings.txt");
 
         }
 
@@ -133,14 +134,23 @@ namespace The_Attempt
             monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 4, 8);
 
             map = new Map(-3200, -320, 7680, 6240);
+
             rng = new Random();
-            
 
+            // place player, monster, keys, and doors on the map
+            map = new Map(-3200, -320, 7680, 6240);
+            player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH / 2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT / 2), CHAR_WIDTH, CHAR_HEIGHT);
+            monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 4, 2);
             keys = new List<Key>();
-            keys.Add(new Key(2560, 3840, 80, 80, "full"));  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
-            keys.Add(new Key(4000, 960, 80, 80, "full"));  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
-
-            door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
+            doors = new List<Door>();
+            keys.Add(new Key(2560 + 40, 3840 + 40, 80, 80, "full"));  
+            keys.Add(new Key(5760 + 40, 640 + 40, 80, 80, "full"));
+            keys.Add(new Key(6240 + 40, 2880 + 40, 80, 80, "full"));
+            keys.Add(new Key(3840 + 40, 2560 + 40, 80, 80, "full"));
+            keys.Add(new Key(960 + 40, 1440 + 40, 80, 80, "full"));
+            keys.Add(new Key(2240 + 40, 5440 + 40, 80, 80, "full"));
+            doors.Add(new Door(1120 + 30, 4160 + 30, 100, 100));
+            doors.Add(new Door(4480 + 30, 3840 + 30, 100, 100));
 
             soundEffects = new List<SoundEffect>(); //initialize sound effects list
 
@@ -244,6 +254,10 @@ namespace The_Attempt
                         for(int i = 0; i < keys.Count; i++)
                         {
                             keys[i].CurrentTexture = keyTexture;
+                        }
+                        for (int i = 0; i < doors.Count; i++)
+                        {
+                            doors[i].CurrentTexture = doorImg;
                         }
                     }
                     if(SingleKeyPress(Keys.C))
@@ -419,10 +433,15 @@ namespace The_Attempt
                         if (collDetect.SimpleCheck(player.PositionCurr, keys[i].PositionCurr) == true && keys[i].Rendered)
                         {
                             keys[i].Rendered = false;
-                            door.Open = true;
-                            player.NumKeyParts++;
-                            //play the key pick up sound
-                            pkupKey.Play();
+                            player.NumKeyParts++;              
+                            pkupKey.Play(); //play the key pick up sound
+                            if (player.NumKeyParts >= 2)
+                            {
+                                for (int j = 0; j < doors.Count; j++) // open the doors on the map if the player has 2 keys
+                                {
+                                    doors[j].Open = true;
+                                }
+                            }
                         }
                     }
 
@@ -431,17 +450,23 @@ namespace The_Attempt
                         keys[i].UpdateCurrPos(map);
                     }
 
-                    //door
-                    door.UpdateCurrPos(map);
-
-                    if (collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && player.NumKeyParts > 0)
+                    //door stuff
+                    for (int i = 0; i < doors.Count; i++)
                     {
-                        soundEffects[5].Play();
-                        currentState = GameState.Winner;
+                        if (collDetect.SimpleCheck(player.PositionCurr, doors[i].PositionCurr) == true && player.NumKeyParts >= 2)
+                        {
+                            soundEffects[5].Play();
+                            currentState = GameState.Winner;
+                        }
+                        else if (collDetect.SimpleCheck(player.PositionCurr, doors[i].PositionCurr) == true && doorSealed.State == SoundState.Stopped)
+                        {
+                            doorSealed.Play();
+                        }
                     }
-                    else if(collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && doorSealed.State == SoundState.Stopped)
+
+                    for (int i = 0; i < doors.Count; i++)
                     {
-                        doorSealed.Play();
+                        doors[i].UpdateCurrPos(map);
                     }
 
                     // monster collisions and player health
@@ -624,8 +649,11 @@ namespace The_Attempt
                     }
                 }
 
-                //Draw the Door for level escape
-                door.Draw(spriteBatch, doorImg, doorImg);
+                // door rendering
+                for (int i = 0; i < doors.Count; i++)
+                {
+                    doors[i].Draw(spriteBatch);
+                }
 
                 //player.Draw(spriteBatch);
 
