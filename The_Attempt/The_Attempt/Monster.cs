@@ -96,6 +96,7 @@ namespace The_Attempt
 
             if (turn == 1 || turn == 0) 
             {
+
                 Assess(map);
                 int directionPlayer = FindPlayer(player, map);
                 int[] directPercent = DirectionPercent(directionPlayer);

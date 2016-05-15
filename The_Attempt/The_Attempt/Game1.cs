@@ -117,7 +117,7 @@ namespace The_Attempt
             collDetect = new CollDetect();
 
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
-            monster = new Monster(3520, 960, 160, 160, 3, 2);
+            monster = new Monster(3520, 960, 160, 160, 4, 2);
 
             map = new Map(-3200, -320, 7680, 6240);
             rng = new Random();

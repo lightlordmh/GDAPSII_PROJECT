@@ -103,6 +103,7 @@ namespace The_Attempt
                 //this is for finding when the ai is on an intersection of corridor
                 if (cornerCheck[0].Y > 9 && cornerCheck[0].X > 9 && cornerCheck[1].Y > 9 && cornerCheck[1].X > 9 && cornerCheck[2].Y > 9 && cornerCheck[2].X > 9 && cornerCheck[3].Y > 9 && cornerCheck[3].X > 9) //is in two coridors
                 {
+                    Settings.testingint = 1;
                     return 0;
                 }
                 else //is in only one corridor
@@ -110,22 +111,10 @@ namespace The_Attempt
                     return 2;
                 }
             }
-            else// if(cornerCheck[0].X < 5 && cornerCheck[0].Y < 5 || cornerCheck[1].Y < 5 && cornerCheck[1].X < 5 || cornerCheck[2].Y < 5 && cornerCheck[2].X < 5 || cornerCheck[3].Y < 5 && cornerCheck[3].X < 5)
+            else
             {
                 return 1;
             }
-          //  else
-           // {
-           //     Settings.testingint = 1;
-           //     return 1;
-          //  }
-
-            //returns here explained
-            //0 = turn and is a good direction
-            //1 = turn but isn't a good direction
-            //2 = dont turn and is a good direction
         }
-
-
     }
 }
