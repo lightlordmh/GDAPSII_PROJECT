@@ -63,6 +63,7 @@ namespace The_Attempt
         double timePerFrame = 100;
         int numFrames = 7;
         int framesElapsed;
+        double timer;
 
         int enemyFrame;
         int enemyFramesElapsed;
