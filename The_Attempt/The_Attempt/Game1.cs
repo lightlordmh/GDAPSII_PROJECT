@@ -45,7 +45,6 @@ namespace The_Attempt
         Map map; // defines the maps placement
         Input input; // handles input
         Monster monster; // the monster object
-        Key key;
         Door door;
 
         Texture2D corridorimg;
@@ -123,12 +122,10 @@ namespace The_Attempt
             
 
             keys = new List<Key>();
-            //keys.Add(new Key(100, 100, 40, 40, "Normal")); 
+            keys.Add(new Key(2560, 3840, 80, 80, "full"));  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
+            keys.Add(new Key(4000, 960, 80, 80, "full"));  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
 
-            
 
-            key = new Key(2560, 3840, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
-            key = new Key(4000, 960, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
             door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
 
             soundEffects = new List<SoundEffect>(); //initialize sound effects list
@@ -197,7 +194,11 @@ namespace The_Attempt
                         level.LoadCorridors();
                         map.SetMapTexture();
                         monster.CurrentTexture = monsterImg;
-                        key.CurrentTexture = keyTexture;
+
+                        for(int i = 0; i < keys.Count; i++)
+                        {
+                            keys[i].CurrentTexture = keyTexture;
+                        }
                     }
                     if(SingleKeyPress(Keys.C))
                     {
@@ -300,23 +301,31 @@ namespace The_Attempt
                     monster.UpdateCurrPos(map.XCurr, map.YCurr);
 
                     //key stuff
-                    key.UpdateCurrPos(map.XCurr, map.YCurr);
-                    if(collDetect.SimpleCheck(player.PositionCurr, key.PositionCurr) == true && key.Rendered)
+                    for (int i = 0; i < keys.Count; i++)
                     {
-                        key.Rendered = false;
-                        door.Open = true;
-                        player.NumKeyParts++;
+                        if (collDetect.SimpleCheck(player.PositionCurr, keys[i].PositionCurr) == true && keys[i].Rendered)
+                        {
+                            keys[i].Rendered = false;
+                            door.Open = true;
+                            player.NumKeyParts++;
+                        }
+                    }
+
+                    for (int i = 0; i < keys.Count; i++)
+                    {
+                        keys[i].UpdateCurrPos(map.XCurr, map.YCurr);
                     }
 
                     //door
                     door.UpdateCurrPos(map.XCurr, map.YCurr);
 
-                    for(int i = 0; i < keys.Count; i++)
+                    if (collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && player.NumKeyParts > 0)
                     {
-                        keys[i].UpdateCurrPos(map.XCurr, map.YCurr);
+                        currentState = GameState.Winner;
                     }
 
-                    if(collDetect.SimpleCheck(player.PositionCurr, monster.PositionCurr) == true && invincible <= 0)
+                    // monster collisions and player health
+                    if (collDetect.SimpleCheck(player.PositionCurr, monster.PositionCurr) == true && invincible <= 0)
                     {
                         invincible = 120;
                         player.Health--;
@@ -326,15 +335,10 @@ namespace The_Attempt
                         }
                     }
 
-                    if(invincible > 0) //reduces the time of invincible
+                    if (invincible > 0) //reduces the time of invincible
                     {
                         invincible--;
-                    }
-
-                    if(collDetect.SimpleCheck(player.PositionCurr, door.PositionCurr) == true && player.NumKeyParts > 0)
-                    {
-                        currentState = GameState.Winner;
-                    }
+                    }                  
                     break;
                 case GameState.MapOverlay:
                     // once in the phone menu screen, press tab again to return back to the game
@@ -454,21 +458,17 @@ namespace The_Attempt
 
 
                 //key rendering
-                if (key.Rendered == true)
+                for (int i = 0; i < keys.Count; i++)
                 {
-                    key.Draw(spriteBatch);
+                    if (keys[i].Rendered == true)
+                    {
+                        keys[i].Draw(spriteBatch);
+                    }
                 }
 
                 door.Draw(spriteBatch, doorImg, doorImg);
 
                 //player.Draw(spriteBatch);
-
-                // draw the keys to the map
-                for (int i = 0; i < keys.Count; i++)
-                {
-                    keys[i].CurrentTexture = keyTexture;
-                    keys[i].Draw(spriteBatch);
-                }
 
                 //drawing the monster
                 monster.Draw(spriteBatch);
