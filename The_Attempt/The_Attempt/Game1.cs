@@ -157,9 +157,9 @@ namespace The_Attempt
             flashLightOff = Content.Load<Texture2D>("FLON3");
 
 
-            menuTheme = Content.Load<Song>("MenuTheme.wav");
-            mainTheme = Content.Load<Song>("MainTheme.wav");
-            endTheme = Content.Load<Song>("EndTheme.wav");
+            menuTheme = Content.Load<Song>("MenuTheme");
+            mainTheme = Content.Load<Song>("MainTheme");
+            endTheme = Content.Load<Song>("EndTheme");
 
 
             loseScreen = Content.Load<Texture2D>("Game Over");
