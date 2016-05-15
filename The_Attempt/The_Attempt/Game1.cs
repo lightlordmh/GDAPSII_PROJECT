@@ -127,15 +127,6 @@ namespace The_Attempt
             keys.Add(new Key(2560, 3840, 80, 80, "full"));  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
             keys.Add(new Key(4000, 960, 80, 80, "full"));  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
 
-
-<<<<<<< HEAD
-=======
-            key = new Key(2560, 3840, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
-
-           // soundEffects = new List<SoundEffect>(); //initialize sound effects list
-
-            key = new Key(4000, 960, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
->>>>>>> b8ef32109c3243cb738f917aae9f11ab30fc706e
             door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
 
             //soundEffects = new List<SoundEffect>(); //initialize sound effects list
