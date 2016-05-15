@@ -76,8 +76,8 @@ namespace The_Attempt
 
         const int ENEMY_Y = 0;
         const int ENEMY_HEIGHT = 112;
-        const int ENEMY_WIDTH = 108;
-        const int ENEMY_X_OFFSET = 92;
+        const int ENEMY_WIDTH = 104;
+        const int ENEMY_X_OFFSET = 2;
 
 
 
@@ -159,7 +159,7 @@ namespace The_Attempt
             title = Content.Load<SpriteFont>("28DaysLater_70");
             text = Content.Load<SpriteFont>("28DaysLater_14");
             menuImg = Content.Load<Texture2D>("MenuScreen");
-            monsterImg = Content.Load<Texture2D>("Enemy Imagev2");
+            monsterImg = Content.Load<Texture2D>("Enemy Imagev3");
             keyTexture = Content.Load<Texture2D>("Key Sprite");
             corridorimg = Content.Load<Texture2D>("Player");
             doorImg = Content.Load<Texture2D>("MenuScreen");
@@ -608,7 +608,7 @@ namespace The_Attempt
 
 
                 //drawing the monster
-                monster.Draw(spriteBatch);
+                ///monster.Draw(spriteBatch);
 
 
 

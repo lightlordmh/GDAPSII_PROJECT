@@ -80,6 +80,9 @@
     <Content Include="Content\Enemy Imagev2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Enemy Imagev3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\FLON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
