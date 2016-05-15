@@ -16,14 +16,6 @@ namespace The_Attempt
         private int numKeyParts; // number of pieces collected (only need 1 to win for now) to create a key
         private int health; // changeable in the settings
 
-        //everything for animation
-        private int frame;
-        private Point frameSize;
-        private int numFrames;
-        private int row, cols;
-        private int timeSinceLastFrame;
-        private Point currentFrame;
-        private Vector2 position;
 
 
         // properties
