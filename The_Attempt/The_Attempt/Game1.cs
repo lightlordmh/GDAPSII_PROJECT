@@ -81,7 +81,7 @@ namespace The_Attempt
             Winner     
         }
         GameState currentState; // the current game state
-
+        GameState oldState;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -107,7 +107,7 @@ namespace The_Attempt
            
             IsMouseVisible = true; // Enable the mouse to be visable with in the game window
             currentState = GameState.MainMenu; // start the game off at the menu state
-
+            oldState = GameState.GameOver;
             // initialize attributes and place objects
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
@@ -160,7 +160,7 @@ namespace The_Attempt
             menuTheme = Content.Load<Song>("MenuTheme");
             mainTheme = Content.Load<Song>("MainTheme");
             endTheme = Content.Load<Song>("EndTheme");
-
+            MediaPlayer.IsRepeating = true;
 
             loseScreen = Content.Load<Texture2D>("Game Over");
 
@@ -192,6 +192,12 @@ namespace The_Attempt
             switch (currentState)
             {
                 case GameState.MainMenu:
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(menuTheme);
+                    }
+                    oldState = currentState;
                     if (SingleKeyPress(Keys.Enter))
                     {
                         IsMouseVisible = false;
@@ -213,14 +219,27 @@ namespace The_Attempt
                     }
                     break;
                 case GameState.Controls:
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(menuTheme);
+                    }
+                    oldState = currentState;
                     // to return to the Main Menu from the Controls screen, press C again
                     if (SingleKeyPress(Keys.C))
                     {
                         IsMouseVisible = true;
                         currentState = GameState.MainMenu;
                     }
+                    
                     break;
                 case GameState.MainGame:
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(mainTheme);
+                    }
+                    oldState = currentState;
                     // during the game, the player can press tab to bring up the map overlay
                     if (SingleKeyPress(Keys.Tab))
                     {
@@ -232,9 +251,6 @@ namespace The_Attempt
                         if (lightOn) lightOn = false;
                         else lightOn = true;
                     }
-
-
-
 
                     // check for input and update position
                     string direction = input.Check(map);
@@ -344,7 +360,7 @@ namespace The_Attempt
                     if (invincible > 0) //reduces the time of invincible
                     {
                         invincible--;
-                    }                  
+                    }
                     break;
                 case GameState.MapOverlay:
                     // once in the phone menu screen, press tab again to return back to the game
@@ -355,6 +371,12 @@ namespace The_Attempt
                     }
                     break;
                 case GameState.GameOver:
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(endTheme);
+                    }
+                    oldState = currentState;
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
@@ -365,6 +387,12 @@ namespace The_Attempt
                     }
                     break;
                 case GameState.Winner:
+                    //if (currentState != oldState)
+                    //{
+                    //    MediaPlayer.Stop();
+                    //    MediaPlayer.Play(winTheme);
+                    //}
+                    //oldState = currentState;
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
