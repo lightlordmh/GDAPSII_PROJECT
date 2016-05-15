@@ -22,11 +22,9 @@ namespace The_Attempt
         SpriteFont text; // font used for other text
         Texture2D menuImg; // background for the menu
         Song menuTheme, mainTheme, winTheme, endTheme;
-<<<<<<< HEAD
+
         //List<SoundEffect> soundEffects;
-=======
-        List<SoundEffect> soundEffects;
->>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
+       // List<SoundEffect> soundEffects;
 
         // keyboard attributes (used to switch between game states)
         KeyboardState kbState; // current keyboard state
@@ -132,17 +130,13 @@ namespace The_Attempt
             
 
             key = new Key(2560, 3840, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
-<<<<<<< HEAD
 
            // soundEffects = new List<SoundEffect>(); //initialize sound effects list
 
-
-=======
->>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
             key = new Key(4000, 960, 80, 80, "full");  //to move the key to a more in depth part of the maze put in these instead of 4000, 960  (2560,3840)
             door = new Door(4000, 1280, 100, 100);    // same with the door (5760, 4640)
 
-            soundEffects = new List<SoundEffect>(); //initialize sound effects list
+            //soundEffects = new List<SoundEffect>(); //initialize sound effects list
 
             base.Initialize();
         }
@@ -169,13 +163,12 @@ namespace The_Attempt
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
 
-<<<<<<< HEAD
+
             menuTheme = Content.Load<Song>("MenuTheme.wav");
             mainTheme = Content.Load<Song>("MainTheme.wav");
             endTheme = Content.Load<Song>("EndTheme.wav");
-=======
-            //menuTheme = Content.Load<Song>("");
->>>>>>> c1373b4eb68e750b65f0551f5024da2d14f3348b
+
+
             loseScreen = Content.Load<Texture2D>("Game Over");
 
         }
