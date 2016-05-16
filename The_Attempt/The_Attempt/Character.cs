@@ -16,6 +16,11 @@ namespace The_Attempt
         private int numKeyParts; // number of pieces collected (only need 1 to win for now) to create a key
         private int health; // changeable in the settings
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6bf5f9006ff1807b07525dfeb43a602082c96621
         // properties
         public int NumKeyParts
         {

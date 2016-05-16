@@ -129,6 +129,13 @@ namespace The_Attempt
             level = new Level();
             input = new Input();
             collDetect = new CollDetect();
+
+            player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
+
+            monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 4, 8);
+
+            map = new Map(-3200, -320, 7680, 6240);
+
             rng = new Random();
 
             // place player, monster, keys, and doors on the map
@@ -391,7 +398,7 @@ namespace The_Attempt
                             break;
                     }
                     // updating position of objects
-                    monster.aiMove(player,map);
+                    monster.aiMove(player,map, kbState, lightOn);
                     monster.UpdateCurrPos(map);
 
                     if(monster.CurrentDirection == 0)
@@ -658,7 +665,7 @@ namespace The_Attempt
                 ///monster.Draw(spriteBatch);
 
 
-
+/*
                 //draw the Flashlight
                 if (lightOn)
                 {
@@ -668,7 +675,7 @@ namespace The_Attempt
                 {
                     spriteBatch.Draw(flashLightOff, new Vector2(-90, -100), Color.White);
                 }
-
+*/
                 // draw the level, level score and timer
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);

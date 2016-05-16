@@ -26,10 +26,21 @@ namespace The_Attempt
         /// </summary>
         public void LoadCorridors()
         {
+            string fileName = "Content/";
+
+            if(Settings.Level == 1)
+            {
+                fileName += "CorPos1.txt";
+            }
+            else if(Settings.Level == 2)
+            {
+                fileName += "CorPos2.txt";
+            }
+
             Settings.corridorList.Clear();
             try
             {
-                StreamReader reading = new StreamReader(TitleContainer.OpenStream("Content/CorPos.txt"));
+                StreamReader reading = new StreamReader(TitleContainer.OpenStream(fileName));
                 string line = "";
                 while ((line = reading.ReadLine()) != null) //if someone can figure out a better way of doing this be my guest and change it
                 {
