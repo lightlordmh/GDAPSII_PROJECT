@@ -9,7 +9,6 @@ namespace The_Attempt
 {
     // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating 
     // This game object represents the map the player will "move within"(the player does not move the map does)
-    // Possible errors due to inheritance from game object
     public class Map : GameObject
     {
 

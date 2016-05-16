@@ -111,7 +111,7 @@ namespace The_Attempt
         {
             // TODO: Add your initialization logic here
             currentState = GameState.MainMenu; // start the game off at the menu state
-            lightOn = false;
+            lightOn = true;
 
             // initialize attributes and place objects
             kbState = new KeyboardState();
