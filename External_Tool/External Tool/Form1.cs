@@ -55,11 +55,8 @@ namespace External_Tool
             LightMedBut.ForeColor = Color.White;
             LightOffBut.ForeColor = Color.White;
             HardButton.ForeColor = Color.White;
-            LevelOne.ForeColor = Color.White;
-            LevelTwo.ForeColor = Color.White;
             EasySetBox.ForeColor = Color.White;
             EnemySpeedBox.ForeColor = Color.White;
-            BegLvlBox.ForeColor = Color.White;
             LightSetBox.ForeColor = Color.White;
             CustomBox.ForeColor = Color.White;
             ApplyBut.ForeColor = Color.White;
@@ -142,8 +139,7 @@ namespace External_Tool
 
         private void radioButton8_CheckedChanged(object sender, EventArgs e)
         {
-            // change settings for when level one is chosen
-            if (LevelOne.Checked == true) settingVals["Level"] = 1;
+            
         }
 
 
@@ -155,7 +151,6 @@ namespace External_Tool
             {
                 LightFullBut.Checked = true;
                 EnemySlow.Checked = true;
-                LevelOne.Checked = true;
                 settingVals["Flashlight"] = 3;
                 settingVals["EnemySpeed"] = 1;
                 settingVals["Levels"] = 1;
@@ -170,7 +165,6 @@ namespace External_Tool
             {
                 LightMedBut.Checked = true;
                 EnemyAvg.Checked = true;
-                LevelTwo.Checked = true;
                 settingVals["Flashlight"] = 2;
                 settingVals["EnemySpeed"] = 2;
                 settingVals["Levels"] = 2;
@@ -184,7 +178,6 @@ namespace External_Tool
             {
                 LightLowBut.Checked = true;
                 EnemyFast.Checked = true;
-                LevelOne.Checked = true;
                 settingVals["Flashlight"] = 1;
                 settingVals["EnemySpeed"] = 3;
                 settingVals["Levels"] = 3;
@@ -240,8 +233,6 @@ namespace External_Tool
 
         private void LevelTwo_CheckedChanged(object sender, EventArgs e)
         {
-            // change settings for when level two is chosen
-            if (LevelTwo.Checked == true) settingVals["Level"] = 2;
         }
        
         private void HelpBut_Click(object sender, EventArgs e)

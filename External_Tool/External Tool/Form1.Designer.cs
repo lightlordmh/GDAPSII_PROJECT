@@ -44,9 +44,6 @@
             this.LightMedBut = new System.Windows.Forms.RadioButton();
             this.LightFullBut = new System.Windows.Forms.RadioButton();
             this.LightOffBut = new System.Windows.Forms.RadioButton();
-            this.BegLvlBox = new System.Windows.Forms.GroupBox();
-            this.LevelTwo = new System.Windows.Forms.RadioButton();
-            this.LevelOne = new System.Windows.Forms.RadioButton();
             this.ApplyBut = new System.Windows.Forms.Button();
             this.CancelBut = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -55,17 +52,15 @@
             this.CustomBox.SuspendLayout();
             this.EnemySpeedBox.SuspendLayout();
             this.LightSetBox.SuspendLayout();
-            this.BegLvlBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Mistral", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(162, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Font = new System.Drawing.Font("Moire", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(164, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 29);
+            this.label1.Size = new System.Drawing.Size(349, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Please Adjust Settings";
             // 
@@ -74,12 +69,12 @@
             this.EasySetBox.Controls.Add(this.HardButton);
             this.EasySetBox.Controls.Add(this.MediumButton);
             this.EasySetBox.Controls.Add(this.EasyButton);
-            this.EasySetBox.Font = new System.Drawing.Font("Mistral", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EasySetBox.Location = new System.Drawing.Point(106, 61);
-            this.EasySetBox.Margin = new System.Windows.Forms.Padding(2);
+            this.EasySetBox.Font = new System.Drawing.Font("Moire", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EasySetBox.Location = new System.Drawing.Point(141, 75);
+            this.EasySetBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EasySetBox.Name = "EasySetBox";
-            this.EasySetBox.Padding = new System.Windows.Forms.Padding(2);
-            this.EasySetBox.Size = new System.Drawing.Size(279, 81);
+            this.EasySetBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EasySetBox.Size = new System.Drawing.Size(372, 100);
             this.EasySetBox.TabIndex = 1;
             this.EasySetBox.TabStop = false;
             this.EasySetBox.Text = "Easy Settings";
@@ -88,11 +83,11 @@
             // HardButton
             // 
             this.HardButton.AutoSize = true;
-            this.HardButton.Font = new System.Drawing.Font("Mistral", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HardButton.Location = new System.Drawing.Point(201, 36);
-            this.HardButton.Margin = new System.Windows.Forms.Padding(2);
+            this.HardButton.Font = new System.Drawing.Font("Moire", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HardButton.Location = new System.Drawing.Point(268, 44);
+            this.HardButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.HardButton.Name = "HardButton";
-            this.HardButton.Size = new System.Drawing.Size(49, 20);
+            this.HardButton.Size = new System.Drawing.Size(64, 21);
             this.HardButton.TabIndex = 3;
             this.HardButton.TabStop = true;
             this.HardButton.Text = "Hard";
@@ -102,11 +97,11 @@
             // MediumButton
             // 
             this.MediumButton.AutoSize = true;
-            this.MediumButton.Font = new System.Drawing.Font("Mistral", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MediumButton.Location = new System.Drawing.Point(110, 36);
-            this.MediumButton.Margin = new System.Windows.Forms.Padding(2);
+            this.MediumButton.Font = new System.Drawing.Font("Moire", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MediumButton.Location = new System.Drawing.Point(147, 44);
+            this.MediumButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MediumButton.Name = "MediumButton";
-            this.MediumButton.Size = new System.Drawing.Size(62, 20);
+            this.MediumButton.Size = new System.Drawing.Size(85, 21);
             this.MediumButton.TabIndex = 4;
             this.MediumButton.TabStop = true;
             this.MediumButton.Text = "Medium";
@@ -116,11 +111,11 @@
             // EasyButton
             // 
             this.EasyButton.AutoSize = true;
-            this.EasyButton.Font = new System.Drawing.Font("Mistral", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EasyButton.Location = new System.Drawing.Point(32, 36);
-            this.EasyButton.Margin = new System.Windows.Forms.Padding(2);
+            this.EasyButton.Font = new System.Drawing.Font("Moire", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EasyButton.Location = new System.Drawing.Point(43, 44);
+            this.EasyButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EasyButton.Name = "EasyButton";
-            this.EasyButton.Size = new System.Drawing.Size(47, 20);
+            this.EasyButton.Size = new System.Drawing.Size(62, 21);
             this.EasyButton.TabIndex = 2;
             this.EasyButton.TabStop = true;
             this.EasyButton.Text = "Easy";
@@ -131,12 +126,12 @@
             // 
             this.CustomBox.Controls.Add(this.EnemySpeedBox);
             this.CustomBox.Controls.Add(this.LightSetBox);
-            this.CustomBox.Font = new System.Drawing.Font("Mistral", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomBox.Location = new System.Drawing.Point(9, 168);
-            this.CustomBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CustomBox.Font = new System.Drawing.Font("Moire", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomBox.Location = new System.Drawing.Point(12, 207);
+            this.CustomBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CustomBox.Name = "CustomBox";
-            this.CustomBox.Padding = new System.Windows.Forms.Padding(2);
-            this.CustomBox.Size = new System.Drawing.Size(502, 340);
+            this.CustomBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.CustomBox.Size = new System.Drawing.Size(669, 418);
             this.CustomBox.TabIndex = 2;
             this.CustomBox.TabStop = false;
             this.CustomBox.Text = "Custom Settings";
@@ -147,12 +142,12 @@
             this.EnemySpeedBox.Controls.Add(this.EnemyAvg);
             this.EnemySpeedBox.Controls.Add(this.EnemyFast);
             this.EnemySpeedBox.Controls.Add(this.EnemySlow);
-            this.EnemySpeedBox.Font = new System.Drawing.Font("Mistral", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnemySpeedBox.Location = new System.Drawing.Point(284, 40);
-            this.EnemySpeedBox.Margin = new System.Windows.Forms.Padding(2);
+            this.EnemySpeedBox.Font = new System.Drawing.Font("Moire", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnemySpeedBox.Location = new System.Drawing.Point(23, 243);
+            this.EnemySpeedBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EnemySpeedBox.Name = "EnemySpeedBox";
-            this.EnemySpeedBox.Padding = new System.Windows.Forms.Padding(2);
-            this.EnemySpeedBox.Size = new System.Drawing.Size(214, 81);
+            this.EnemySpeedBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EnemySpeedBox.Size = new System.Drawing.Size(612, 100);
             this.EnemySpeedBox.TabIndex = 1;
             this.EnemySpeedBox.TabStop = false;
             this.EnemySpeedBox.Text = "Enemy Speed";
@@ -161,10 +156,10 @@
             // EnemyAvg
             // 
             this.EnemyAvg.AutoSize = true;
-            this.EnemyAvg.Location = new System.Drawing.Point(74, 33);
-            this.EnemyAvg.Margin = new System.Windows.Forms.Padding(2);
+            this.EnemyAvg.Location = new System.Drawing.Point(253, 41);
+            this.EnemyAvg.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EnemyAvg.Name = "EnemyAvg";
-            this.EnemyAvg.Size = new System.Drawing.Size(62, 23);
+            this.EnemyAvg.Size = new System.Drawing.Size(92, 22);
             this.EnemyAvg.TabIndex = 2;
             this.EnemyAvg.TabStop = true;
             this.EnemyAvg.Text = "Average";
@@ -174,10 +169,10 @@
             // EnemyFast
             // 
             this.EnemyFast.AutoSize = true;
-            this.EnemyFast.Location = new System.Drawing.Point(157, 33);
-            this.EnemyFast.Margin = new System.Windows.Forms.Padding(2);
+            this.EnemyFast.Location = new System.Drawing.Point(536, 41);
+            this.EnemyFast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EnemyFast.Name = "EnemyFast";
-            this.EnemyFast.Size = new System.Drawing.Size(48, 23);
+            this.EnemyFast.Size = new System.Drawing.Size(62, 22);
             this.EnemyFast.TabIndex = 1;
             this.EnemyFast.TabStop = true;
             this.EnemyFast.Text = "Fast";
@@ -187,10 +182,10 @@
             // EnemySlow
             // 
             this.EnemySlow.AutoSize = true;
-            this.EnemySlow.Location = new System.Drawing.Point(15, 33);
-            this.EnemySlow.Margin = new System.Windows.Forms.Padding(2);
+            this.EnemySlow.Location = new System.Drawing.Point(20, 41);
+            this.EnemySlow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EnemySlow.Name = "EnemySlow";
-            this.EnemySlow.Size = new System.Drawing.Size(48, 23);
+            this.EnemySlow.Size = new System.Drawing.Size(65, 22);
             this.EnemySlow.TabIndex = 0;
             this.EnemySlow.TabStop = true;
             this.EnemySlow.Text = "Slow";
@@ -203,12 +198,12 @@
             this.LightSetBox.Controls.Add(this.LightMedBut);
             this.LightSetBox.Controls.Add(this.LightFullBut);
             this.LightSetBox.Controls.Add(this.LightOffBut);
-            this.LightSetBox.Font = new System.Drawing.Font("Mistral", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LightSetBox.Location = new System.Drawing.Point(5, 40);
-            this.LightSetBox.Margin = new System.Windows.Forms.Padding(2);
+            this.LightSetBox.Font = new System.Drawing.Font("Moire", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LightSetBox.Location = new System.Drawing.Point(23, 46);
+            this.LightSetBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LightSetBox.Name = "LightSetBox";
-            this.LightSetBox.Padding = new System.Windows.Forms.Padding(2);
-            this.LightSetBox.Size = new System.Drawing.Size(274, 81);
+            this.LightSetBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LightSetBox.Size = new System.Drawing.Size(612, 100);
             this.LightSetBox.TabIndex = 0;
             this.LightSetBox.TabStop = false;
             this.LightSetBox.Text = "Flashlight Brightness";
@@ -217,10 +212,10 @@
             // LightLowBut
             // 
             this.LightLowBut.AutoSize = true;
-            this.LightLowBut.Location = new System.Drawing.Point(80, 33);
-            this.LightLowBut.Margin = new System.Windows.Forms.Padding(2);
+            this.LightLowBut.Location = new System.Drawing.Point(174, 41);
+            this.LightLowBut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LightLowBut.Name = "LightLowBut";
-            this.LightLowBut.Size = new System.Drawing.Size(48, 23);
+            this.LightLowBut.Size = new System.Drawing.Size(60, 22);
             this.LightLowBut.TabIndex = 2;
             this.LightLowBut.TabStop = true;
             this.LightLowBut.Text = "33%";
@@ -230,10 +225,10 @@
             // LightMedBut
             // 
             this.LightMedBut.AutoSize = true;
-            this.LightMedBut.Location = new System.Drawing.Point(143, 33);
-            this.LightMedBut.Margin = new System.Windows.Forms.Padding(2);
+            this.LightMedBut.Location = new System.Drawing.Point(345, 41);
+            this.LightMedBut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LightMedBut.Name = "LightMedBut";
-            this.LightMedBut.Size = new System.Drawing.Size(48, 23);
+            this.LightMedBut.Size = new System.Drawing.Size(60, 22);
             this.LightMedBut.TabIndex = 3;
             this.LightMedBut.TabStop = true;
             this.LightMedBut.Text = "66%";
@@ -243,10 +238,10 @@
             // LightFullBut
             // 
             this.LightFullBut.AutoSize = true;
-            this.LightFullBut.Location = new System.Drawing.Point(202, 33);
-            this.LightFullBut.Margin = new System.Windows.Forms.Padding(2);
+            this.LightFullBut.Location = new System.Drawing.Point(536, 41);
+            this.LightFullBut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LightFullBut.Name = "LightFullBut";
-            this.LightFullBut.Size = new System.Drawing.Size(56, 23);
+            this.LightFullBut.Size = new System.Drawing.Size(70, 22);
             this.LightFullBut.TabIndex = 4;
             this.LightFullBut.TabStop = true;
             this.LightFullBut.Text = "100%";
@@ -256,64 +251,23 @@
             // LightOffBut
             // 
             this.LightOffBut.AutoSize = true;
-            this.LightOffBut.Location = new System.Drawing.Point(15, 33);
-            this.LightOffBut.Margin = new System.Windows.Forms.Padding(2);
+            this.LightOffBut.Location = new System.Drawing.Point(20, 41);
+            this.LightOffBut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LightOffBut.Name = "LightOffBut";
-            this.LightOffBut.Size = new System.Drawing.Size(43, 23);
+            this.LightOffBut.Size = new System.Drawing.Size(51, 22);
             this.LightOffBut.TabIndex = 1;
             this.LightOffBut.TabStop = true;
             this.LightOffBut.Text = "Off";
             this.LightOffBut.UseVisualStyleBackColor = true;
             this.LightOffBut.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // BegLvlBox
-            // 
-            this.BegLvlBox.Controls.Add(this.LevelTwo);
-            this.BegLvlBox.Controls.Add(this.LevelOne);
-            this.BegLvlBox.Font = new System.Drawing.Font("Mistral", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BegLvlBox.Location = new System.Drawing.Point(14, 314);
-            this.BegLvlBox.Margin = new System.Windows.Forms.Padding(2);
-            this.BegLvlBox.Name = "BegLvlBox";
-            this.BegLvlBox.Padding = new System.Windows.Forms.Padding(2);
-            this.BegLvlBox.Size = new System.Drawing.Size(493, 81);
-            this.BegLvlBox.TabIndex = 3;
-            this.BegLvlBox.TabStop = false;
-            this.BegLvlBox.Text = "Beginning Level";
-            this.toolTip1.SetToolTip(this.BegLvlBox, "Set the game map to start on");
-            // 
-            // LevelTwo
-            // 
-            this.LevelTwo.AutoSize = true;
-            this.LevelTwo.Location = new System.Drawing.Point(154, 33);
-            this.LevelTwo.Margin = new System.Windows.Forms.Padding(2);
-            this.LevelTwo.Name = "LevelTwo";
-            this.LevelTwo.Size = new System.Drawing.Size(59, 23);
-            this.LevelTwo.TabIndex = 3;
-            this.LevelTwo.TabStop = true;
-            this.LevelTwo.Text = "Level 2";
-            this.LevelTwo.UseVisualStyleBackColor = true;
-            this.LevelTwo.CheckedChanged += new System.EventHandler(this.LevelTwo_CheckedChanged);
-            // 
-            // LevelOne
-            // 
-            this.LevelOne.AutoSize = true;
-            this.LevelOne.Location = new System.Drawing.Point(38, 33);
-            this.LevelOne.Margin = new System.Windows.Forms.Padding(2);
-            this.LevelOne.Name = "LevelOne";
-            this.LevelOne.Size = new System.Drawing.Size(59, 23);
-            this.LevelOne.TabIndex = 0;
-            this.LevelOne.TabStop = true;
-            this.LevelOne.Text = "Level 1";
-            this.LevelOne.UseVisualStyleBackColor = true;
-            this.LevelOne.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
-            // 
             // ApplyBut
             // 
-            this.ApplyBut.Font = new System.Drawing.Font("Mistral", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ApplyBut.Location = new System.Drawing.Point(9, 535);
-            this.ApplyBut.Margin = new System.Windows.Forms.Padding(2);
+            this.ApplyBut.Font = new System.Drawing.Font("Moire", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ApplyBut.Location = new System.Drawing.Point(12, 658);
+            this.ApplyBut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ApplyBut.Name = "ApplyBut";
-            this.ApplyBut.Size = new System.Drawing.Size(68, 28);
+            this.ApplyBut.Size = new System.Drawing.Size(91, 34);
             this.ApplyBut.TabIndex = 4;
             this.ApplyBut.Text = "Apply";
             this.toolTip1.SetToolTip(this.ApplyBut, "Save the changes and close the external tool");
@@ -322,11 +276,11 @@
             // 
             // CancelBut
             // 
-            this.CancelBut.Font = new System.Drawing.Font("Mistral", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelBut.Location = new System.Drawing.Point(417, 535);
-            this.CancelBut.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelBut.Font = new System.Drawing.Font("Moire", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBut.Location = new System.Drawing.Point(556, 658);
+            this.CancelBut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CancelBut.Name = "CancelBut";
-            this.CancelBut.Size = new System.Drawing.Size(68, 28);
+            this.CancelBut.Size = new System.Drawing.Size(91, 34);
             this.CancelBut.TabIndex = 5;
             this.CancelBut.Text = "Cancel";
             this.toolTip1.SetToolTip(this.CancelBut, "Close the external tool without saving");
@@ -335,10 +289,11 @@
             // 
             // HelpBut
             // 
-            this.HelpBut.Font = new System.Drawing.Font("Mistral", 12F);
-            this.HelpBut.Location = new System.Drawing.Point(431, 7);
+            this.HelpBut.Font = new System.Drawing.Font("Moire", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpBut.Location = new System.Drawing.Point(575, 9);
+            this.HelpBut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.HelpBut.Name = "HelpBut";
-            this.HelpBut.Size = new System.Drawing.Size(75, 23);
+            this.HelpBut.Size = new System.Drawing.Size(100, 28);
             this.HelpBut.TabIndex = 6;
             this.HelpBut.Text = "Help";
             this.toolTip1.SetToolTip(this.HelpBut, "Brings up the help menu");
@@ -347,18 +302,17 @@
             // 
             // SettingsManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 574);
+            this.ClientSize = new System.Drawing.Size(696, 706);
             this.Controls.Add(this.HelpBut);
             this.Controls.Add(this.CancelBut);
             this.Controls.Add(this.ApplyBut);
-            this.Controls.Add(this.BegLvlBox);
             this.Controls.Add(this.CustomBox);
             this.Controls.Add(this.EasySetBox);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SettingsManager";
             this.Text = "Settings Manager";
             this.EasySetBox.ResumeLayout(false);
@@ -368,8 +322,6 @@
             this.EnemySpeedBox.PerformLayout();
             this.LightSetBox.ResumeLayout(false);
             this.LightSetBox.PerformLayout();
-            this.BegLvlBox.ResumeLayout(false);
-            this.BegLvlBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,9 +344,6 @@
         private System.Windows.Forms.RadioButton EnemyAvg;
         private System.Windows.Forms.RadioButton EnemyFast;
         private System.Windows.Forms.RadioButton EnemySlow;
-        private System.Windows.Forms.GroupBox BegLvlBox;
-        private System.Windows.Forms.RadioButton LevelOne;
-        private System.Windows.Forms.RadioButton LevelTwo;
         private System.Windows.Forms.Button ApplyBut;
         private System.Windows.Forms.Button CancelBut;
         private System.Windows.Forms.ToolTip toolTip1;
