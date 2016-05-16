@@ -4,7 +4,6 @@ namespace The_Attempt
 {
     // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
     // Handles a collectible key needed for the player to progress in the game
-    // This class will be implemented in the future
     public class Key:Collectible
     {
         // attributes

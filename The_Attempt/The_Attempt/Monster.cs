@@ -10,23 +10,18 @@ namespace The_Attempt
 {
     // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
     // Handles the Monster game object and AI
-    // This class will be implemented in the future
     public class Monster : GameObject
     {
         // attributes
-        private int creepSpeed = 0; // the speed at which the monster moves while not in pursuit mode
-        private int rushSpeed = 0; // the speed at which the monster moves while in pursuit mode
+        private int creepSpeed; // the speed at which the monster moves while not in pursuit mode
+        private int rushSpeed; // the speed at which the monster moves while in pursuit mode
         private Movement move;
         private Movement assessMove;
         private CollDetect collide;
         private Random rgen;
-        private int turn; //2 is not turning while 0 and 1 are turning
-
+        private int turn; 
         private int[] possibleDirections = new int[4];
-
-
-        // private direction currentDirection;
-        private int currentDirection;  //can make into a enum later -1 is null 0,1,2,3 are U,D,L,R
+        private int currentDirection; // 0,1,2,3 are U,D,L,R
 
         // properties
         public int CreepSpeed
@@ -43,8 +38,6 @@ namespace The_Attempt
         {
             get { return currentDirection; }
         }
-
-
 
         // properties for the directions array
         public int DirectUp
@@ -70,6 +63,7 @@ namespace The_Attempt
             get { return possibleDirections[3]; }
             set { possibleDirections[3] = value; }
         }
+
         /// <summary>
         /// Constructs a Monster object and places it in a Rectangle defined by the parameters that are passed in.
         /// </summary>
@@ -88,8 +82,6 @@ namespace The_Attempt
             turn = 2; 
             currentDirection = 3;
         }
-
-
 
         /// <summary>
         /// All methods needed in making the ai move around and find the player.
@@ -114,7 +106,7 @@ namespace The_Attempt
                 Assess(map);
                 int directionPlayer = FindPlayer(player, map);
                 int[] directPercent = DirectionPercent(directionPlayer);
-                int monsterDirect = PickDirection(directPercent); //will get either 0,1,2,or 3 (U,D,L,R)
+                int monsterDirect = PickDirection(directPercent); // will get either 0,1,2,or 3 (U,D,L,R)
                 currentDirection = monsterDirect;
                 turn = 2;
             }

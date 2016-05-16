@@ -27,8 +27,6 @@ namespace The_Attempt
         {
             get { return health; }
             set { health = value; }
-            
-            
         }
 
         /// <summary>

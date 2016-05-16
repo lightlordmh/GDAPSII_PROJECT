@@ -6,9 +6,7 @@ namespace The_Attempt
     // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
     // Handles the input for the Charater's movement.
     public class Input
-    {
-       
-
+    { 
         /// <summary>
         /// Checks the current state of the keyboard then does selected events based on the keyboard state.
         /// </summary>
@@ -16,15 +14,17 @@ namespace The_Attempt
         public string Check(Map curGameMap)
         {
             KeyboardState kbState = Keyboard.GetState(); // keyboardState object to store the current state of the keyboard
+
             Movement inputMove = new Movement(3); // movement object to move the map object based on keyboard input
             CollDetect detect = new CollDetect();
             Rectangle instanceOfPlayer = new Rectangle(360, 360, 80, 80);
+
             string direction = ""; // used to return the direction the player is facing
             int fallback = 0;
 
-            // each key that we might use
+            
             // check if the leftshift key is being pressed
-            if (kbState.IsKeyDown(Keys.LeftShift)) //Running if we have it
+            if (kbState.IsKeyDown(Keys.LeftShift)) 
             {
                 // call and set inputMove's scale propety to double its previous value
                 inputMove.Scale *= 2;

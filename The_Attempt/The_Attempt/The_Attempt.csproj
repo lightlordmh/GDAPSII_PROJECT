@@ -38,8 +38,6 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Battery.cs" />
-    <Compile Include="Button.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="CollDetect.cs" />
     <Compile Include="Collectible.cs" />
@@ -47,15 +45,12 @@
     <Compile Include="Door.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="input.cs" />
-    <Compile Include="Intersection.cs" />
+    <Compile Include="Input.cs" />
     <Compile Include="Key.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="Menu.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="Movement.cs" />
-    <Compile Include="Notes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
@@ -119,6 +114,7 @@
     <Content Include="Content\Player Image_OLD.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Player.xnb" />
     <Content Include="Content\Trapdoor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -135,9 +131,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\28DaysLater_70.xnb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Player.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

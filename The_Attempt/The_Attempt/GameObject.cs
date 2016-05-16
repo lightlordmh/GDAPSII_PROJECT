@@ -63,15 +63,6 @@ namespace The_Attempt
             set { currentTexture = value; }
         }
 
-        // redundant code for future removal
-        /*
-        public Vector2 MapPos
-        {
-            get { return mapPos; }
-            set { mapPos = value; }
-        }
-        */
-
         /// <summary>
         /// Constructs a GameObject object and places it in a Rectangle defined by the parameters that are passed in.
         /// </summary>
@@ -94,8 +85,11 @@ namespace The_Attempt
             spriteBatch.Draw(currentTexture, positionCurr, Color.White);
         }
 
-
-        public void UpdateCurrPos(Map map) //arguments should be the current x and y position of the map
+        /// <summary>
+        /// Updates the position of the GameObject relative to the Map. This moves the object with the Map as the player traverses it.
+        /// </summary>
+        /// <param name="map">Game map</param>
+        public void UpdateCurrPos(Map map) 
         {
             XCurr = X + map.XCurr;
             YCurr = Y + map.YCurr;

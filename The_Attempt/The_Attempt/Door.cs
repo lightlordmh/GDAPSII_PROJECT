@@ -4,7 +4,6 @@ namespace The_Attempt
 {
     // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
     // This collectible Door object requires player interaction for the game to proceed to another level
-    // This class will be implemented in the future
     public class Door:Collectible
     {
         // attributes

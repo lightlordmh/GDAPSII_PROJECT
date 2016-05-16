@@ -9,18 +9,10 @@ using Microsoft.Xna.Framework;
 
 namespace The_Attempt
 {
+    // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating  
+    // Loads the levels as the game progresses 
     class Level
-    {
-        // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating  
-        // loads the levels as the game progresses 
-        // I'm putting the mapimage here as well since it changes as the game progress
-        // This Class will be implemented in the future
-
-
-        // the texture for the map, there is only one now, but if multiple levels are made there will be an array of texture2Ds and a current map texture.
-        
-
-
+    {      
         /// <summary>
         /// Loads the correct array of corridors in the 160:1 matrix
         /// </summary>
