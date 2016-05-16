@@ -41,6 +41,7 @@ namespace The_Attempt
         Texture2D keyTexture; // the texture of the keys
         CollDetect collDetect;
         Texture2D loseScreen;
+        Texture2D winScreen;
         Texture2D doorImg;
         Texture2D flashLightOn;
         Texture2D flashLightOff;
@@ -133,7 +134,7 @@ namespace The_Attempt
             // place player, monster, keys, and doors on the map
             map = new Map(-3200, -320, 7680, 6240);
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH / 2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT / 2), CHAR_WIDTH, CHAR_HEIGHT);
-            monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 4, 2);
+            monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
             keys = new List<Key>();
             doors = new List<Door>();
             keys.Add(new Key(2560 + 40, 3840 + 40, 80, 80, "full"));  
@@ -173,6 +174,7 @@ namespace The_Attempt
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
             loseScreen = Content.Load<Texture2D>("Game Over");
+            winScreen = Content.Load <Texture2D>("Win Screen");
 
             //Load all songs used in the game
             menuTheme = Content.Load<Song>("MenuTheme");
@@ -465,7 +467,7 @@ namespace The_Attempt
                     // monster collisions and player health
                     if (collDetect.SimpleCheck(player.PositionCurr, monster.PositionCurr) == true && invincible <= 0)
                     {
-                        invincible = 120;
+                        invincible = 60;
                         player.Health--;
                         //if the player is hurt but not dead play the pain soundeffect
                         if(player.Health > 0)
@@ -572,6 +574,7 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "D  -  Move Right", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 450), Color.White);
                 spriteBatch.DrawString(text, "Shift  -  Sprint", new Vector2((GraphicsDevice.Viewport.Height / 3) + 60, 495), Color.White);
                 spriteBatch.DrawString(text, "Tab  -  Map Overlay", new Vector2((GraphicsDevice.Viewport.Height / 3) + 40, 540), Color.White);
+                spriteBatch.DrawString(text, "Space  -  Flashlight", new Vector2((GraphicsDevice.Viewport.Height / 3) + 40, 585), Color.White);
             }
             if (currentState == GameState.MainGame)
             {
@@ -709,9 +712,14 @@ namespace The_Attempt
                 spriteBatch.Draw(loseScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
                 spriteBatch.DrawString(text, "Press Enter to Return to the Main Menu", new Vector2((GraphicsDevice.Viewport.Height / 4) + 40, 575), Color.Red);
             }
-                   
-            
-                 
+            if (currentState == GameState.Winner)
+            {
+                // currentState = GameState.MainMenu;
+                spriteBatch.Draw(winScreen, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                spriteBatch.DrawString(text, "Press Enter to Return to the Main Menu", new Vector2((GraphicsDevice.Viewport.Height / 4) + 40, 625), Color.Red);
+            }
+
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
