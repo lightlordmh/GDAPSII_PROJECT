@@ -8,28 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 namespace The_Attempt
 {
     // Authors: Israel Anthony, Kyle Vanderwiel, Russell Swartz, Evan Keating
-    // This class will be implemented in the future
     // Handles collision between game objects
     class CollDetect
     {
-        //enum directcion {U,D,L,R}
-        //loop that creates the array of corridor rectangles from a text file (this is in the constructor)
-
-
-        //detect method(argument direction, map.x, map.y)
-        //{
-        //loop that updates every corridor array object with the map position
-        //loop that checks to see if any of the corridor array rectangles are intersecting the character rectangle (the character rectangle never changes)
-        //if it does activate a switch
-        //switch takes the direction and each case moves it back the opposite direction
-        //}
-
-        //The 1:160 scale version of things is called the "SmallScale" vs "LargeScale"
-
-
-
-
-
         //checking for basically any collision between objects
         public bool SimpleCheck(Rectangle objOne, Rectangle objTwo)
         {
@@ -55,11 +36,7 @@ namespace The_Attempt
             return returning;
         }
 
-
-
-
-
-                                                                               //for directionmoved input the direction to move back
+        //for direction moved input the direction to move back
         public int corridorCheck(Rectangle objChecking, Map currentMap) //for the char pass in either U, D, L or R
         { 
             Vector2[] cornerCheck = new Vector2[4];
@@ -75,8 +52,6 @@ namespace The_Attempt
             corners[1] = new Rectangle(objChecking.X, (objChecking.Y + objChecking.Height)-5, 5, 5); //bottom left
             corners[2] = new Rectangle((objChecking.X + objChecking.Width)-5, objChecking.Y, 5, 5); //top right
             corners[3] = new Rectangle((objChecking.X + objChecking.Width) - 5, (objChecking.Y + objChecking.Height) - 5, 5, 5); //bottom right
-
-
 
             //Vector2 simplePos = FindSmallScaleLocation(objChecking, currentMap);
 
