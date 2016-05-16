@@ -541,7 +541,16 @@ namespace The_Attempt
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
-
+                    for (int i = 0; i < keys.Count; i++)
+                    {
+                        keys[i].Rendered = true;
+                    }
+                    for (int j = 0; j < doors.Count; j++) // open the doors on the map if the player has 2 keys
+                    {
+                        doors[j].Open = false;
+                    }
+                    monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
+                    map = new Map(-3200, -320, 7680, 6240);
                     if (SingleKeyPress(Keys.Enter))
                     {
                         currentState = GameState.MainMenu;
