@@ -119,6 +119,9 @@
     <Content Include="Content\Player Image_OLD.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Trapdoor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Win Screen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

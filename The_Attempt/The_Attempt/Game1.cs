@@ -150,8 +150,8 @@ namespace The_Attempt
             keys.Add(new Key(3840 + 40, 2560 + 40, 80, 80, "full"));
             keys.Add(new Key(960 + 40, 1440 + 40, 80, 80, "full"));
             keys.Add(new Key(2240 + 40, 5440 + 40, 80, 80, "full"));
-            doors.Add(new Door(1120 + 30, 4160 + 30, 100, 100));
-            doors.Add(new Door(4480 + 30, 3840 + 30, 100, 100));
+            doors.Add(new Door(1120 + 20, 4160 + 20, 120, 120));
+            doors.Add(new Door(4480 + 20, 3840 + 20, 120, 120));
 
             soundEffects = new List<SoundEffect>(); //initialize sound effects list
 
@@ -177,7 +177,7 @@ namespace The_Attempt
             monsterImg = Content.Load<Texture2D>("Enemy Imagev3");
             keyTexture = Content.Load<Texture2D>("Key Sprite");
             corridorimg = Content.Load<Texture2D>("Player");
-            doorImg = Content.Load<Texture2D>("MenuScreen");
+            doorImg = Content.Load<Texture2D>("Trapdoor");
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
             loseScreen = Content.Load<Texture2D>("Game Over");
@@ -657,14 +657,6 @@ namespace The_Attempt
                 {
                     doors[i].Draw(spriteBatch);
                 }
-
-                //player.Draw(spriteBatch);
-
-
-                //drawing the monster
-                ///monster.Draw(spriteBatch);
-
-
 /*
                 //draw the Flashlight
                 if (lightOn)
@@ -681,11 +673,7 @@ namespace The_Attempt
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
                 spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
                 spriteBatch.DrawString(text, "Health   " + player.Health, new Vector2(5, 100), Color.White);
-                //drawing the testing int
-                spriteBatch.DrawString(text, "Testing:   " + Settings.testingint, new Vector2(5, 150), Color.White);                          //erase at a later date
-                //spriteBatch.DrawString(text, "" + monster.X, new Vector2(5, 130), Color.White);
-                //spriteBatch.DrawString(text, "" + monster.Y, new Vector2(5, 160), Color.White);
-                //spriteBatch.DrawString(text, "" + monster.Width, new Vector2(5, 190), Color.White);
+                spriteBatch.DrawString(text, "Find 2 Keys And Escape Through A Trap Door", new Vector2((GraphicsDevice.Viewport.Width / 2) - 140, 10), Color.White);
             }
             if (currentState == GameState.MapOverlay) // stretch goal
             {
