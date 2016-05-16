@@ -179,6 +179,7 @@ namespace The_Attempt
             mainTheme = Content.Load<Song>("MainTheme");
             endTheme = Content.Load<Song>("EndTheme");
             MediaPlayer.IsRepeating = true;//set the media player to repeat after a song ends
+            MediaPlayer.Volume = 0.5f;
        
             //Load all Sound Effects in the game
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/w_pkup"));
