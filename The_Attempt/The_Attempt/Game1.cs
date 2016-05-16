@@ -453,7 +453,7 @@ namespace The_Attempt
                             doorSealed.Play();
                         }
                     }
-
+              
                     for (int i = 0; i < doors.Count; i++)
                     {
                         doors[i].UpdateCurrPos(map);
@@ -522,12 +522,14 @@ namespace The_Attempt
 
                     break;
                 case GameState.Winner:
+                    //if the game over state has just occured play the stop current song and play the EndTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
                         MediaPlayer.Play(winTheme);
                     }
                     oldState = currentState;
+                    //resest level, player health, and keys pickedup
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
@@ -535,12 +537,13 @@ namespace The_Attempt
                     {
                         keys[i].Rendered = true;
                     }
-                    for (int j = 0; j < doors.Count; j++) // open the doors on the map if the player has 2 keys
+                    for (int j = 0; j < doors.Count; j++)
                     {
                         doors[j].Open = false;
                     }
                     monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
                     map = new Map(-3200, -320, 7680, 6240);
+
                     //easter egg
                     if (SingleKeyPress(Keys.G))
                     {
@@ -673,7 +676,7 @@ namespace The_Attempt
                 {
                     doors[i].Draw(spriteBatch);
                 }
-/*
+
                 // draw the Flashlight
                 if (lightOn)
                 {
@@ -683,7 +686,7 @@ namespace The_Attempt
                 {
                     spriteBatch.Draw(flashLightOff, new Vector2(-90, -100), Color.White);
                 }
-*/
+
                 // draw the level, level score and timer
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
