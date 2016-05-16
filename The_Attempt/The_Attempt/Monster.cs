@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
 
 namespace The_Attempt
 {
@@ -89,13 +91,22 @@ namespace The_Attempt
 
 
 
-
-
-        public void aiMove(GameObject player, Map map)
+        /// <summary>
+        /// All methods needed in making the ai move around and find the player.
+        /// </summary>
+        /// <param name="plyaer">The game object of the player, used for finding player location.</param>
+        /// <param name="yPos">The current Map object.</param>
+        public void aiMove(GameObject player, Map map, KeyboardState kBS, bool lightOn)
         {
-            //monster spawns with currentdirection == -1
-            //turn 1 and turn 0 
 
+            if(lightOn == true)
+            {
+                move.Scale = rushSpeed;
+            }
+            else
+            {
+                move.Scale = creepSpeed;
+            }
 
             if (turn == 1 || turn == 0) 
             {
