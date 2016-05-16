@@ -124,7 +124,7 @@ namespace The_Attempt
             // place player, monster, keys, and doors on the map
             map = new Map(-3200, -320, 7680, 6240);
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH / 2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT / 2), CHAR_WIDTH, CHAR_HEIGHT);
-            monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
+            monster = new Monster(3200, 1920, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
             keys = new List<Key>();
             doors = new List<Door>();
             keys.Add(new Key(2560 + 40, 3840 + 40, 80, 80, "full"));  
@@ -384,6 +384,7 @@ namespace The_Attempt
                     }
 
                     // move the monster
+                    monster.LightCheck(lightOn, kbState);
                     monster.aiMove(player,map, kbState, lightOn);
 
                     // update monster position and direction for animation
@@ -499,7 +500,7 @@ namespace The_Attempt
                     oldState = currentState;
 
                     // resest all of the objects and variables
-                    monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
+                    monster = new Monster(3200, 1920, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
                     map = new Map(-3200, -320, 7680, 6240);
                     Settings.currentLevel = 0;
                     player.Health = 3;
