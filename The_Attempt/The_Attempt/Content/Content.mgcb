@@ -103,3 +103,15 @@
 /processorParam:Quality=Best
 /build:SoundEffects/death3.mp3
 
+#begin WinTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:WinTheme.mp3
+
+#begin Gaston.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Gaston.mp3
+

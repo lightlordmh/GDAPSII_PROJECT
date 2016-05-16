@@ -23,7 +23,7 @@ namespace The_Attempt
         Texture2D menuImg; // background for the menu
 
         //songs and sound effects
-        Song menuTheme, mainTheme, winTheme, endTheme; // background music
+        Song menuTheme, mainTheme, winTheme, endTheme, gaston; // background music
         List<SoundEffect> soundEffects;// list of sound effects
         SoundEffectInstance instance;//instance of the walking sound effect
         SoundEffectInstance pkupKey;// instance of the key pickup sound effect
@@ -187,6 +187,8 @@ namespace The_Attempt
             menuTheme = Content.Load<Song>("MenuTheme");
             mainTheme = Content.Load<Song>("MainTheme");
             endTheme = Content.Load<Song>("EndTheme");
+            winTheme = Content.Load<Song>("WinTheme");
+            gaston = Content.Load<Song>("Gaston");
             MediaPlayer.IsRepeating = true;//set the media player to repeat after a song ends
             MediaPlayer.Volume = 0.5f;
        
@@ -532,12 +534,12 @@ namespace The_Attempt
 
                     break;
                 case GameState.Winner:
-                    //if (currentState != oldState)
-                    //{
-                    //    MediaPlayer.Stop();
-                    //    MediaPlayer.Play(winTheme);
-                    //}
-                    //oldState = currentState;
+                    if (currentState != oldState)
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(winTheme);
+                    }
+                    oldState = currentState;
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
@@ -551,6 +553,12 @@ namespace The_Attempt
                     }
                     monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
                     map = new Map(-3200, -320, 7680, 6240);
+                    //easter egg
+                    if (SingleKeyPress(Keys.G))
+                    {
+                        MediaPlayer.Stop();
+                        MediaPlayer.Play(gaston);
+                    }
                     if (SingleKeyPress(Keys.Enter))
                     {
                         currentState = GameState.MainMenu;
