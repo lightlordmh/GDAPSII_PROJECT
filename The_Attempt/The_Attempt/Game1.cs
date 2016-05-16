@@ -54,18 +54,14 @@ namespace The_Attempt
         Input input; // handles input
         Monster monster; // the monster object
 
-        Texture2D corridorimg;
-
         Random rng; // used to generate positions for keys
-        bool lightOn = true;
-        int invincible = 0;
+        bool lightOn;
+        int invincible;
 
-        int frame;
         double timePerFrame = 100;
         int numFrames = 7;
+        int frame;
         int framesElapsed;
-        double timer;
-
         int enemyFrame;
         int enemyFramesElapsed;
 
@@ -75,26 +71,24 @@ namespace The_Attempt
         const int CHAR_X_OFFSET = 4;
 
 
-
-
         const int ENEMY_Y = 0;
         const int ENEMY_HEIGHT = 160;
         const int ENEMY_WIDTH = 160;
         const int ENEMY_X_OFFSET = 2;
 
 
-
         enum CharState { WalkRight, WalkLeft, WalkUp, WalkDown, FaceRight, FaceLeft, FaceUp, FaceDown }
-        CharState charState; // current state of the player character
-        string pastDirection; // used to store the previous state
+        CharState charState;
+        string pastDirection;
 
         enum EnemyState { WalkRight, WalkLeft, WalkUp, WalkDown }
         EnemyState enemyState;
 
         // the various game states present in the game
         enum GameState { MainMenu, Options, Controls, MainGame, GameOver, MapOverlay, Winner }
-        GameState currentState; // the current game state
+        GameState currentState;
         GameState oldState;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -104,10 +98,7 @@ namespace The_Attempt
             graphics.PreferredBackBufferHeight = Settings.WinHeight; 
             graphics.PreferredBackBufferWidth = Settings.WinWidth;
             Settings.Setup("GameSettings.txt");
-
-        }
-
-        
+        }       
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -118,25 +109,20 @@ namespace The_Attempt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-           
-            IsMouseVisible = true; // Enable the mouse to be visable with in the game window
             currentState = GameState.MainMenu; // start the game off at the menu state
-            oldState = GameState.GameOver;
+            lightOn = false;
+
             // initialize attributes and place objects
             kbState = new KeyboardState();
             previousKbState = new KeyboardState();
-
+            rng = new Random();
             level = new Level();
             input = new Input();
             collDetect = new CollDetect();
 
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
 
-            monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 4, 8);
-
-            map = new Map(-3200, -320, 7680, 6240);
-
-            rng = new Random();
+           
 
             // place player, monster, keys, and doors on the map
             map = new Map(-3200, -320, 7680, 6240);
@@ -153,7 +139,7 @@ namespace The_Attempt
             doors.Add(new Door(1120 + 20, 4160 + 20, 120, 120));
             doors.Add(new Door(4480 + 20, 3840 + 20, 120, 120));
 
-            soundEffects = new List<SoundEffect>(); //initialize sound effects list
+            soundEffects = new List<SoundEffect>(); // initialize sound effects list
 
             base.Initialize();
         }
@@ -168,7 +154,7 @@ namespace The_Attempt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            //Load all textures used in the game
+            // Load all textures used in the game
             playerImg = Content.Load<Texture2D>("Player Imagev2");
             Settings.mapTexture.Add(Content.Load<Texture2D>("Map"));
             title = Content.Load<SpriteFont>("28DaysLater_70");
@@ -176,21 +162,20 @@ namespace The_Attempt
             menuImg = Content.Load<Texture2D>("MenuScreen");
             monsterImg = Content.Load<Texture2D>("Enemy Imagev3");
             keyTexture = Content.Load<Texture2D>("Key Sprite");
-            corridorimg = Content.Load<Texture2D>("Player");
             doorImg = Content.Load<Texture2D>("Trapdoor");
             flashLightOn = Content.Load<Texture2D>(Settings.Flashlight);
             flashLightOff = Content.Load<Texture2D>("FLON3");
             loseScreen = Content.Load<Texture2D>("Game Over");
             winScreen = Content.Load <Texture2D>("Win Screen");
 
-            //Load all songs used in the game
+            // Load all songs used in the game
             menuTheme = Content.Load<Song>("MenuTheme");
             mainTheme = Content.Load<Song>("MainTheme");
             endTheme = Content.Load<Song>("EndTheme");
-            MediaPlayer.IsRepeating = true;//set the media player to repeat after a song ends
+            MediaPlayer.IsRepeating = true; // set the media player to repeat after a song ends
             MediaPlayer.Volume = 0.5f;
        
-            //Load all Sound Effects in the game
+            // Load all Sound Effects in the game
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/w_pkup"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step1"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/stone_step2"));
@@ -203,13 +188,12 @@ namespace The_Attempt
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/pain100"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/death1"));
             soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/death3"));
-            SoundEffect.MasterVolume = 0.5f;//set global sound effect volume
+            SoundEffect.MasterVolume = 0.5f; // set global sound effect volume
+
             //create instances of specific sound effects for more control
             instance = soundEffects[0].CreateInstance();
             pkupKey = soundEffects[0].CreateInstance();
             doorSealed = soundEffects[6].CreateInstance();
-
-
         }
 
         /// <summary>
@@ -238,7 +222,7 @@ namespace The_Attempt
             switch (currentState)
             {
                 case GameState.MainMenu:
-                    //if the current state is new stop the previous song and play the menuTheme
+                    // if the current state is new stop the previous song and play the menuTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
@@ -270,7 +254,7 @@ namespace The_Attempt
                     }
                     break;
                 case GameState.Controls:
-                    //if the current state is new stop the previous song and play the menuTheme
+                    // if the current state is new stop the previous song and play the menuTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
@@ -286,7 +270,7 @@ namespace The_Attempt
                     
                     break;
                 case GameState.MainGame:
-                    //if the current state is new stop the previous song and play the mainTheme
+                    // if the current state is new stop the previous song and play the mainTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
@@ -299,7 +283,7 @@ namespace The_Attempt
                         IsMouseVisible = true;
                         currentState = GameState.MapOverlay;
                     }
-                    //Space To Control the Flashlight On/ Off
+                    // Space To Control the Flashlight On/ Off
                     if (SingleKeyPress(Keys.Space)) 
                     {
                         if (lightOn) lightOn = false;
@@ -329,9 +313,9 @@ namespace The_Attempt
                         }
                     }
 
-                    pastDirection = direction; // store directiong for this update to use for comparison the next frame
+                    pastDirection = direction; // store direction for this update to use for comparison the next frame
 
-                    //if the current sound efects is stopped generate a new instance with random walking sound effect
+                    // if the current sound efects is stopped generate a new instance with random walking sound effect
                     if(instance.State == SoundState.Stopped)
                     {
                         instance = soundEffects[rng.Next(1, 4)].CreateInstance();
@@ -340,7 +324,7 @@ namespace The_Attempt
                     switch (direction)
                     {
                         case "Walk Left":
-                            //if the current sound effect is not playing play it
+                            // if the current sound effect is not playing play it
                             if (instance.State == SoundState.Stopped)
                             {
                                 instance.Play( );
@@ -351,7 +335,7 @@ namespace The_Attempt
                             charState = CharState.WalkLeft;
                             break;
                         case "Walk Right":
-                            //if the current sound effect is not playing play it
+                            // if the current sound effect is not playing play it
                             if (instance.State == SoundState.Stopped)
                             {
                                 instance.Play();
@@ -362,7 +346,7 @@ namespace The_Attempt
                             charState = CharState.WalkRight;
                             break;
                         case "Walk Up":
-                            //if the current sound effect is not playing play it
+                            // if the current sound effect is not playing play it
                             if (instance.State == SoundState.Stopped)
                             {
                                 instance.Play();
@@ -373,7 +357,7 @@ namespace The_Attempt
                             charState = CharState.WalkUp;
                             break;
                         case "Walk Down":
-                            //if the current sound effect is not playing play it
+                            // if the current sound effect is not playing play it
                             if (instance.State == SoundState.Stopped)
                             {
                                 instance.Play();
@@ -398,10 +382,12 @@ namespace The_Attempt
                             charState = CharState.FaceDown;
                             break;
                     }
-                    // updating position of objects
-                    monster.aiMove(player,map, kbState, lightOn);
-                    monster.UpdateCurrPos(map);
 
+                    // move the monster
+                    monster.aiMove(player,map, kbState, lightOn);
+
+                    // update monster position and direction for animation
+                    monster.UpdateCurrPos(map);
                     if(monster.CurrentDirection == 0)
                     {
                         enemyState = EnemyState.WalkUp;
@@ -429,7 +415,7 @@ namespace The_Attempt
 
                     
 
-                    //key stuff
+                    // key position / collision updating
                     for (int i = 0; i < keys.Count; i++)
                     {
                         //if the player collides with key and it is visable
@@ -453,7 +439,7 @@ namespace The_Attempt
                         keys[i].UpdateCurrPos(map);
                     }
 
-                    //door stuff
+                    // door position / collision updating
                     for (int i = 0; i < doors.Count; i++)
                     {
                         if (collDetect.SimpleCheck(player.PositionCurr, doors[i].PositionCurr) == true && player.NumKeyParts >= 2)
@@ -477,12 +463,12 @@ namespace The_Attempt
                     {
                         invincible = 60;
                         player.Health--;
-                        //if the player is hurt but not dead play the pain soundeffect
+                        // if the player is hurt but not dead play the pain soundeffect
                         if(player.Health > 0)
                         {
                             soundEffects[rng.Next(7, 9)].Play();
                         }
-                        //if the player is dead play a dead sound effect and game over
+                        // if the player is dead play a dead sound effect and game over
                         else if (player.Health <= 0)
                         {
                             soundEffects[rng.Next(10, 11)].Play();
@@ -490,7 +476,7 @@ namespace The_Attempt
                         }
                     }
 
-                    if (invincible > 0) //reduces the time of invincible
+                    if (invincible > 0) // reduces the time of invincible
                     {
                         invincible--;
                     }
@@ -504,14 +490,17 @@ namespace The_Attempt
                     }
                     break;
                 case GameState.GameOver:
-                    //if the game over state has just occured play the stop current song and play the EndTheme
+                    // if the game over state has just occured play the stop current song and play the EndTheme
                     if (currentState != oldState)
                     {
                         MediaPlayer.Stop();
                         MediaPlayer.Play(endTheme);
                     }
                     oldState = currentState;
-                    //resest level, player health, and keys pickedup
+
+                    // resest all of the objects and variables
+                    monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
+                    map = new Map(-3200, -320, 7680, 6240);
                     Settings.currentLevel = 0;
                     player.Health = 3;
                     player.NumKeyParts = 0;
@@ -519,12 +508,12 @@ namespace The_Attempt
                     {
                         keys[i].Rendered = true;
                     }
-                    for (int j = 0; j < doors.Count; j++) // open the doors on the map if the player has 2 keys
+                    for (int j = 0; j < doors.Count; j++) // close the doors
                     {
                         doors[j].Open = false;
                     }
-                    monster = new Monster(3520, 960, ENEMY_WIDTH, ENEMY_HEIGHT, 8, 2);
-                    map = new Map(-3200, -320, 7680, 6240);
+                    
+
                     if (SingleKeyPress(Keys.Enter))
                     {
                         currentState = GameState.MainMenu;
@@ -596,7 +585,7 @@ namespace The_Attempt
             }
             if (currentState == GameState.MainGame)
             {
-                //draw the map
+                // draw the map
                 map.Draw(spriteBatch);
 
                 // draw the player to the screen
@@ -654,7 +643,7 @@ namespace The_Attempt
                     spriteBatch.Draw(monsterImg, new Vector2(monster.XCurr, monster.YCurr), new Rectangle(ENEMY_X_OFFSET + (enemyFrame * ENEMY_WIDTH), ENEMY_Y, ENEMY_WIDTH, ENEMY_HEIGHT), Color.White, 3.14f, new Vector2(ENEMY_WIDTH, ENEMY_HEIGHT), 1, SpriteEffects.None, 0);
                 }
 
-                //key rendering
+                // key rendering
                 for (int i = 0; i < keys.Count; i++)
                 {
                     if (keys[i].Rendered == true)
@@ -669,7 +658,7 @@ namespace The_Attempt
                     doors[i].Draw(spriteBatch);
                 }
 /*
-                //draw the Flashlight
+                // draw the Flashlight
                 if (lightOn)
                 {
                     spriteBatch.Draw(flashLightOn, new Vector2(-90, -100), Color.White);
@@ -682,8 +671,7 @@ namespace The_Attempt
                 // draw the level, level score and timer
                 spriteBatch.DrawString(text, "Level   " + Settings.currentLevel, new Vector2(5, 10), Color.White);
                 spriteBatch.DrawString(text, "Key Pieces   " + player.NumKeyParts, new Vector2(5, 40), Color.White);
-                spriteBatch.DrawString(text, String.Format("Timer   {0:0.00}", timer), new Vector2(5, 70), Color.White);
-                spriteBatch.DrawString(text, "Health   " + player.Health, new Vector2(5, 100), Color.White);
+                spriteBatch.DrawString(text, "Health   " + player.Health, new Vector2(5, 70), Color.White);
                 spriteBatch.DrawString(text, "Find 2 Keys And Escape Through A Trap Door", new Vector2((GraphicsDevice.Viewport.Width / 2) - 140, 10), Color.White);
             }
             if (currentState == GameState.MapOverlay) // stretch goal
