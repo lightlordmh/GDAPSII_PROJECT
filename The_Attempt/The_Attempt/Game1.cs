@@ -20,8 +20,7 @@ namespace The_Attempt
         // menu attributes
         SpriteFont title; // font used for Title on the Main Menus
         SpriteFont text; // font used for other text
-        Texture2D menuImg; // background for the menu
-
+        
         //songs and sound effects
         Song menuTheme, mainTheme, winTheme, endTheme, gaston; // background music
         List<SoundEffect> soundEffects;// list of sound effects
@@ -35,18 +34,20 @@ namespace The_Attempt
         KeyboardState previousKbState; // previous keyboardstate
 
 
-        // in-game attributes
-        Texture2D playerImg; // the texture for the player
-        Texture2D monsterImg; // the texture of the monster (using player 
-        Texture2D keyTexture; // the texture of the keys
-        CollDetect collDetect;
-        Texture2D loseScreen;
-        Texture2D winScreen;
+        // textures for game objects / menus / in-game conditions
+        Texture2D playerImg; 
+        Texture2D monsterImg; 
+        Texture2D keyTexture; 
         Texture2D doorImg;
         Texture2D flashLightOn;
         Texture2D flashLightOff;
+        Texture2D menuImg; 
+        Texture2D loseScreen;
+        Texture2D winScreen;
+        
 
         Level level;
+        CollDetect collDetect;
         Character player; // the player object
         List<Key> keys; // list of keys
         List<Door> doors; // list of doors
@@ -54,7 +55,7 @@ namespace The_Attempt
         Input input; // handles input
         Monster monster; // the monster object
 
-        Random rng; // used to generate positions for keys
+        Random rng;
         bool lightOn;
         int invincible;
 
@@ -119,11 +120,7 @@ namespace The_Attempt
             level = new Level();
             input = new Input();
             collDetect = new CollDetect();
-
-            player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH/2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT/2), CHAR_WIDTH, CHAR_HEIGHT);
-
-           
-
+          
             // place player, monster, keys, and doors on the map
             map = new Map(-3200, -320, 7680, 6240);
             player = new Character((GraphicsDevice.Viewport.Width / 2) - (CHAR_WIDTH / 2), (GraphicsDevice.Viewport.Height / 2) - (CHAR_HEIGHT / 2), CHAR_WIDTH, CHAR_HEIGHT);
@@ -172,13 +169,10 @@ namespace The_Attempt
             menuTheme = Content.Load<Song>("MenuTheme");
             mainTheme = Content.Load<Song>("MainTheme");
             endTheme = Content.Load<Song>("EndTheme");
-<<<<<<< HEAD
             MediaPlayer.IsRepeating = true; // set the media player to repeat after a song ends
-=======
             winTheme = Content.Load<Song>("WinTheme");
             gaston = Content.Load<Song>("Gaston");
             MediaPlayer.IsRepeating = true;//set the media player to repeat after a song ends
->>>>>>> ae690a231e41bb051f2ad4134f8c3e5f2212be5e
             MediaPlayer.Volume = 0.5f;
        
             // Load all Sound Effects in the game
