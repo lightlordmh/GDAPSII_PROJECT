@@ -29,7 +29,7 @@
 * Work on implementing multiple levels for the game
 * Debug the main game before implementing stretch goals
 
-**Week 12 & 13 - Milestone 3** - _**Current Week**_
+**Week 12 & 13 - Milestone 3** 
 
 * For milestone deliverable, have the map fully implemented along with movement and the presence of our enemy 
 * Implement stretch goals
